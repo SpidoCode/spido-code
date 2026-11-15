@@ -2,78 +2,78 @@ extends Control
 
 signal cerrado
 
-# CÃ³dice
+# Códice
 const CONOCIMIENTOS := {
 	"objeto": {
 		"nombre": "Objeto",
 		"categoria": "Fundamentos",
-		"descripcion": "En programaciÃ³n orientada a objetos (POO), un objeto es una entidad que combina propiedades y acciones. En SpidoCode, tu Spid es el objeto principal que controlas mediante cÃ³digo.",
+		"descripcion": "En programación orientada a objetos (POO), un objeto es una entidad que combina propiedades y acciones. En SpidoCode, tu Spid es el objeto principal que controlas mediante código.",
 		"sintaxis": "spid.<metodo>()",
-		"ejemplo": "spid.minar()\n# 'spid' es el objeto que ejecuta la instrucciÃ³n.",
-		"errores": "Escribir mal el nombre del objeto o usar mayÃºsculas (ej: Spid.minar() o rver.minar())."
+		"ejemplo": "spid.minar()\n# 'spid' es el objeto que ejecuta la instrucción.",
+		"errores": "Escribir mal el nombre del objeto o usar mayúsculas (ej: Spid.minar() o rver.minar())."
 	},
 	"metodo": {
-		"nombre": "MÃ©todo",
+		"nombre": "Método",
 		"categoria": "Fundamentos",
-		"descripcion": "Un mÃ©todo es una acciÃ³n o comando que un objeto sabe realizar. Siempre va acompaÃ±ado de parÃ©ntesis '()', que pueden o no llevar datos en su interior.",
+		"descripcion": "Un método es una acción o comando que un objeto sabe realizar. Siempre va acompañado de paréntesis '()', que pueden o no llevar datos en su interior.",
 		"sintaxis": "objeto.nombre_metodo()",
 		"ejemplo": "spid.minar()\nspid.transferir()\nspid.norte()",
-		"errores": "Olvidar los parÃ©ntesis obligatorios (ej: escribir 'spid.minar' sin '()') o usar comas en vez de puntos."
+		"errores": "Olvidar los paréntesis obligatorios (ej: escribir 'spid.minar' sin '()') o usar comas en vez de puntos."
 	},
 	"secuencia": {
-		"nombre": "Secuencia de CÃ³digo",
+		"nombre": "Secuencia de Código",
 		"categoria": "Fundamentos",
-		"descripcion": "El ordenador ejecuta las instrucciones en orden secuencial: de arriba hacia abajo y una por una. El orden lÃ³gico de tus lÃ­neas determina si el spid cumple o falla la misiÃ³n.",
+		"descripcion": "El ordenador ejecuta las instrucciones en orden secuencial: de arriba hacia abajo y una por una. El orden lógico de tus líneas determina si el spid cumple o falla la misión.",
 		"sintaxis": "instruccion_1\ninstruccion_2\ninstruccion_3",
 		"ejemplo": "spid.norte()\nspid.minar()\nspid.sur()\nspid.transferir()",
 		"errores": "Intentar transferir antes de minar o antes de regresar a la casilla de la nave."
 	},
 	"parametro": {
-		"nombre": "ParÃ¡metros (Argumentos)",
+		"nombre": "Parámetros (Argumentos)",
 		"categoria": "Fundamentos",
-		"descripcion": "Los parÃ¡metros son valores numÃ©ricos que enviamos dentro de los parÃ©ntesis de un mÃ©todo para modificar su comportamiento, como indicar la cantidad exacta de pasos a avanzar.",
+		"descripcion": "Los parámetros son valores numéricos que enviamos dentro de los paréntesis de un método para modificar su comportamiento, como indicar la cantidad exacta de pasos a avanzar.",
 		"sintaxis": "spid.direccion(cantidad)",
 		"ejemplo": "spid.norte(2)  # Avanza dos casillas al norte\nspid.sur(3)    # Avanza tres casillas al sur",
-		"errores": "Enviar nÃºmeros negativos, texto o enviar parÃ¡metros a comandos que no los reciben (como spid.minar(5))."
+		"errores": "Enviar números negativos, texto o enviar parámetros a comandos que no los reciben (como spid.minar(5))."
 	},
 	"bucle_while": {
-		"nombre": "Bucle While (AutomatizaciÃ³n)",
+		"nombre": "Bucle While (Automatización)",
 		"categoria": "Control",
-		"descripcion": "Estructura de control que repite un bloque de instrucciones continuamente mientras una condiciÃ³n sea verdadera. Permite automatizar rutinas continuas de suministro y patrullaje.",
+		"descripcion": "Estructura de control que repite un bloque de instrucciones continuamente mientras una condición sea verdadera. Permite automatizar rutinas continuas de suministro y patrullaje.",
 		"sintaxis": "while <condicion>:\n    <instrucciones_con_sangria>",
-		"ejemplo": "# Ciclo continuo de suministro:\nwhile True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()\n\n# O segÃºn el espacio en bodega:\nwhile spid.tiene_espacio():\n    spid.minar()",
-		"errores": "Olvidar los dos puntos ':' al final, olvidar aplicar sangrÃ­a a las acciones interiores, o no incluir una condiciÃ³n de parada o retorno a base."
+		"ejemplo": "# Ciclo continuo de suministro:\nwhile True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()\n\n# O según el espacio en bodega:\nwhile spid.tiene_espacio():\n    spid.minar()",
+		"errores": "Olvidar los dos puntos ':' al final, olvidar aplicar sangría a las acciones interiores, o no incluir una condición de parada o retorno a base."
 	},
 	"bucle_for": {
-		"nombre": "Bucle For (RepeticiÃ³n Exacta)",
+		"nombre": "Bucle For (Repetición Exacta)",
 		"categoria": "Control",
-		"descripcion": "Estructura de control que permite repetir un bloque de instrucciones un nÃºmero exacto de veces usando range(N). Todo lo que se repite debe llevar sangrÃ­a (tabulaciÃ³n o 4 espacios).",
+		"descripcion": "Estructura de control que permite repetir un bloque de instrucciones un número exacto de veces usando range(N). Todo lo que se repite debe llevar sangría (tabulación o 4 espacios).",
 		"sintaxis": "for <variable> in range(<repeticiones>):\n    <instrucciones_con_sangria>",
 		"ejemplo": "for ciclo in range(10):\n    spid.norte()\n    spid.minar()\n    spid.sur()\nspid.transferir()  # Fuera del bucle",
-		"errores": "Olvidar los dos puntos ':' al final de range(), o no aplicar sangrÃ­a a las instrucciones interiores."
+		"errores": "Olvidar los dos puntos ':' al final de range(), o no aplicar sangría a las instrucciones interiores."
 	},
 	"condicional_if": {
 		"nombre": "Condicional If (Decisiones)",
 		"categoria": "Control",
-		"descripcion": "Permite al spid tomar decisiones lÃ³gicas en base al estado de sus sensores o del terreno. Si la condiciÃ³n es verdadera, ejecuta el bloque.",
+		"descripcion": "Permite al spid tomar decisiones lógicas en base al estado de sus sensores o del terreno. Si la condición es verdadera, ejecuta el bloque.",
 		"sintaxis": "if <condicion>:\n    <instrucciones_con_sangria>",
 		"ejemplo": "if spid.hay_mineral():\n    spid.minar()",
-		"errores": "Olvidar los dos puntos ':', olvidar los parÃ©ntesis en los sensores (ej: 'spid.hay_mineral' sin '()') o no aplicar sangrÃ­a a la acciÃ³n interior."
+		"errores": "Olvidar los dos puntos ':', olvidar los paréntesis en los sensores (ej: 'spid.hay_mineral' sin '()') o no aplicar sangría a la acción interior."
 	},
 	"variable": {
 		"nombre": "Variables",
-		"categoria": "OrganizaciÃ³n",
-		"descripcion": "Una variable es un espacio asignado en memoria para almacenar un dato (como un entero) bajo un nombre Ãºnico, permitiendo reutilizar ese dato en mÃºltiples operaciones.",
+		"categoria": "Organización",
+		"descripcion": "Una variable es un espacio asignado en memoria para almacenar un dato (como un entero) bajo un nombre único, permitiendo reutilizar ese dato en múltiples operaciones.",
 		"sintaxis": "nombre_variable = valor",
 		"ejemplo": "pasos = 2\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()",
 		"errores": "Intentar usar una variable antes de definirla (ej: spid.norte(pasos) sin definir 'pasos = 2') o utilizar nombres de palabras clave del sistema."
 	},
 	"funcion": {
 		"nombre": "Funciones Propias",
-		"categoria": "OrganizaciÃ³n",
-		"descripcion": "Bloques de cÃ³digo personalizados definidos por el jugador para reutilizar rutinas complejas sin duplicar cÃ³digo.",
+		"categoria": "Organización",
+		"descripcion": "Bloques de código personalizados definidos por el jugador para reutilizar rutinas complejas sin duplicar código.",
 		"sintaxis": "def mi_rutina():\n    <instrucciones>",
-		"ejemplo": "# PrÃ³ximamente",
+		"ejemplo": "# Próximamente",
 		"errores": "Archivo cifrado."
 	},
 	"movimiento": {
@@ -142,7 +142,7 @@ func _ready() -> void:
 	_inicializar_estilos_conceptos()
 	btn_fundamentos.pressed.connect(_cambiar_categoria.bind("Fundamentos"))
 	btn_control.pressed.connect(_cambiar_categoria.bind("Control"))
-	btn_organizacion.pressed.connect(_cambiar_categoria.bind("OrganizaciÃ³n"))
+	btn_organizacion.pressed.connect(_cambiar_categoria.bind("Organización"))
 	btn_comandos.pressed.connect(_cambiar_categoria.bind("Comandos"))
 	$Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar.pressed.connect(cerrar)
 
@@ -215,10 +215,10 @@ func cerrar() -> void:
 func _cambiar_categoria(categoria: String) -> void:
 	categoria_actual = categoria
 
-	# Resaltar pestaÃ±a activa
+	# Resaltar pestaña activa
 	btn_fundamentos.modulate = Color(1.2, 1.2, 1.2) if categoria == "Fundamentos" else Color(0.7, 0.7, 0.7)
 	btn_control.modulate = Color(1.2, 1.2, 1.2) if categoria == "Control" else Color(0.7, 0.7, 0.7)
-	btn_organizacion.modulate = Color(1.2, 1.2, 1.2) if categoria == "OrganizaciÃ³n" else Color(0.7, 0.7, 0.7)
+	btn_organizacion.modulate = Color(1.2, 1.2, 1.2) if categoria == "Organización" else Color(0.7, 0.7, 0.7)
 	btn_comandos.modulate = Color(1.2, 1.2, 1.2) if categoria == "Comandos" else Color(0.7, 0.7, 0.7)
 
 	_poblar_lista_conceptos()
@@ -277,7 +277,7 @@ func _seleccionar_concepto(id_clave: String) -> void:
 	var datos = CONOCIMIENTOS.get(id_clave, {})
 	var esta_desbloqueado = id_clave in MissionService.get_unlocked_knowledge() or datos.get("categoria", "") == "Comandos"
 
-	# Resaltar el botÃ³n activo en la lista
+	# Resaltar el botón activo en la lista
 	for clave in botones_por_id:
 		var btn: Button = botones_por_id[clave]
 		if is_instance_valid(btn):
@@ -288,18 +288,18 @@ func _seleccionar_concepto(id_clave: String) -> void:
 				btn.add_theme_stylebox_override("normal", estilo_concepto_normal if desbloq else estilo_concepto_cifrado)
 
 	if esta_desbloqueado:
-		label_titulo.text = "â—† " + datos.get("nombre", "").to_upper()
-		label_estado.text = "â— ESTADO: DESBLOQUEADO"
+		label_titulo.text = datos.get("nombre", "").to_upper()
+		label_estado.text = "ESTADO: DESBLOQUEADO"
 		label_estado.modulate = Color(0.7608024, 0.9369633, 0.7753063)
 		txt_descripcion.text = datos.get("descripcion", "")
 		txt_sintaxis.text = "[code]" + datos.get("sintaxis", "") + "[/code]"
 		txt_ejemplo.text = "[code]" + datos.get("ejemplo", "") + "[/code]"
 		txt_errores.text = datos.get("errores", "")
 	else:
-		label_titulo.text = "â—† " + datos.get("nombre", "").to_upper() + " [ENCRIPTADO]"
-		label_estado.text = "â— ESTADO: ARCHIVO CIFRADO"
+		label_titulo.text = datos.get("nombre", "").to_upper() + " [ENCRIPTADO]"
+		label_estado.text = "ESTADO: ARCHIVO CIFRADO"
 		label_estado.modulate = Color(0.9, 0.4, 0.4)
-		txt_descripcion.text = "Este banco de datos se encuentra cifrado. Para descifrarlo debes desbloquear y superar misiones de exploraciÃ³n avanzadas en el asteroide."
+		txt_descripcion.text = "Este banco de datos se encuentra cifrado. Para descifrarlo debes desbloquear y superar misiones de exploración avanzadas en el asteroide."
 		txt_sintaxis.text = "[code]??? [/code]"
 		txt_ejemplo.text = "[code]# ACCESO DENEGADO POR SEGURIDAD DE A.D.A.[/code]"
-		txt_errores.text = "InformaciÃ³n clasificada hasta nueva asignaciÃ³n de misiÃ³n."
+		txt_errores.text = "Información clasificada hasta nueva asignación de misión."
