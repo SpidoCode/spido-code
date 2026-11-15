@@ -51,7 +51,7 @@ func _ready() -> void:
 	margin.add_child(vbox)
 	
 	var title = Label.new()
-	title.text = "◆ CONFIGURACIÓN ◆"
+	title.text = "CONFIGURACIÓN"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 26)
 	title.add_theme_color_override("font_color", Color("F4F6F2"))

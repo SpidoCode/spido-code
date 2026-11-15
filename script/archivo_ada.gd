@@ -239,7 +239,7 @@ func _poblar_lista_conceptos() -> void:
 
 		var esta_desbloqueado = id_clave in conocimientos_desbloqueados or datos["categoria"] == "Comandos"
 		var boton := Button.new()
-		boton.text = datos["nombre"] if esta_desbloqueado else "[ CIFRADO ] " + datos["nombre"]
+		boton.text = datos["nombre"] if esta_desbloqueado else "CIFRADO: " + datos["nombre"]
 		boton.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		boton.custom_minimum_size = Vector2(0, 42)
 		boton.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -296,7 +296,7 @@ func _seleccionar_concepto(id_clave: String) -> void:
 		txt_ejemplo.text = "[code]" + datos.get("ejemplo", "") + "[/code]"
 		txt_errores.text = datos.get("errores", "")
 	else:
-		label_titulo.text = datos.get("nombre", "").to_upper() + " [ENCRIPTADO]"
+		label_titulo.text = datos.get("nombre", "").to_upper() + " - ENCRIPTADO"
 		label_estado.text = "ESTADO: ARCHIVO CIFRADO"
 		label_estado.modulate = Color(0.9, 0.4, 0.4)
 		txt_descripcion.text = "Este banco de datos se encuentra cifrado. Para descifrarlo debes desbloquear y superar misiones de exploración avanzadas en el asteroide."

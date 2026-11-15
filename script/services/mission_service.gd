@@ -660,14 +660,14 @@ func get_objetivo_actual() -> String:
 	if objective_id == "comprar_casillas":
 		return (
 			"EXPANSIÓN DE SECTOR (+3 CASILLAS)\n" +
-			"Reúne 10 minerales y adquiere [ +3 CASILLAS ] " +
+			"Reúne 10 minerales y adquiere +3 CASILLAS " +
 			"en el Centro de Mejoras para expandir el terreno a 2x3."
 		)
 
 	if objective_id == "comprar_if":
 		return (
 			"ADQUISICIÓN DE SENSOR (CONDICIONAL IF)\n" +
-			"Reúne 10 minerales en la nave y adquiere el [ CONDICIONAL IF ] " +
+			"Reúne 10 minerales en la nave y adquiere el CONDICIONAL IF " +
 			"en el Centro de Mejoras para habilitar el sensor spid.hay_mineral()."
 		)
 
@@ -693,7 +693,7 @@ func get_objetivo_actual() -> String:
 	if objective_id == "comprar_sector_3x3":
 		return (
 			"EXPANSIÓN SECTOR 3X3 Y VARIABLES\n" +
-			"¡Rover autónomo verificado! Reúne 10 minerales en la nave y adquiere el [ SECTOR 3X3 ] " +
+			"¡Rover autónomo verificado! Reúne 10 minerales en la nave y adquiere el SECTOR 3X3 " +
 			"en el Centro de Mejoras para expandir el terreno a 3x3 y desbloquear las variables."
 		)
 
@@ -716,7 +716,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EXPANSIÓN DE SENSORES (TELEMETRÍA DINÁMICA)\n" +
 			"¡Calibración de variables completada! Reúne 10 minerales en la nave nodriza y adquiere " +
-			"[ TELEMETRÍA DINÁMICA ] en el Centro de Mejoras para habilitar el sensor spid.tamano_mundo()."
+			"TELEMETRÍA DINÁMICA en el Centro de Mejoras para habilitar el sensor spid.tamano_mundo()."
 		)
 
 	if objective_id == "telemetria_dinamica":
@@ -739,7 +739,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EXPANSIÓN SECTOR 4X3 Y LISTAS\n" +
 			"¡Telemetría dinámica dominada! Reúne 15 minerales en la nave nodriza y adquiere " +
-			"[ SECTOR 4X3 ] en el Centro de Mejoras para expandir a 4 de ancho y desbloquear listas."
+			"SECTOR 4X3 en el Centro de Mejoras para expandir a 4 de ancho y desbloquear listas."
 		)
 
 	if objective_id == "patrulla_lista":
@@ -774,7 +774,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EXPANSIÓN SECTOR 4X4 Y FUNCIONES\n" +
 			"¡Patrulla con listas dominada! Reúne 20 minerales en la nave nodriza y adquiere " +
-			"[ SECTOR 4X4 ] en el Centro de Mejoras para expandir a 4 de largo y desbloquear funciones (def)."
+			"SECTOR 4X4 en el Centro de Mejoras para expandir a 4 de largo y desbloquear funciones (def)."
 		)
 
 	if objective_id == "rutina_funciones":
@@ -797,7 +797,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EXPANSIÓN SECTOR 5X4 Y PARÁMETROS\n" +
 			"¡Rutinas modulares dominadas! Reúne 25 minerales en la nave nodriza y adquiere " +
-			"[ SECTOR 5X4 ] en el Centro de Mejoras para expandir el ancho a 5 casillas y desbloquear funciones con parámetros."
+			"SECTOR 5X4 en el Centro de Mejoras para expandir el ancho a 5 casillas y desbloquear funciones con parámetros."
 		)
 
 	if objective_id == "funciones_parametrizadas":
@@ -820,7 +820,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EXPANSIÓN SECTOR 5X5 (CUADRANTE COMPLETO)\n" +
 			"¡Funciones con parámetros dominadas! Reúne 30 minerales en la nave nodriza y adquiere " +
-			"[ SECTOR 5X5 ] en el Centro de Mejoras para expandir a 5 de largo y desbloquear el barrido sistemático bidimensional."
+			"SECTOR 5X5 en el Centro de Mejoras para expandir a 5 de largo y desbloquear el barrido sistemático bidimensional."
 		)
 
 	if objective_id == "barrido_columnas":
@@ -845,7 +845,7 @@ func get_objetivo_actual() -> String:
 		return (
 			"EL PROTOCOLO MAESTRO SPIDO (ENDGAME)\n" +
 			"¡Barrido por columnas dominado! Reúne 35 minerales en la nave nodriza y adquiere " +
-			"[ PROTOCOLO MAESTRO ] en el Centro de Mejoras para desbloquear el sensor de tolva 'spid.tiene_espacio()' y la misión final."
+			"PROTOCOLO MAESTRO en el Centro de Mejoras para desbloquear el sensor de tolva 'spid.tiene_espacio()' y la misión final."
 		)
 
 	if objective_id == "protocolo_maestro":
@@ -896,7 +896,7 @@ func get_objetivo_actual() -> String:
 	if objective_id == "comprar_while":
 		return (
 			"AUTOMATIZACIÓN AVANZADA (BUCLE WHILE)\n" +
-			"Reúne 15 minerales en la nave y adquiere el [ BUCLE WHILE ] " +
+			"Reúne 15 minerales en la nave y adquiere el BUCLE WHILE " +
 			"en el Centro de Mejoras para desbloquear ciclos condicionales continuos."
 		)
 	if objective_id == "ciclo_autonomo":
@@ -913,7 +913,7 @@ func get_objetivo_actual() -> String:
 	if objective_id == "comprar_mapa_3x3":
 		return (
 			"ACTUALIZACIÓN DE FIRMWARE (CICLO FOR)\n" +
-			"Reúne 20 minerales en la nave y adquiere el [ CICLO FOR ] " +
+			"Reúne 20 minerales en la nave y adquiere el CICLO FOR " +
 			"en el Centro de Mejoras para instalar el módulo BUCLE FOR en la consola."
 		)
 	if objective_id == "exploracion_3x3":
@@ -984,12 +984,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 20:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 20 minerales necesarios! Ve al menú MEJORAS y adquiere el [ CICLO FOR ] para continuar."
+				"¡Ya tienes los 20 minerales necesarios! Ve al menú MEJORAS y adquiere el CICLO FOR para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 20 minerales en la nave. Sigue recolectando y luego adquiere el [ CICLO FOR ] en MEJORAS." % minerales_nave
+				"Tienes %d de 20 minerales en la nave. Sigue recolectando y luego adquiere el CICLO FOR en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -998,12 +998,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 10:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 10 minerales necesarios! Ve al menú MEJORAS y adquiere el [ SECTOR 3X3 ] para continuar."
+				"¡Ya tienes los 10 minerales necesarios! Ve al menú MEJORAS y adquiere el SECTOR 3X3 para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 10 minerales en la nave. Sigue recolectando y luego adquiere el [ SECTOR 3X3 ] en MEJORAS." % minerales_nave
+				"Tienes %d de 10 minerales en la nave. Sigue recolectando y luego adquiere el SECTOR 3X3 en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1012,12 +1012,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 10:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 10 minerales necesarios! Ve al menú MEJORAS y adquiere [ TELEMETRÍA DINÁMICA ] para continuar."
+				"¡Ya tienes los 10 minerales necesarios! Ve al menú MEJORAS y adquiere TELEMETRÍA DINÁMICA para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 10 minerales en la nave. Sigue recolectando y luego adquiere [ TELEMETRÍA DINÁMICA ] en MEJORAS." % minerales_nave
+				"Tienes %d de 10 minerales en la nave. Sigue recolectando y luego adquiere TELEMETRÍA DINÁMICA en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1077,12 +1077,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 15:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 15 minerales necesarios! Ve al menú MEJORAS y adquiere [ SECTOR 4X3 ] para continuar."
+				"¡Ya tienes los 15 minerales necesarios! Ve al menú MEJORAS y adquiere SECTOR 4X3 para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 15 minerales en la nave. Sigue recolectando y luego adquiere [ SECTOR 4X3 ] en MEJORAS." % minerales_nave
+				"Tienes %d de 15 minerales en la nave. Sigue recolectando y luego adquiere SECTOR 4X3 en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1099,12 +1099,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 20:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 20 minerales necesarios! Ve al menú MEJORAS y adquiere [ SECTOR 4X4 ] para continuar."
+				"¡Ya tienes los 20 minerales necesarios! Ve al menú MEJORAS y adquiere SECTOR 4X4 para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 20 minerales en la nave. Sigue recolectando y luego adquiere [ SECTOR 4X4 ] en MEJORAS." % minerales_nave
+				"Tienes %d de 20 minerales en la nave. Sigue recolectando y luego adquiere SECTOR 4X4 en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1117,12 +1117,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 25:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 25 minerales necesarios! Ve al menú MEJORAS y adquiere [ SECTOR 5X4 ] para continuar."
+				"¡Ya tienes los 25 minerales necesarios! Ve al menú MEJORAS y adquiere SECTOR 5X4 para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 25 minerales en la nave. Sigue recolectando y luego adquiere [ SECTOR 5X4 ] en MEJORAS." % minerales_nave
+				"Tienes %d de 25 minerales en la nave. Sigue recolectando y luego adquiere SECTOR 5X4 en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1135,12 +1135,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 30:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 30 minerales necesarios! Ve al menú MEJORAS y adquiere [ SECTOR 5X5 ] para continuar."
+				"¡Ya tienes los 30 minerales necesarios! Ve al menú MEJORAS y adquiere SECTOR 5X5 para continuar."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 30 minerales en la nave. Sigue recolectando y luego adquiere [ SECTOR 5X5 ] en MEJORAS." % minerales_nave
+				"Tienes %d de 30 minerales en la nave. Sigue recolectando y luego adquiere SECTOR 5X5 en MEJORAS." % minerales_nave
 			)
 		return
 
@@ -1153,12 +1153,12 @@ func evaluar_programa(resultado: Dictionary) -> void:
 		if minerales_nave >= 35:
 			objetivo_actualizado.emit(
 				objective_id,
-				"¡Ya tienes los 35 minerales necesarios! Ve al menú MEJORAS y adquiere [ PROTOCOLO MAESTRO ] para desbloquear la misión final."
+				"¡Ya tienes los 35 minerales necesarios! Ve al menú MEJORAS y adquiere PROTOCOLO MAESTRO para desbloquear la misión final."
 			)
 		else:
 			objetivo_actualizado.emit(
 				objective_id,
-				"Tienes %d de 35 minerales en la nave. Sigue recolectando y luego adquiere [ PROTOCOLO MAESTRO ] en MEJORAS." % minerales_nave
+				"Tienes %d de 35 minerales en la nave. Sigue recolectando y luego adquiere PROTOCOLO MAESTRO en MEJORAS." % minerales_nave
 			)
 		return
 

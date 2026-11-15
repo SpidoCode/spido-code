@@ -740,13 +740,13 @@ func actualizar_mejoras_visual() -> void:
 
 	if boton_while != null:
 		boton_while.disabled = while_on
-		boton_while.text = "[ BUCLE WHILE ]\nDESBLOQUEADO" if while_on else "[ BUCLE WHILE ]\nPOR MISIÓN"
+		boton_while.text = "BUCLE WHILE\nDESBLOQUEADO" if while_on else "BUCLE WHILE\nPOR MISIÓN"
 	if boton_if != null:
 		boton_if.disabled = true
-		boton_if.text = "[ IF / ELSE ]\nINSTALADO" if if_on else "[ IF / ELSE ]\nEN SECTOR 2X3"
+		boton_if.text = "IF / ELSE\nINSTALADO" if if_on else "IF / ELSE\nEN SECTOR 2X3"
 	if boton_for != null:
 		boton_for.disabled = true
-		boton_for.text = "[ BUCLE FOR ]\nINSTALADO" if for_on else "[ BUCLE FOR ]\nEN CICLO FOR"
+		boton_for.text = "BUCLE FOR\nINSTALADO" if for_on else "BUCLE FOR\nEN CICLO FOR"
 
 	var sector_3x3_on: bool = (
 		(mundo != null and mundo.mapa_3x3_desbloqueado)
@@ -763,11 +763,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_variables != null:
 		boton_variables.disabled = not (patrulla_on and not sector_3x3_on)
 		if sector_3x3_on:
-			boton_variables.text = "[ SECTOR 3X3 ]\nDESBLOQUEADO"
+			boton_variables.text = "SECTOR 3X3\nDESBLOQUEADO"
 		elif not patrulla_on:
-			boton_variables.text = "[ SECTOR 3X3 ]\nTRAS ROVER AUTÓNOMO"
+			boton_variables.text = "SECTOR 3X3\nTRAS ROVER AUTÓNOMO"
 		else:
-			boton_variables.text = "[ SECTOR 3X3 ]\n10 MINERALES"
+			boton_variables.text = "SECTOR 3X3\n10 MINERALES"
 
 	var telemetria_on: bool = (
 		GestorSintaxis.esta_desbloqueada("tamano_mundo")
@@ -784,11 +784,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_telemetria != null:
 		boton_telemetria.disabled = not (variables_completada and not telemetria_on)
 		if telemetria_on:
-			boton_telemetria.text = "[ TELEMETRÍA ]\nDESBLOQUEADO"
+			boton_telemetria.text = "TELEMETRÍA\nDESBLOQUEADO"
 		elif not variables_completada:
-			boton_telemetria.text = "[ TELEMETRÍA ]\nTRAS VARIABLES"
+			boton_telemetria.text = "TELEMETRÍA\nTRAS VARIABLES"
 		else:
-			boton_telemetria.text = "[ TELEMETRÍA ]\n10 MINERALES"
+			boton_telemetria.text = "TELEMETRÍA\n10 MINERALES"
 
 	var sector_4x3_on: bool = (
 		GestorSintaxis.esta_desbloqueada("listas")
@@ -805,11 +805,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_sector_4x3 != null:
 		boton_sector_4x3.disabled = not (telemetria_completada and not sector_4x3_on)
 		if sector_4x3_on:
-			boton_sector_4x3.text = "[ SECTOR 4X3 ]\nDESBLOQUEADO"
+			boton_sector_4x3.text = "SECTOR 4X3\nDESBLOQUEADO"
 		elif not telemetria_completada:
-			boton_sector_4x3.text = "[ SECTOR 4X3 ]\nTRAS TELEMETRÍA"
+			boton_sector_4x3.text = "SECTOR 4X3\nTRAS TELEMETRÍA"
 		else:
-			boton_sector_4x3.text = "[ SECTOR 4X3 ]\n15 MINERALES"
+			boton_sector_4x3.text = "SECTOR 4X3\n15 MINERALES"
 
 	var sector_4x4_on: bool = (
 		GestorSintaxis.esta_desbloqueada("def")
@@ -826,11 +826,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_sector_4x4 != null:
 		boton_sector_4x4.disabled = not (listas_completadas and not sector_4x4_on)
 		if sector_4x4_on:
-			boton_sector_4x4.text = "[ SECTOR 4X4 ]\nDESBLOQUEADO"
+			boton_sector_4x4.text = "SECTOR 4X4\nDESBLOQUEADO"
 		elif not listas_completadas:
-			boton_sector_4x4.text = "[ SECTOR 4X4 ]\nTRAS LISTAS"
+			boton_sector_4x4.text = "SECTOR 4X4\nTRAS LISTAS"
 		else:
-			boton_sector_4x4.text = "[ SECTOR 4X4 ]\n20 MINERALES"
+			boton_sector_4x4.text = "SECTOR 4X4\n20 MINERALES"
 
 	var sector_5x4_on: bool = (
 		GestorSintaxis.esta_desbloqueada("parametros_def")
@@ -847,11 +847,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_sector_5x4 != null:
 		boton_sector_5x4.disabled = not (funciones_completadas and not sector_5x4_on)
 		if sector_5x4_on:
-			boton_sector_5x4.text = "[ SECTOR 5X4 ]\nDESBLOQUEADO"
+			boton_sector_5x4.text = "SECTOR 5X4\nDESBLOQUEADO"
 		elif not funciones_completadas:
-			boton_sector_5x4.text = "[ SECTOR 5X4 ]\nTRAS RUTINAS"
+			boton_sector_5x4.text = "SECTOR 5X4\nTRAS RUTINAS"
 		else:
-			boton_sector_5x4.text = "[ SECTOR 5X4 ]\n25 MINERALES"
+			boton_sector_5x4.text = "SECTOR 5X4\n25 MINERALES"
 
 	var sector_5x5_on: bool = (
 		"comprar_sector_5x5" in MissionService.get_completed_missions()
@@ -867,11 +867,11 @@ func actualizar_mejoras_visual() -> void:
 	if boton_sector_5x5 != null:
 		boton_sector_5x5.disabled = not (parametros_completados and not sector_5x5_on)
 		if sector_5x5_on:
-			boton_sector_5x5.text = "[ SECTOR 5X5 ]\nDESBLOQUEADO"
+			boton_sector_5x5.text = "SECTOR 5X5\nDESBLOQUEADO"
 		elif not parametros_completados:
-			boton_sector_5x5.text = "[ SECTOR 5X5 ]\nTRAS PARÁMETROS"
+			boton_sector_5x5.text = "SECTOR 5X5\nTRAS PARÁMETROS"
 		else:
-			boton_sector_5x5.text = "[ SECTOR 5X5 ]\n30 MINERALES"
+			boton_sector_5x5.text = "SECTOR 5X5\n30 MINERALES"
 
 	var protocolo_on: bool = (
 		GestorSintaxis.esta_desbloqueada("tiene_espacio")
@@ -888,42 +888,42 @@ func actualizar_mejoras_visual() -> void:
 	if boton_protocolo_maestro != null:
 		boton_protocolo_maestro.disabled = not (barrido_completado and not protocolo_on)
 		if protocolo_on:
-			boton_protocolo_maestro.text = "[ PROTOCOLO MAESTRO ]\nDESBLOQUEADO"
+			boton_protocolo_maestro.text = "PROTOCOLO MAESTRO\nDESBLOQUEADO"
 		elif not barrido_completado:
-			boton_protocolo_maestro.text = "[ PROTOCOLO MAESTRO ]\nTRAS BARRIDO"
+			boton_protocolo_maestro.text = "PROTOCOLO MAESTRO\nTRAS BARRIDO"
 		else:
-			boton_protocolo_maestro.text = "[ PROTOCOLO MAESTRO ]\n35 MINERALES"
+			boton_protocolo_maestro.text = "PROTOCOLO MAESTRO\n35 MINERALES"
 
 	if boton_expansion != null:
 		boton_expansion.disabled = exp1_on
-		boton_expansion.text = "[ CORREDOR 1X3 ]\nDESBLOQUEADO" if exp1_on else "[ CORREDOR 1X3 ]\n1 MINERAL"
+		boton_expansion.text = "CORREDOR 1X3\nDESBLOQUEADO" if exp1_on else "CORREDOR 1X3\n1 MINERAL"
 	if boton_expansion_2 != null:
 		boton_expansion_2.disabled = not (exp1_on and calibracion_completada and trabajo_continuo_completado and cuota_completada and not exp2_on)
 		if exp2_on:
-			boton_expansion_2.text = "[ +3 CASILLAS ]\nDESBLOQUEADO"
+			boton_expansion_2.text = "+3 CASILLAS\nDESBLOQUEADO"
 		elif not calibracion_completada:
-			boton_expansion_2.text = "[ +3 CASILLAS ]\nCOMPLETA CALIBRACIÓN"
+			boton_expansion_2.text = "+3 CASILLAS\nCOMPLETA CALIBRACIÓN"
 		elif not trabajo_continuo_completado:
-			boton_expansion_2.text = "[ +3 CASILLAS ]\nCOMPLETA\nTRABAJO CONTINUO"
+			boton_expansion_2.text = "+3 CASILLAS\nCOMPLETA\nTRABAJO CONTINUO"
 		elif not cuota_completada:
-			boton_expansion_2.text = "[ +3 CASILLAS ]\nCOMPLETA\nCUOTA DE SUMINISTRO"
+			boton_expansion_2.text = "+3 CASILLAS\nCOMPLETA\nCUOTA DE SUMINISTRO"
 		else:
-			boton_expansion_2.text = "[ +3 CASILLAS ]\n10 MINERALES" if exp1_on else "[ +3 CASILLAS ]\nBLOQUEADO"
+			boton_expansion_2.text = "+3 CASILLAS\n10 MINERALES" if exp1_on else "+3 CASILLAS\nBLOQUEADO"
 	var ciclo_for_comprado: bool = for_on or ("comprar_mapa_3x3" in MissionService.get_completed_missions())
 	if boton_expansion_3 != null:
 		boton_expansion_3.disabled = not (exp2_on and fase3_completada and not ciclo_for_comprado)
 		if ciclo_for_comprado:
-			boton_expansion_3.text = "[ CICLO FOR ]\nDESBLOQUEADO"
+			boton_expansion_3.text = "CICLO FOR\nDESBLOQUEADO"
 		elif not exp2_on:
-			boton_expansion_3.text = "[ CICLO FOR ]\nREQUIERE SECTOR 2X3"
+			boton_expansion_3.text = "CICLO FOR\nREQUIERE SECTOR 2X3"
 		elif not fase3_completada:
-			boton_expansion_3.text = "[ CICLO FOR ]\nTRAS MISIÓN IF / ELSE"
+			boton_expansion_3.text = "CICLO FOR\nTRAS MISIÓN IF / ELSE"
 		else:
-			boton_expansion_3.text = "[ CICLO FOR ]\n20 MINERALES"
+			boton_expansion_3.text = "CICLO FOR\n20 MINERALES"
 
 	if boton_mineria != null:
 		boton_mineria.disabled = mineria_rapida_desbloqueada
-		boton_mineria.text = "[ MINERÍA RÁPIDA ]\nINSTALADO" if mineria_rapida_desbloqueada else "[ MINERÍA RÁPIDA ]\n15 MINERALES"
+		boton_mineria.text = "MINERÍA RÁPIDA\nINSTALADO" if mineria_rapida_desbloqueada else "MINERÍA RÁPIDA\n15 MINERALES"
 
 	if linea_prog_1 != null:
 		linea_prog_1.default_color = Color(0.2, 0.8, 1.0) if while_on else Color(0.3, 0.33, 0.38)
@@ -1078,7 +1078,7 @@ func _on_button_for_pressed() -> void:
 		transmision_ada.mostrar_mensaje("El módulo Bucle FOR ya está activo en tu consola.", "completado", 4.0)
 		return
 	transmision_ada.mostrar_mensaje(
-		"El Bucle FOR se instala automáticamente al adquirir [ CICLO FOR ] en mejoras.",
+		"El Bucle FOR se instala automáticamente al adquirir CICLO FOR en mejoras.",
 		"objetivo",
 		5.0
 	)
@@ -1089,7 +1089,7 @@ func _on_button_if_pressed() -> void:
 		transmision_ada.mostrar_mensaje("El módulo Condicional IF/ELSE ya está activo en tu consola.", "completado", 4.0)
 		return
 	transmision_ada.mostrar_mensaje(
-		"El Condicional IF/ELSE se instala automáticamente al adquirir [ +3 CASILLAS ] en navegación.",
+		"El Condicional IF/ELSE se instala automáticamente al adquirir +3 CASILLAS en navegación.",
 		"objetivo",
 		5.0
 	)
@@ -1634,7 +1634,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			transmision_ada.mostrar_mensaje(
 				"¡Ciclo de suministro completado!\n" +
 				"Has dominado la automatización con bucle while.\n" +
-				"Próximo paso: Adquiere [ +3 CASILLAS ] en Mejoras para expandir el terreno a 2x3.",
+				"Próximo paso: Adquiere +3 CASILLAS en Mejoras para expandir el terreno a 2x3.",
 				"completado",
 				15.0
 			)
@@ -1643,7 +1643,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			transmision_ada.mostrar_mensaje(
 				"¡Sector 2x3 desbloqueado!\n" +
 				"El terreno se ha expandido con dos depósitos de mineral.\n" +
-				"Próximo paso: Adquiere el [ CONDICIONAL IF ] en Mejoras para evaluar casillas antes de minar.",
+				"Próximo paso: Adquiere el CONDICIONAL IF en Mejoras para evaluar casillas antes de minar.",
 				"completado",
 				15.0
 			)
@@ -1666,7 +1666,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_auto := (
 				"¡Protocolo autónomo verificado! Has creado tu primer Rover 100% Desatendido.\n" +
 				"Spid operó continuamente combinando while, for y sensores condicionales.\n" +
-				"Próximo objetivo: reúne 10 minerales y adquiere el [ SECTOR 3X3 ] en el Centro de Mejoras."
+				"Próximo objetivo: reúne 10 minerales y adquiere el SECTOR 3X3 en el Centro de Mejoras."
 			)
 			transmision_ada.mostrar_mensaje(msg_auto, "completado", 15.0)
 		"comprar_sector_3x3":
@@ -1681,7 +1681,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_vars := (
 				"¡Calibración de variables completada!\n" +
 				"Has parametrizado con éxito la distancia y el bucle usando variables.\n" +
-				"Próximo objetivo: reúne 10 minerales y adquiere [ TELEMETRÍA DINÁMICA ] en el Centro de Mejoras."
+				"Próximo objetivo: reúne 10 minerales y adquiere TELEMETRÍA DINÁMICA en el Centro de Mejoras."
 			)
 			transmision_ada.mostrar_mensaje(msg_vars, "completado", 15.0)
 		"comprar_telemetria":
@@ -1696,7 +1696,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_telemetria := (
 				"¡Telemetría dinámica verificada con éxito!\n" +
 				"Spid calculó las dimensiones del entorno usando 'spid.tamano_mundo()' y parametrizó sus movimientos.\n" +
-				"Próximo objetivo: reúne 15 minerales y adquiere [ SECTOR 4X3 ] en Mejoras para desbloquear el módulo de Listas."
+				"Próximo objetivo: reúne 15 minerales y adquiere SECTOR 4X3 en Mejoras para desbloquear el módulo de Listas."
 			)
 			transmision_ada.mostrar_mensaje(msg_telemetria, "completado", 15.0)
 		"comprar_sector_4x3":
@@ -1718,7 +1718,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_barrido := (
 				"¡Barrido autónomo completado con éxito!\n" +
 				"Has integrado listas, bucles continuos y sensores para limpiar el Sector 4x3 de forma 100% desatendida.\n" +
-				"Próximo objetivo: reúne 20 minerales y adquiere [ SECTOR 4X4 ] en Mejoras para desbloquear el módulo de Funciones (def)."
+				"Próximo objetivo: reúne 20 minerales y adquiere SECTOR 4X4 en Mejoras para desbloquear el módulo de Funciones (def)."
 			)
 			transmision_ada.mostrar_mensaje(msg_barrido, "completado", 15.0)
 		"comprar_sector_4x4":
@@ -1733,7 +1733,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_func := (
 				"¡Rutina modular con funciones completada con éxito!\n" +
 				"Has estructurado tu código definiendo e invocando funciones propias en Python.\n" +
-				"Próximo objetivo: reúne 25 minerales y adquiere [ SECTOR 5X4 ] en Mejoras para habilitar funciones con parámetros."
+				"Próximo objetivo: reúne 25 minerales y adquiere SECTOR 5X4 en Mejoras para habilitar funciones con parámetros."
 			)
 			transmision_ada.mostrar_mensaje(msg_func, "completado", 15.0)
 		"comprar_sector_5x4":
@@ -1748,7 +1748,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_param := (
 				"¡Misión con funciones parametrizadas completada con éxito!\n" +
 				"Has creado funciones reutilizables que aceptan argumentos dinámicos y coordinado a Spid en el Sector 5x4.\n" +
-				"Próximo objetivo: reúne 30 minerales y adquiere [ SECTOR 5X5 ] en Mejoras para expandir a cuadrante completo y aprender barrido por columnas."
+				"Próximo objetivo: reúne 30 minerales y adquiere SECTOR 5X5 en Mejoras para expandir a cuadrante completo y aprender barrido por columnas."
 			)
 			transmision_ada.mostrar_mensaje(msg_param, "completado", 15.0)
 		"comprar_sector_5x5":
@@ -1763,7 +1763,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_barrido_col := (
 				"¡Barrido por columnas completado con éxito!\n" +
 				"Has cubierto sistemáticamente el interior del cuadrante 5x5 subiendo y bajando columnas con funciones modulares.\n" +
-				"Próximo objetivo: reúne 35 minerales y adquiere [ PROTOCOLO MAESTRO ] en Mejoras para desbloquear el sensor de tolva y la gran misión final de SpidoCode."
+				"Próximo objetivo: reúne 35 minerales y adquiere PROTOCOLO MAESTRO en Mejoras para desbloquear el sensor de tolva y la gran misión final de SpidoCode."
 			)
 			transmision_ada.mostrar_mensaje(msg_barrido_col, "completado", 15.0)
 		"comprar_protocolo_maestro":
@@ -1804,7 +1804,7 @@ func _on_mision_completada(mision_id: String) -> void:
 				"¡Lecturas confirmadas! Has dominado el condicional IF/ELSE y la lectura de sensores.\n" +
 				"Spid ahora toma decisiones lógicas y ejecuta rutas alternativas ante la incertidumbre.\n" +
 				"Conocimiento desbloqueado: CONDICIONAL IF / ELSE.\n" +
-				"Próximo objetivo: reúne 20 minerales para adquirir el [ SECTOR 3X3 ] en Mejoras y desbloquear el BUCLE FOR."
+				"Próximo objetivo: reúne 20 minerales para adquirir el SECTOR 3X3 en Mejoras y desbloquear el BUCLE FOR."
 			)
 			transmision_ada.mostrar_mensaje(msg_if, "completado", 15.0)
 		"comprar_while":
@@ -1835,7 +1835,7 @@ func _on_mision_completada(mision_id: String) -> void:
 			if map_t >= 3 or "comprar_mapa_3x3" in MissionService.get_completed_missions():
 				msg_auto += "Como ya adquiriste el Sector 3x3, ¡se activa la misión BARRIDO DE CUADRANTE!"
 			else:
-				msg_auto += "Próximo paso: Adquiere el [ SECTOR 3X3 ] en el Centro de Mejoras."
+				msg_auto += "Próximo paso: Adquiere el SECTOR 3X3 en el Centro de Mejoras."
 			transmision_ada.mostrar_mensaje(msg_auto, "completado", 16.0)
 		"comprar_mapa_3x3":
 			transmision_ada.mostrar_mensaje(
@@ -1933,9 +1933,9 @@ func _actualizar_progreso_fase_ui() -> void:
 
 	if label_titulo_mision != null:
 		if fase <= 4:
-			label_titulo_mision.text = "◆ FASE %d: %s" % [fase, info.get("nombre", "")]
+			label_titulo_mision.text = "FASE %d: %s" % [fase, info.get("nombre", "")]
 		else:
-			label_titulo_mision.text = "◆ MODO AUTÓNOMO"
+			label_titulo_mision.text = "MODO AUTÓNOMO"
 
 	if barra_progreso_fase != null:
 		var pct: float = float(info.get("progreso_pct", 0))
@@ -1988,39 +1988,39 @@ func _get_objetivo_panel(mision_id: String) -> String:
 		"senales_inciertas":
 			return "Apariciones impredecibles en el sector 2x3. Recorre las casillas y usa 'if' para comprobar si hay mineral antes de minar."
 		"comprar_mapa_3x3":
-			return "Reúne 20 minerales en la nave y desbloquea el [CICLO FOR] en Mejoras para instalar el módulo BUCLE FOR."
+			return "Reúne 20 minerales en la nave y desbloquea el CICLO FOR en Mejoras para instalar el módulo BUCLE FOR."
 		"ciclo_recoleccion":
 			return "Circuito 2x3: usa 'for vuelta in range(3):' para recorrer los depósitos y transferir a la nave."
 		"patrulla_autonoma":
 			return "Operación continua: combina 'while True:', 'for' e 'if spid.hay_mineral():' para una patrulla 100% desatendida."
 		"comprar_sector_3x3":
-			return "Rover autónomo completado. Reúne 10 minerales y adquiere [ SECTOR 3X3 ] en Mejoras para ampliar el terreno a 3x3 y programar con variables."
+			return "Rover autónomo completado. Reúne 10 minerales y adquiere SECTOR 3X3 en Mejoras para ampliar el terreno a 3x3 y programar con variables."
 		"calibracion_variables":
 			return "Sector 3x3 activo. Declara variables ('vueltas = 2', 'pasos = 2') y úsalas en el bucle 'for' y 'spid.norte(pasos)'."
 		"comprar_telemetria":
-			return "Reúne 10 minerales en la nave y adquiere [ TELEMETRÍA DINÁMICA ] en el Centro de Mejoras para censar el sector."
+			return "Reúne 10 minerales en la nave y adquiere TELEMETRÍA DINÁMICA en el Centro de Mejoras para censar el sector."
 		"telemetria_dinamica":
 			return "Consulta 'limite = spid.tamano_mundo()' y usa 'spid.norte(limite - 1)' en bucle continuo hasta entregar 3 minerales."
 		"comprar_sector_4x3":
-			return "Reúne 15 minerales y adquiere [ SECTOR 4X3 ] en Mejoras para expandir a 4 de ancho y programar con listas."
+			return "Reúne 15 minerales y adquiere SECTOR 4X3 en Mejoras para expandir a 4 de ancho y programar con listas."
 		"patrulla_lista":
 			return "Sector 4x3 activo: define tu circuito en una lista 'ruta = [...]', recórrela con 'for d in ruta: spid.mover(d)' y entrega 3 minerales."
 		"barrido_listas_autonomo":
 			return "Sector 4x3: integra 'while True:', tu lista de ruta, 'spid.mover()' y sensores para transferir 3 minerales de forma continua."
 		"comprar_sector_4x4":
-			return "Reúne 20 minerales y adquiere [ SECTOR 4X4 ] en Mejoras para expandir a 4 de largo y programar con funciones (def)."
+			return "Reúne 20 minerales y adquiere SECTOR 4X4 en Mejoras para expandir a 4 de largo y programar con funciones (def)."
 		"rutina_funciones":
 			return "Sector 4x4 activo: define una rutina modular con 'def nombre():', invócala en tu bucle y entrega 4 minerales a la nave."
 		"comprar_sector_5x4":
-			return "Reúne 25 minerales y adquiere [ SECTOR 5X4 ] en Mejoras para expandir a 5 de ancho y programar funciones con parámetros."
+			return "Reúne 25 minerales y adquiere SECTOR 5X4 en Mejoras para expandir a 5 de ancho y programar funciones con parámetros."
 		"funciones_parametrizadas":
 			return "Sector 5x4 activo: define una función con parámetros 'def nombre(param):', invócala en tu bucle y transfiere 5 minerales a la nave."
 		"comprar_sector_5x5":
-			return "Reúne 30 minerales y adquiere [ SECTOR 5X5 ] en Mejoras para expandir a cuadrante completo de 5x5 y programar barrido por columnas."
+			return "Reúne 30 minerales y adquiere SECTOR 5X5 en Mejoras para expandir a cuadrante completo de 5x5 y programar barrido por columnas."
 		"barrido_columnas":
 			return "Sector 5x5 activo: modulariza tu código y ejecuta un barrido sistemático por columnas subiendo y bajando para entregar 6 minerales a la nave."
 		"comprar_protocolo_maestro":
-			return "Reúne 35 minerales y adquiere [ PROTOCOLO MAESTRO ] en Mejoras para habilitar el sensor de tolva y la misión final."
+			return "Reúne 35 minerales y adquiere PROTOCOLO MAESTRO en Mejoras para habilitar el sensor de tolva y la misión final."
 		"protocolo_maestro":
 			return "Misión Final: despliega el Protocolo Maestro en Sector 5x5 con barrido continuo y entrega 8 minerales a la nave."
 		"exploracion_3x3":

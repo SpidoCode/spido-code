@@ -408,7 +408,7 @@ offset_right = 350.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_font_sizes/font_size = 19
-text = "◆ FASE 0: INDUCCIÓN"
+text = "FASE 0: INDUCCIÓN"
 
 [node name="Nombre" type="Label" parent="CanvasLayer/PanelMision" unique_id=2090000003]
 layout_mode = 0
@@ -449,8 +449,6 @@ offset_right = 354.0
 offset_bottom = 146.0
 theme_override_styles/background = SubResource("StyleBoxFlat_progreso_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_progreso_fill")
-max_value = 100.0
-value = 0.0
 show_percentage = false
 
 [node name="LabelProgresoFase" type="Label" parent="CanvasLayer/PanelMision" unique_id=2090000008]
@@ -490,7 +488,7 @@ theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 18
-text = "◆ CONSOLA SPID"
+text = "CONSOLA SPID"
 
 [node name="BotonMinimizar" type="Button" parent="CanvasLayer/PanelCodigo/BarraTitulo" unique_id=1342243606]
 layout_mode = 0
@@ -692,7 +690,7 @@ theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 26
-text = "◆ RUTA DE PROGRESIÓN ◆"
+text = "RUTA DE PROGRESIÓN"
 
 [node name="Subtitulo" type="Label" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=532504738]
 layout_mode = 0
@@ -812,7 +810,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_code")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
-text = "[ BUCLE WHILE ]
+text = "BUCLE WHILE
 POR MISIÓN"
 
 [node name="ButtonIf" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=1252370721]
@@ -829,7 +827,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_code")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
-text = "[ IF / ELSE ]
+text = "IF / ELSE
 EN SECTOR 2X3"
 
 [node name="ButtonFor" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=75203908]
@@ -846,7 +844,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_code")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
-text = "[ BUCLE FOR ]
+text = "BUCLE FOR
 EN SECTOR 3X3"
 
 [node name="LineaProg4" type="Line2D" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=1908208216]
@@ -872,7 +870,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_code")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
 disabled = true
-text = "[ VARIABLES ]
+text = "VARIABLES
 PRÓXIMA FASE"
 
 [node name="ButtonTelemetria" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=75203910]
@@ -890,7 +888,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_code")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
 disabled = true
-text = "[ TELEMETRÍA ]
+text = "TELEMETRÍA
 PRÓXIMA FASE"
 
 [node name="ButtonSector4x3" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=75203911]
@@ -989,7 +987,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_map")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
-text = "[ CORREDOR 1X3 ]
+text = "CORREDOR 1X3
 1 MINERAL"
 
 [node name="ButtonExpansion2" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=448735514]
@@ -1009,7 +1007,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_map")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
 disabled = true
-text = "[ +3 CASILLAS ]
+text = "+3 CASILLAS
 10 MINERALES"
 
 [node name="ButtonExpansion3" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=1665977670]
@@ -1029,7 +1027,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_map")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
 disabled = true
-text = "[ SECTOR 3X3 ]
+text = "SECTOR 3X3
 20 MINERALES"
 
 [node name="ButtonMineria" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=542620933]
@@ -1048,7 +1046,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_tienda_hard")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_tienda_disabled")
-text = "[ MINERÍA RÁPIDA ]
+text = "MINERÍA RÁPIDA
 MEJORA OPCIONAL"
 
 [node name="BotonCerrar" type="Button" parent="CanvasLayer/PanelTienda/LienzoArbol" unique_id=2013989778]
@@ -1176,7 +1174,7 @@ theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 26
-text = "◆ JUEGO EN PAUSA ◆"
+text = "JUEGO EN PAUSA"
 horizontal_alignment = 1
 
 [node name="Separador" type="HSeparator" parent="CanvasLayer/MenuPausa/Centro/Panel/Contenido" unique_id=2029083768]
@@ -1211,7 +1209,7 @@ text = "Presiona ESC para continuar"
 horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=173857337]
-transform = Transform3D(1, 0, 0, 0, 0.8405977, 0.54165995, 0, -0.54165995, 0.8405977, 2.855854, 7.4273777, 10.389794)
+transform = Transform3D(1, 0, 0, 0, 0.8405977, 0.54165995, 0, -0.54165995, 0.8405977, 3.0690966, 6.6252966, 7.722657)
 
 [node name="FondoEspacial" type="MeshInstance3D" parent="Camera3D" unique_id=1920698278]
 transform = Transform3D(0.9995616, -0.029166063, -0.005099421, 0.029163238, 0.9995746, -0.00062829256, 0.005115577, 0.00047934055, 0.99998695, -14.467957, 190.64882, -1010.8731)
