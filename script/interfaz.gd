@@ -1921,6 +1921,43 @@ func actualizar_panel_mision(_resultado: Dictionary = {}) -> void:
 		label_estado_mision.text = "● EN CURSO"
 
 	_actualizar_progreso_fase_ui()
+	_ajustar_layout_panel_mision()
+
+
+func _ajustar_layout_panel_mision() -> void:
+	if panel_mision == null or label_objetivo_mision == null or label_estado_mision == null:
+		return
+
+	var margen_x: float = 16.0
+	var ancho_disponible: float = panel_mision.size.x - (margen_x * 2.0)
+	label_objetivo_mision.size.x = ancho_disponible
+
+	var lineas: int = label_objetivo_mision.get_line_count()
+	var alto_linea: float = label_objetivo_mision.get_line_height()
+	if alto_linea <= 0.0:
+		alto_linea = 20.0
+
+	var texto_len: int = label_objetivo_mision.text.length()
+	var lineas_estimadas: int = int(ceil(float(texto_len) / 40.0))
+	var lineas_reales: int = maxi(lineas, lineas_estimadas)
+	var altura_objetivo: float = maxf(float(lineas_reales) * (alto_linea + 2.0), 32.0)
+	label_objetivo_mision.size.y = altura_objetivo
+
+	var y_estado: float = label_objetivo_mision.position.y + altura_objetivo + 10.0
+	label_estado_mision.position.y = y_estado
+
+	if barra_progreso_fase != null:
+		var y_barra: float = y_estado + 26.0
+		barra_progreso_fase.position.y = y_barra
+		barra_progreso_fase.size.x = ancho_disponible
+
+		if label_progreso_fase != null:
+			var y_label_progreso: float = y_barra + barra_progreso_fase.size.y + 8.0
+			label_progreso_fase.position.y = y_label_progreso
+			label_progreso_fase.size.x = ancho_disponible
+
+			var alto_minimo_panel: float = y_label_progreso + label_progreso_fase.size.y + 16.0
+			panel_mision.size.y = maxf(alto_minimo_panel, 240.0)
 
 
 func _actualizar_progreso_fase_ui() -> void:
