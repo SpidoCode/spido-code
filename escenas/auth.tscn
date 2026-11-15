@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct48y8s8ntq7e" path="res://script/auth.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Fondos/estrellas_frames/frame_00.png" id="2_fkd26"]
+[ext_resource type="FontFile" uid="uid://b57mukfyvrtjb" path="res://assets/fonts/PixelifySans.ttf" id="3_pixelify"]
 
 [sub_resource type="StyleBoxFlat" id="PanelAuth"]
 content_margin_left = 28.0
@@ -134,6 +135,7 @@ offset_left = 36.0
 offset_top = 34.0
 offset_right = 1200.0
 offset_bottom = 250.0
+theme_override_fonts/font = ExtResource("3_pixelify")
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.35, 0.08, 0.85, 0.8)
