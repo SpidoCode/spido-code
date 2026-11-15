@@ -4,7 +4,7 @@ signal cerrado
 
 const TUTORIALES_POR_FASE := {
 	0: {
-		"titulo_fase": "A.D.A. // PROTOCOLO DE INDUCCIÓN BÁSICA",
+		"titulo_fase": "PROTOCOLO DE INDUCCIÓN BÁSICA",
 		"tarjetas": [
 			{
 				"imagen": "res://assets/tutorial/fase0_1_consola.png"

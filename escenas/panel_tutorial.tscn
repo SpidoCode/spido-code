@@ -120,7 +120,7 @@ theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 20
-text = "A.D.A. // PROTOCOLO DE INDUCCIÓN BÁSICA"
+text = "PROTOCOLO DE INDUCCIÓN BÁSICA"
 
 [node name="BotonCerrar" type="Button" parent="Centro/PanelPrincipal/VBox/Cabecera"]
 custom_minimum_size = Vector2(110, 36)
