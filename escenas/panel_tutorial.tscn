@@ -127,7 +127,7 @@ custom_minimum_size = Vector2(110, 36)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_boton_cerrar")
-text = "✕ CERRAR"
+text = "CERRAR"
 
 [node name="Separador1" type="HSeparator" parent="Centro/PanelPrincipal/VBox"]
 layout_mode = 2
@@ -154,7 +154,7 @@ custom_minimum_size = Vector2(130, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_boton_nav")
-text = "◄ ANTERIOR"
+text = "ANTERIOR"
 
 [node name="Contador" type="Label" parent="Centro/PanelPrincipal/VBox/Navegacion"]
 layout_mode = 2
@@ -169,7 +169,7 @@ custom_minimum_size = Vector2(130, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_boton_nav")
-text = "SIGUIENTE ►"
+text = "SIGUIENTE"
 
 [node name="BotonEntendido" type="Button" parent="Centro/PanelPrincipal/VBox/Navegacion"]
 visible = false
@@ -177,4 +177,4 @@ custom_minimum_size = Vector2(210, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_boton_entendido")
-text = "¡A JUGAR! ►"
+text = "¡A JUGAR!"
