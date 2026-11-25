@@ -1246,20 +1246,18 @@ func _evaluar_ciclo_recoleccion(resultado: Dictionary) -> void:
 	var transferidos: int = int(resultado.get("minerals_transferred", 0))
 	var iteraciones: int = int(resultado.get("loop_iterations", 0))
 
-	# 1. Prohibir while en esta misión
-	if codigo.contains("while"):
-		objetivo_actualizado.emit(
-			objective_id,
-			"Has usado un bucle 'while'. Para recorrer el circuito un número exacto de vueltas, debes utilizar 'for <variable> in range(N):'."
-		)
-		return
-
-	# 2. Exigir for e in range
+	# 1. Exigir for e in range
 	if not (codigo.contains("for") and (codigo.contains("inrange") or codigo.contains("range("))):
-		objetivo_actualizado.emit(
-			objective_id,
-			"Debes usar la estructura 'for <variable> in range(3):' para automatizar las vueltas del circuito de recolección."
-		)
+		if codigo.contains("while"):
+			objetivo_actualizado.emit(
+				objective_id,
+				"Has usado un bucle 'while'. Para recorrer el circuito un número exacto de vueltas, debes utilizar 'for <variable> in range(3):'."
+			)
+		else:
+			objetivo_actualizado.emit(
+				objective_id,
+				"Debes usar la estructura 'for <variable> in range(3):' para automatizar las vueltas del circuito de recolección."
+			)
 		return
 
 	# 3. Verificar que haya recolectado y transferido al menos una vuelta completa (3 minerales)

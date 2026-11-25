@@ -10,12 +10,12 @@ const COLOR_SOMBRA := Color(0.05, 0.07, 0.1, 0.95)
 
 func _ready() -> void:
 	get_tree().node_added.connect(_on_node_added)
-	call_deferred("_aplicar_arbol_completo")
+	_aplicar_arbol_completo.call_deferred()
 
 
 func _on_node_added(node: Node) -> void:
 	if node is Control:
-		call_deferred("_aplicar_contraste", node)
+		_aplicar_contraste.call_deferred(node)
 
 
 func _aplicar_arbol_completo() -> void:
@@ -23,7 +23,7 @@ func _aplicar_arbol_completo() -> void:
 		_aplicar_contraste(node)
 
 
-func _aplicar_contraste(node: Node) -> void:
+func _aplicar_contraste(node) -> void:
 	if not is_instance_valid(node) or not (node is Control):
 		return
 

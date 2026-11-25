@@ -2117,13 +2117,13 @@ func _on_mision_completada(mision_id: String) -> void:
 			var msg_for := (
 				"¡Circuito de recolección completado con éxito!\n" +
 				"Has dominado el uso de range() y el bucle for en el sector 2x3.\n" +
-				"Nueva misión: EL ROVER AUTÓNOMO (Fase 4.5).\n" +
+				"Nueva misión: EL SPID AUTÓNOMO (Fase 4.5).\n" +
 				"Enlaza tu circuito en 'while True:' con 'if spid.hay_mineral():' para una operación 100% desatendida."
 			)
 			transmision_ada.mostrar_mensaje(msg_for, "completado", 15.0)
 		"patrulla_autonoma":
 			var msg_auto := (
-				"¡Protocolo autónomo verificado! Has creado tu primer Rover 100% Desatendido.\n" +
+				"¡Protocolo autónomo verificado! Has creado tu primer Spid 100% Desatendido.\n" +
 				"Spid operó continuamente combinando while, for y sensores condicionales.\n" +
 				"Próximo objetivo: reúne 10 minerales y adquiere el SECTOR 3X3 en el Centro de Mejoras."
 			)
@@ -2131,7 +2131,7 @@ func _on_mision_completada(mision_id: String) -> void:
 		"comprar_sector_3x3":
 			transmision_ada.mostrar_mensaje(
 				"¡Sector 3x3 y Variables desbloqueados!\n" +
-				"El terreno se expande a 3x3. Ya puedes declarar variables y parametrizar las órdenes dspid.\n" +
+				"El terreno se expande a 3x3. Ya puedes declarar variables y parametrizar las órdenes del Spid.\n" +
 				"Nueva misión: CALIBRACIÓN CON VARIABLES.",
 				"completado",
 				15.0
@@ -2490,7 +2490,7 @@ func _get_objetivo_panel(mision_id: String) -> String:
 		"patrulla_autonoma":
 			return "Operación continua: combina 'while True:', 'for' e 'if spid.hay_mineral():' para una patrulla 100% desatendida."
 		"comprar_sector_3x3":
-			return "Rover autónomo completado. Reúne 10 minerales y adquiere SECTOR 3X3 en Mejoras para ampliar el terreno a 3x3 y programar con variables."
+			return "Spid autónomo completado. Reúne 10 minerales y adquiere SECTOR 3X3 en Mejoras para ampliar el terreno a 3x3 y programar con variables."
 		"calibracion_variables":
 			return "Sector 3x3 activo. Declara variables ('vueltas = 2', 'pasos = 1') y úsalas en el bucle 'for' y 'spid.norte(pasos)'."
 		"comprar_telemetria":
