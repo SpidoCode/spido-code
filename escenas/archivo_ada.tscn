@@ -181,7 +181,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_boton_cerrar")
 text = "CONTROL"
 
 [node name="BotonOrganizacion" type="Button" parent="Centro/PanelPrincipal/VBox/Pestanas"]
-custom_minimum_size = Vector2(190, 38)
+custom_minimum_size = Vector2(175, 38)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -192,6 +192,19 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_boton_cerrar")
 theme_override_styles/hover = SubResource("StyleBoxFlat_boton_cerrar_hover")
 theme_override_styles/focus = SubResource("StyleBoxFlat_boton_cerrar")
 text = "ORGANIZACIÓN"
+
+[node name="BotonTeclado" type="Button" parent="Centro/PanelPrincipal/VBox/Pestanas"]
+custom_minimum_size = Vector2(175, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_boton_cerrar")
+theme_override_styles/hover = SubResource("StyleBoxFlat_boton_cerrar_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_boton_cerrar")
+text = "TECLADO"
 
 [node name="HSeparator" type="HSeparator" parent="Centro/PanelPrincipal/VBox"]
 layout_mode = 2
@@ -292,3 +305,47 @@ layout_mode = 2
 bbcode_enabled = true
 fit_content = true
 selection_enabled = true
+
+[node name="CuerpoTeclado" type="PanelContainer" parent="Centro/PanelPrincipal/VBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_caja_codigo")
+
+[node name="Scroll" type="ScrollContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="VBoxSym" type="VBoxContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="TituloSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
+theme_override_font_sizes/font_size = 22
+text = "TECLADO / OPERADORES Y SÍMBOLOS"
+
+[node name="DescSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.82, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "Haz clic en cualquier símbolo u operador para copiarlo rápidamente al portapapeles y pegarlo en tu código con Ctrl+V."
+autowrap_mode = 2
+
+[node name="SepSym" type="HSeparator" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
+layout_mode = 2
+
+[node name="GridSimbolos" type="HFlowContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+
+[node name="FeedbackSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.796078, 0.568627, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
