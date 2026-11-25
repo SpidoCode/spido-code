@@ -361,8 +361,8 @@ size = Vector2(3400, 1900)
 background_mode = 1
 background_color = Color(0.002, 0.004, 0.012, 1)
 ambient_light_source = 2
-ambient_light_color = Color(0.22, 0.3, 0.48, 1)
-ambient_light_energy = 0.45
+ambient_light_color = Color(0.48, 0.52, 0.62, 1)
+ambient_light_energy = 0.55
 reflected_light_source = 1
 
 [node name="Mundo" type="Node3D" unique_id=661431235]
@@ -1241,6 +1241,10 @@ environment = SubResource("Environment_v88e1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=844589390]
 script = ExtResource("5_16hu1")
+
+[node name="LuzLuna" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=844589391]
+visible = false
+light_energy = 0.0
 
 [node name="Nave" parent="." unique_id=955676958 instance=ExtResource("8_txhqv")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.0179539, 1.2233245, -14.095957)
