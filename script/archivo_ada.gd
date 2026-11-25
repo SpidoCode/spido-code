@@ -129,25 +129,11 @@ const SIMBOLOS := [
 	{ "label": "False","valor": "False","tooltip": "Falso (booleano)" },
 ]
 
-const FRAGMENTOS := [
-	{ "nombre": "Minar y transferir",            "codigo": "spid.minar()\nspid.transferir()" },
-	{ "nombre": "Bucle while infinito",          "codigo": "while True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()" },
-	{ "nombre": "While con spid.tiene_espacio()","codigo": "while spid.tiene_espacio():\n    spid.minar()" },
-	{ "nombre": "If hay mineral",                "codigo": "if spid.hay_mineral():\n    spid.minar()" },
-	{ "nombre": "Bucle for N repeticiones",      "codigo": "for ciclo in range(3):\n    spid.norte()\n    spid.minar()\n    spid.sur()\nspid.transferir()" },
-	{ "nombre": "minerales_en_nave() < 10",      "codigo": "spid.minerales_en_nave() < 10" },
-	{ "nombre": "minerales_en_spid() < 3",       "codigo": "spid.minerales_en_spid() < 3" },
-	{ "nombre": "minerales_en_nave() >= 20",     "codigo": "spid.minerales_en_nave() >= 20" },
-	{ "nombre": "While cuota de minerales",      "codigo": "while spid.minerales_en_nave() < 20:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()" },
-	{ "nombre": "Variable pasos = 1",            "codigo": "pasos = 1\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()" },
-	{ "nombre": "Usar tamano_mundo()",           "codigo": "limite = spid.tamano_mundo()\nfor ciclo in range(limite - 1):\n    spid.norte()\n    spid.minar()\nspid.transferir()" },
-]
-
 var categoria_actual: String = "Comandos"
 var concepto_actual_id: String = "movimiento"
 
 @onready var cuerpo_conceptos: HBoxContainer = $Centro/PanelPrincipal/VBox/Cuerpo
-@onready var cuerpo_teclado: HBoxContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado
+@onready var cuerpo_teclado: PanelContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado
 
 @onready var contenedor_lista: VBoxContainer = $Centro/PanelPrincipal/VBox/Cuerpo/ColumnaIzquierda/Scroll/ListaConceptos
 @onready var label_titulo: Label = $Centro/PanelPrincipal/VBox/Cuerpo/ColumnaDerecha/Scroll/Detalle/TituloConcepto
@@ -163,9 +149,8 @@ var concepto_actual_id: String = "movimiento"
 @onready var btn_comandos: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonComandos
 @onready var btn_teclado: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonTeclado
 
-@onready var grid_simbolos: HFlowContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym/GridSimbolos
-@onready var label_feedback: Label = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym/FeedbackSimbolos
-@onready var lista_fragmentos: VBoxContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag/Scroll/ListaFragmentos
+@onready var grid_simbolos: HFlowContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym/GridSimbolos
+@onready var label_feedback: Label = $Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym/FeedbackSimbolos
 
 var estilo_concepto_normal: StyleBoxFlat
 var estilo_concepto_hover: StyleBoxFlat
@@ -374,8 +359,8 @@ func _construir_teclado() -> void:
 			var btn := Button.new()
 			btn.text = sym["label"]
 			btn.tooltip_text = sym["tooltip"]
-			btn.custom_minimum_size = Vector2(72, 44)
-			btn.add_theme_font_size_override("font_size", 16)
+			btn.custom_minimum_size = Vector2(80, 50)
+			btn.add_theme_font_size_override("font_size", 18)
 			btn.add_theme_color_override("font_color", Color("F4F6F2"))
 			var estilo := _crear_estilo_teclado(Color("3D4756"), Color("545F72"))
 			var estilo_hover := _crear_estilo_teclado(Color("6FAF78"), Color("4F8F5B"))
@@ -384,51 +369,6 @@ func _construir_teclado() -> void:
 			btn.add_theme_stylebox_override("focus", estilo)
 			btn.pressed.connect(_copiar_al_portapapeles.bind(sym["valor"], sym["label"]))
 			grid_simbolos.add_child(btn)
-
-	if lista_fragmentos != null and lista_fragmentos.get_child_count() == 0:
-		for frag in FRAGMENTOS:
-			var panel_frag := PanelContainer.new()
-			var estilo_frag := _crear_estilo_teclado(Color(0.24, 0.28, 0.34, 0.6), Color(0.35, 0.40, 0.48, 0.8))
-			panel_frag.add_theme_stylebox_override("panel", estilo_frag)
-			panel_frag.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-			var vbox := VBoxContainer.new()
-			vbox.add_theme_constant_override("separation", 6)
-
-			var hbox_top := HBoxContainer.new()
-			hbox_top.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-			var lbl_nombre := Label.new()
-			lbl_nombre.text = frag["nombre"]
-			lbl_nombre.add_theme_font_size_override("font_size", 14)
-			lbl_nombre.add_theme_color_override("font_color", Color("F4F6F2"))
-			lbl_nombre.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-			var btn_copiar := Button.new()
-			btn_copiar.text = "COPIAR"
-			btn_copiar.custom_minimum_size = Vector2(85, 30)
-			btn_copiar.add_theme_font_size_override("font_size", 12)
-			btn_copiar.add_theme_color_override("font_color", Color("F4F6F2"))
-			var estilo_btn := _crear_estilo_teclado(Color("4F8F5B"), Color("3A6B44"))
-			var estilo_btn_hover := _crear_estilo_teclado(Color("6FAF78"), Color("4F8F5B"))
-			btn_copiar.add_theme_stylebox_override("normal", estilo_btn)
-			btn_copiar.add_theme_stylebox_override("hover", estilo_btn_hover)
-			btn_copiar.add_theme_stylebox_override("focus", estilo_btn)
-			btn_copiar.pressed.connect(_copiar_al_portapapeles.bind(frag["codigo"], frag["nombre"]))
-
-			hbox_top.add_child(lbl_nombre)
-			hbox_top.add_child(btn_copiar)
-			vbox.add_child(hbox_top)
-
-			var lbl_codigo := Label.new()
-			lbl_codigo.text = frag["codigo"]
-			lbl_codigo.add_theme_font_size_override("font_size", 12)
-			lbl_codigo.add_theme_color_override("font_color", Color(0.70, 0.78, 0.88, 1))
-			lbl_codigo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-			vbox.add_child(lbl_codigo)
-
-			panel_frag.add_child(vbox)
-			lista_fragmentos.add_child(panel_frag)
 
 
 func _crear_estilo_teclado(fondo: Color, borde: Color) -> StyleBoxFlat:

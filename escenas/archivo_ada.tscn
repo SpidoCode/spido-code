@@ -306,88 +306,46 @@ bbcode_enabled = true
 fit_content = true
 selection_enabled = true
 
-[node name="CuerpoTeclado" type="HBoxContainer" parent="Centro/PanelPrincipal/VBox"]
+[node name="CuerpoTeclado" type="PanelContainer" parent="Centro/PanelPrincipal/VBox"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 18
-
-[node name="ColumnaSimbolos" type="PanelContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado"]
-custom_minimum_size = Vector2(440, 0)
-layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_caja_codigo")
 
-[node name="Scroll" type="ScrollContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos"]
+[node name="Scroll" type="ScrollContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 1
 
-[node name="VBoxSym" type="VBoxContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll"]
+[node name="VBoxSym" type="VBoxContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 12
+theme_override_constants/separation = 16
 
-[node name="TituloSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym"]
+[node name="TituloSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
-theme_override_font_sizes/font_size = 20
-text = "OPERADORES Y SÍMBOLOS"
+theme_override_font_sizes/font_size = 22
+text = "TECLADO / OPERADORES Y SÍMBOLOS"
 
-[node name="DescSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym"]
+[node name="DescSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.82, 0.88, 1)
-theme_override_font_sizes/font_size = 13
-text = "Haz clic en cualquier símbolo u operador para copiarlo rápidamente al portapapeles y pegarlo en tu código."
+theme_override_font_sizes/font_size = 14
+text = "Haz clic en cualquier símbolo u operador para copiarlo rápidamente al portapapeles y pegarlo en tu código con Ctrl+V."
 autowrap_mode = 2
 
-[node name="SepSym" type="HSeparator" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym"]
+[node name="SepSym" type="HSeparator" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
 layout_mode = 2
 
-[node name="GridSimbolos" type="HFlowContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym"]
+[node name="GridSimbolos" type="HFlowContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/h_separation = 8
-theme_override_constants/v_separation = 8
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
 
-[node name="FeedbackSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym"]
+[node name="FeedbackSimbolos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/Scroll/VBoxSym"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.545098, 0.796078, 0.568627, 1)
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
-
-[node name="ColumnaFragmentos" type="PanelContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_caja_codigo")
-
-[node name="VBoxFrag" type="VBoxContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 12
-
-[node name="TituloFragmentos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
-theme_override_font_sizes/font_size = 20
-text = "FRAGMENTOS DE CÓDIGO RÁPIDO"
-
-[node name="DescFragmentos" type="Label" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.78, 0.82, 0.88, 1)
-theme_override_font_sizes/font_size = 13
-text = "Plantillas preparadas para cada fase de exploración. Cópialas con un clic y adáptalas en la consola."
-autowrap_mode = 2
-
-[node name="SepFrag" type="HSeparator" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag"]
-layout_mode = 2
-
-[node name="Scroll" type="ScrollContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag"]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 1
-
-[node name="ListaFragmentos" type="VBoxContainer" parent="Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag/Scroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8

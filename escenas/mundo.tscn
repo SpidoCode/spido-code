@@ -601,7 +601,7 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4vydk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
-text = "FASES  ▲"
+text = "FASES"
 
 [node name="PanelTienda" type="Panel" parent="CanvasLayer" unique_id=922794825]
 anchors_preset = 15

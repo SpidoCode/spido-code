@@ -346,7 +346,7 @@ func _on_boton_fases_pressed() -> void:
 func establecer_panel_mision_abierto(abierto: bool) -> void:
 	panel_mision_visible = abierto
 	if boton_fases != null:
-		boton_fases.text = "FASES  ▲" if abierto else "FASES  ▼"
+		boton_fases.text = "FASES"
 	if panel_mision == null:
 		return
 	if tween_panel_mision != null and tween_panel_mision.is_valid():
@@ -2482,8 +2482,6 @@ func _animar_nueva_mision() -> void:
 	if panel_mision == null:
 		return
 	panel_mision_visible = true
-	if boton_fases != null:
-		boton_fases.text = "FASES  ▲"
 	panel_mision.show()
 	var posicion_final := posicion_panel_mision
 	panel_mision.position = posicion_final + Vector2(-18.0, 0.0)
