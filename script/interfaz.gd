@@ -167,6 +167,10 @@ func _ready() -> void:
 	MissionService.conocimiento_desbloqueado.connect(_on_conocimiento_desbloqueado)
 	actualizar_panel_mision()
 	var misiones_completas: Array = MissionService.get_completed_missions()
+	var mundo_node := get_parent()
+	if ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas) and mundo_node != null and mundo_node.has_method("get_map_tier"):
+		if mundo_node.get_map_tier() < 3:
+			mundo_node.aplicar_progreso_mapa(3)
 	if "recolectar_primer_mineral" in misiones_completas and 0 not in fases_tutorial_mostradas:
 		fases_tutorial_mostradas.append(0)
 	if "ruta_calibracion" in misiones_completas and 1 not in fases_tutorial_mostradas:
@@ -727,6 +731,10 @@ func aplicar_progreso(progress: Dictionary) -> void:
 		print("PanelMision antes de actualizar: objective_id=", MissionService.objective_id)
 	actualizar_panel_mision()
 	var misiones_completas: Array = MissionService.get_completed_missions()
+	var mundo_node := get_parent()
+	if ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas) and mundo_node != null and mundo_node.has_method("get_map_tier"):
+		if mundo_node.get_map_tier() < 3:
+			mundo_node.aplicar_progreso_mapa(3)
 	if "recolectar_primer_mineral" in misiones_completas and 0 not in fases_tutorial_mostradas:
 		fases_tutorial_mostradas.append(0)
 	if "ruta_calibracion" in misiones_completas and 1 not in fases_tutorial_mostradas:
@@ -1617,10 +1625,11 @@ func _on_button_expansion_3_pressed() -> void:
 	minerales_nave -= costo
 	actualizar_contadores()
 	MissionService.registrar_compra_mapa_3x3()
+	mundo.expandir_mapa_3x3()
 	actualizar_mejoras_visual()
 	_solicitar_guardado_progreso()
 	transmision_ada.mostrar_mensaje(
-		"¡Módulo CICLO FOR instalado en la consola! Ya puedes utilizar for e in range.",
+		"¡Sector 3x3 adquirido y bucle FOR instalado en la consola! Ya puedes utilizar for e in range.",
 		"completado",
 		6.0
 	)

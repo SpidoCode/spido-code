@@ -39,8 +39,19 @@ func _ready():
 		else:
 			push_error("Sesión autenticada sin progreso cargado. Se inicia un mundo seguro sin restaurar datos.")
 
-	if MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "ciclo_recoleccion", "patrulla_autonoma", "senales_inciertas"]:
+	var ya_compro_3x3: bool = false
+	var compl_prog = progreso.get("completed_missions", [])
+	if typeof(compl_prog) == TYPE_ARRAY and ("comprar_mapa_3x3" in compl_prog or "comprar_sector_3x3" in compl_prog):
+		ya_compro_3x3 = true
+	elif MissionService != null:
+		var compl = MissionService.get_completed_missions()
+		if "comprar_mapa_3x3" in compl or "comprar_sector_3x3" in compl:
+			ya_compro_3x3 = true
+
+	if not ya_compro_3x3 and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas"]:
 		map_tier = mini(map_tier, 2)
+	elif ya_compro_3x3:
+		map_tier = maxi(map_tier, 3)
 
 	aplicar_progreso_mapa(map_tier)
 	_posicionar_spid_en_casilla_inicial()
@@ -94,9 +105,17 @@ func _verificar_regeneracion_circuito_2x3() -> void:
 # efectos de compra, por lo que también se puede usar al restaurar progreso.
 func aplicar_progreso_mapa(map_tier: int) -> void:
 	var tier_seguro := maxi(0, map_tier)
-	# Durante la fase de bucle for y misiones del sector 2x3, el mapa se mantiene en sector 2x3 (tier 2)
-	if not mapa_3x3_desbloqueado and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "ciclo_recoleccion", "patrulla_autonoma", "senales_inciertas", "comprar_casillas", "comprar_sector_3x3"]:
+	var ya_compro_3x3: bool = false
+	if MissionService != null:
+		var compl = MissionService.get_completed_missions()
+		if "comprar_mapa_3x3" in compl or "comprar_sector_3x3" in compl:
+			ya_compro_3x3 = true
+
+	# Durante la fase previa a comprar el sector 3x3, el mapa se mantiene en sector 2x3 (tier 2)
+	if not ya_compro_3x3 and not mapa_3x3_desbloqueado and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas", "comprar_casillas"]:
 		tier_seguro = mini(tier_seguro, 2)
+	elif ya_compro_3x3:
+		tier_seguro = maxi(tier_seguro, 3)
 
 	radio_mapa_desbloqueado = tier_seguro
 
@@ -416,7 +435,7 @@ func expandir_tres_casillas() -> bool:
 
 
 func expandir_mapa_3x3() -> bool:
-	if mapa_3x3_desbloqueado or not casillas_extra_desbloqueadas:
+	if mapa_3x3_desbloqueado:
 		return false
 
 	aplicar_progreso_mapa(3)

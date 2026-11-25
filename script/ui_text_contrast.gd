@@ -23,9 +23,11 @@ func _aplicar_arbol_completo() -> void:
 		_aplicar_contraste(node)
 
 
-func _aplicar_contraste(control: Control) -> void:
-	if not is_instance_valid(control):
+func _aplicar_contraste(node: Node) -> void:
+	if not is_instance_valid(node) or not (node is Control):
 		return
+
+	var control := node as Control
 
 	if control is RichTextLabel:
 		control.add_theme_color_override("default_color", COLOR_TEXTO)
