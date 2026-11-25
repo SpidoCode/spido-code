@@ -65,7 +65,7 @@ const CONOCIMIENTOS := {
 		"categoria": "Organización",
 		"descripcion": "Una variable es un espacio asignado en memoria para almacenar un dato (como un entero) bajo un nombre único, permitiendo reutilizar ese dato en múltiples operaciones.",
 		"sintaxis": "nombre_variable = valor",
-		"ejemplo": "pasos = 2\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()",
+		"ejemplo": "pasos = 1\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()",
 		"errores": "Intentar usar una variable antes de definirla (ej: spid.norte(pasos) sin definir 'pasos = 2') o utilizar nombres de palabras clave del sistema."
 	},
 	"funcion": {

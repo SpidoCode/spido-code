@@ -34,7 +34,7 @@ const FRAGMENTOS := [
 	{ "nombre": "minerales_en_spid() < 3",       "codigo": "spid.minerales_en_spid() < 3" },
 	{ "nombre": "minerales_en_nave() >= 20",     "codigo": "spid.minerales_en_nave() >= 20" },
 	{ "nombre": "While cuota de minerales",      "codigo": "while spid.minerales_en_nave() < 20:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()" },
-	{ "nombre": "Variable pasos = 2",            "codigo": "pasos = 2\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()" },
+	{ "nombre": "Variable pasos = 1",            "codigo": "pasos = 1\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()" },
 	{ "nombre": "Usar tamano_mundo()",           "codigo": "limite = spid.tamano_mundo()\nfor ciclo in range(limite - 1):\n    spid.norte()\n    spid.minar()\nspid.transferir()" },
 ]
 

@@ -702,7 +702,7 @@ func get_objetivo_actual() -> String:
 			"PARÁMETROS Y VARIABLES (SECTOR 3X3)\n" +
 			"Las variables almacenan datos reutilizables y permiten parametrizar órdenes de movimiento:\n\n" +
 			"vueltas = 2\n" +
-			"pasos = 2\n\n" +
+			"pasos = 1\n\n" +
 			"for i in range(vueltas):\n" +
 			"    spid.norte(pasos)\n" +
 			"    if spid.hay_mineral():\n" +

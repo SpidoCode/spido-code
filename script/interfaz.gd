@@ -2483,7 +2483,7 @@ func _get_objetivo_panel(mision_id: String) -> String:
 		"comprar_sector_3x3":
 			return "Rover autónomo completado. Reúne 10 minerales y adquiere SECTOR 3X3 en Mejoras para ampliar el terreno a 3x3 y programar con variables."
 		"calibracion_variables":
-			return "Sector 3x3 activo. Declara variables ('vueltas = 2', 'pasos = 2') y úsalas en el bucle 'for' y 'spid.norte(pasos)'."
+			return "Sector 3x3 activo. Declara variables ('vueltas = 2', 'pasos = 1') y úsalas en el bucle 'for' y 'spid.norte(pasos)'."
 		"comprar_telemetria":
 			return "Reúne 10 minerales en la nave y adquiere TELEMETRÍA DINÁMICA en el Centro de Mejoras para censar el sector."
 		"telemetria_dinamica":

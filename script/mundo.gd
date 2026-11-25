@@ -135,46 +135,46 @@ func aplicar_progreso_mapa(map_tier: int) -> void:
 
 	grid_map.clear()
 
-	# Sector 5x5: cinco columnas (-2 a 2) y cinco filas (-4 a 0) con base en (0, 0)
+	# Sector 5x5: cinco columnas (-2 a 2) y cinco filas (-2 a 2) con base central (0, 0)
 	if mapa_5x5_desbloqueado:
 		for x in range(-2, 3):
-			for z in range(-4, 1):
+			for z in range(-2, 3):
 				var casilla := CASILLA_INICIAL + Vector3i(x, 0, z)
 				var tipo_casilla := 1 if (x + z) % 2 == 0 else 2
 				grid_map.set_cell_item(casilla, tipo_casilla)
 		return
 
-	# Sector 5x4: cinco columnas (-2 a 2) y cuatro filas (-3 a 0) con base en (0, 0)
+	# Sector 5x4: cinco columnas (-2 a 2) y cuatro filas (-2 a 1) con base central (0, 0)
 	if mapa_5x4_desbloqueado:
 		for x in range(-2, 3):
-			for z in range(-3, 1):
+			for z in range(-2, 2):
 				var casilla := CASILLA_INICIAL + Vector3i(x, 0, z)
 				var tipo_casilla := 1 if (x + z) % 2 == 0 else 2
 				grid_map.set_cell_item(casilla, tipo_casilla)
 		return
 
-	# Sector 4x4: cuatro columnas (-1 a 2) y cuatro filas (-3 a 0) con base en (0, 0)
+	# Sector 4x4: cuatro columnas (-1 a 2) y cuatro filas (-2 a 1) con base central (0, 0)
 	if mapa_4x4_desbloqueado:
 		for x in range(-1, 3):
-			for z in range(-3, 1):
+			for z in range(-2, 2):
 				var casilla := CASILLA_INICIAL + Vector3i(x, 0, z)
 				var tipo_casilla := 1 if (x + z) % 2 == 0 else 2
 				grid_map.set_cell_item(casilla, tipo_casilla)
 		return
 
-	# Sector 4x3: cuatro columnas (-1 a 2) y tres filas (-2 a 0) con base en (0, 0)
+	# Sector 4x3: cuatro columnas (-1 a 2) y tres filas (-1 a 1) con base central (0, 0)
 	if mapa_4x3_desbloqueado:
 		for x in range(-1, 3):
-			for z in range(-2, 1):
+			for z in range(-1, 2):
 				var casilla := CASILLA_INICIAL + Vector3i(x, 0, z)
 				var tipo_casilla := 1 if (x + z) % 2 == 0 else 2
 				grid_map.set_cell_item(casilla, tipo_casilla)
 		return
 
-	# Sector 3x3: tres columnas centradas en X (-1 a 1) y tres filas (-2 a 0) con base en (0, 0)
+	# Sector 3x3: tres columnas centradas en X (-1 a 1) y tres filas centradas en Z (-1 a 1) con base central (0, 0)
 	if mapa_3x3_desbloqueado:
 		for x in range(-1, 2):
-			for z in range(-2, 1):
+			for z in range(-1, 2):
 				var casilla := CASILLA_INICIAL + Vector3i(x, 0, z)
 				var tipo_casilla := 1 if (x + z) % 2 == 0 else 2
 				grid_map.set_cell_item(casilla, tipo_casilla)
@@ -247,7 +247,7 @@ const CIRCUITO_FOR_2X3: Array[Vector3i] = [
 	Vector3i(1, 0, 0)   # Este
 ]
 
-const DEPOSITO_MISION_8 := Vector3i(0, 0, -2) # 2 pasos al norte de la base
+const DEPOSITO_MISION_8 := Vector3i(0, 0, -1) # 1 paso al norte de la base central
 
 func generar_deposito_mision_8() -> void:
 	if radio_mapa_desbloqueado < 3:
