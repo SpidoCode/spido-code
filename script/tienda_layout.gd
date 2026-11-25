@@ -78,6 +78,8 @@ class TiendaInputRouter extends Node:
 			get_viewport().set_input_as_handled()
 
 static func construir(panel: Control) -> void:
+	if not panel or not panel.has_node("LienzoArbol"):
+		return
 	panel.z_index = 200
 	# La tienda es una capa modal: bloquea los clics hacia la interfaz del mundo.
 	panel.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -204,7 +206,7 @@ static func construir(panel: Control) -> void:
 	mapa.size = tamano_mapa
 
 
-static func _etapa(destino: Control, titulo: String, detalle: String, compra: Button, conocimiento: Button, color: Color) -> void:
+static func _etapa(destino: Control, titulo: String, detalle: String, compra: Button, conocimiento: Button, _color: Color) -> void:
 	var tarjeta := PanelContainer.new()
 	tarjeta.add_theme_stylebox_override("panel", _estilo(SURFACE, GREEN_DARK, 3, 14, 7))
 	destino.add_child(tarjeta)

@@ -95,29 +95,34 @@ var minerales_spid : int = 0
 @onready var boton_tutorial = get_node_or_null("ContenedorTienda/BotonTutorial")
 @onready var panel_teclado = get_node_or_null("PanelTeclado")
 @onready var boton_teclado = get_node_or_null("ContenedorTienda/BotonTeclado")
-@onready var boton_while: Button = $PanelTienda/LienzoArbol/ButtonWhile
-@onready var boton_for: Button = $PanelTienda/LienzoArbol/ButtonFor
-@onready var boton_if: Button = $PanelTienda/LienzoArbol/ButtonIf
-@onready var boton_variables: Button = $PanelTienda/LienzoArbol/ButtonVariables
-@onready var boton_telemetria: Button = $PanelTienda/LienzoArbol/ButtonTelemetria
-@onready var boton_sector_4x3: Button = $PanelTienda/LienzoArbol/ButtonSector4x3
-@onready var boton_sector_4x4: Button = $PanelTienda/LienzoArbol/ButtonSector4x4
-@onready var boton_sector_5x4: Button = $PanelTienda/LienzoArbol/ButtonSector5x4
-@onready var boton_sector_5x5: Button = $PanelTienda/LienzoArbol/ButtonSector5x5
-@onready var boton_protocolo_maestro: Button = $PanelTienda/LienzoArbol/ButtonProtocoloMaestro
-@onready var boton_expansion: Button = $PanelTienda/LienzoArbol/ButtonExpansion1
-@onready var boton_expansion_2: Button = $PanelTienda/LienzoArbol/ButtonExpansion2
-@onready var boton_expansion_3: Button = $PanelTienda/LienzoArbol/ButtonExpansion3
-@onready var boton_mineria: Button = $PanelTienda/LienzoArbol/ButtonMineria
+@onready var modal_tienda: PanelContainer = get_node_or_null("PanelTienda/ModalTienda")
+@onready var label_saldo_tienda: Label = get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxSubHeader/LabelSaldoTienda")
+@onready var btn_cerrar_tienda: Button = get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxHeader/BtnCerrarTienda")
+@onready var grid_mejoras: GridContainer = get_node_or_null("PanelTienda/ModalTienda/VBox/ScrollMejoras/GridMejoras")
 
-@onready var linea_prog_1: Line2D = $PanelTienda/LienzoArbol/LineaProg1
-@onready var linea_prog_2: Line2D = $PanelTienda/LienzoArbol/LineaProg2
-@onready var linea_prog_3: Line2D = $PanelTienda/LienzoArbol/LineaProg3
-@onready var linea_prog_4: Line2D = $PanelTienda/LienzoArbol/LineaProg4
-@onready var linea_terr_1: Line2D = $PanelTienda/LienzoArbol/LineaTerr1
-@onready var linea_terr_2: Line2D = $PanelTienda/LienzoArbol/LineaTerr2
-@onready var linea_terr_3: Line2D = $PanelTienda/LienzoArbol/LineaTerr3
-@onready var linea_hard_1: Line2D = $PanelTienda/LienzoArbol/LineaHard1
+@onready var boton_while: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonWhile")
+@onready var boton_for: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonFor")
+@onready var boton_if: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonIf")
+@onready var boton_variables: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonVariables")
+@onready var boton_telemetria: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonTelemetria")
+@onready var boton_sector_4x3: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonSector4x3")
+@onready var boton_sector_4x4: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonSector4x4")
+@onready var boton_sector_5x4: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonSector5x4")
+@onready var boton_sector_5x5: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonSector5x5")
+@onready var boton_protocolo_maestro: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonProtocoloMaestro")
+@onready var boton_expansion: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonExpansion1")
+@onready var boton_expansion_2: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonExpansion2")
+@onready var boton_expansion_3: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonExpansion3")
+@onready var boton_mineria: Button = get_node_or_null("PanelTienda/LienzoArbol/ButtonMineria")
+
+@onready var linea_prog_1: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaProg1")
+@onready var linea_prog_2: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaProg2")
+@onready var linea_prog_3: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaProg3")
+@onready var linea_prog_4: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaProg4")
+@onready var linea_terr_1: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaTerr1")
+@onready var linea_terr_2: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaTerr2")
+@onready var linea_terr_3: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaTerr3")
+@onready var linea_hard_1: Line2D = get_node_or_null("PanelTienda/LienzoArbol/LineaHard1")
 
 var mineria_rapida_desbloqueada: bool = false
 var _interfaz_inicializada: bool = false
@@ -141,7 +146,6 @@ const PRECIOS = {
 }
 
 func _ready() -> void:
-	preload("res://script/tienda_layout.gd").construir(panel_tienda)
 	_estandarizar_botones_cerrar()
 	barra_codigo.gui_input.connect(_on_barra_codigo_gui_input)
 	caja_codigo.code_completion_enabled = true
@@ -190,6 +194,8 @@ func _ready() -> void:
 		boton_tutorial.pressed.connect(_on_boton_tutorial_pressed)
 	if boton_teclado != null and not boton_teclado.pressed.is_connected(_on_boton_teclado_pressed):
 		boton_teclado.pressed.connect(_on_boton_teclado_pressed)
+	if btn_cerrar_tienda != null and not btn_cerrar_tienda.pressed.is_connected(_on_boton_cerrar_pressed):
+		btn_cerrar_tienda.pressed.connect(_on_boton_cerrar_pressed)
 	if (
 		transmision_ada != null
 		and MissionService.objective_id == "recolectar_primer_mineral"
@@ -216,7 +222,9 @@ func _ready() -> void:
 
 func _estandarizar_botones_cerrar() -> void:
 	var botones: Array[Button] = []
-	var cerrar_tienda := get_node_or_null("PanelTienda/LienzoArbol/BotonCerrar") as Button
+	var cerrar_tienda: Button = btn_cerrar_tienda if btn_cerrar_tienda != null else (get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxHeader/BtnCerrarTienda") as Button)
+	if cerrar_tienda == null:
+		cerrar_tienda = get_node_or_null("PanelTienda/LienzoArbol/BotonCerrar") as Button
 	var cerrar_archivo := get_node_or_null("ArchivoADA/Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar") as Button
 	var cerrar_guia := get_node_or_null("PanelTutorial/Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar") as Button
 	for boton in [cerrar_tienda, cerrar_archivo, cerrar_guia]:
@@ -247,8 +255,25 @@ func _estilo_boton_cerrar(fondo: Color, borde: Color, desplazamiento: int) -> St
 	estilo.shadow_offset = Vector2(0, desplazamiento)
 	estilo.content_margin_left = 14
 	estilo.content_margin_right = 14
-	estilo.content_margin_top = 8
-	estilo.content_margin_bottom = 8
+	return estilo
+
+
+func _estilo_boton_tienda_item(fondo: Color, borde: Color, relieve: int = 5) -> StyleBoxFlat:
+	var estilo := StyleBoxFlat.new()
+	estilo.bg_color = fondo
+	estilo.border_color = borde
+	estilo.border_width_left = 2
+	estilo.border_width_top = 2
+	estilo.border_width_right = 2
+	estilo.border_width_bottom = relieve
+	estilo.set_corner_radius_all(12)
+	estilo.shadow_color = Color("111720")
+	estilo.shadow_size = 3
+	estilo.shadow_offset = Vector2(0, relieve)
+	estilo.content_margin_left = 10
+	estilo.content_margin_right = 10
+	estilo.content_margin_top = 6
+	estilo.content_margin_bottom = 6
 	return estilo
 
 
@@ -758,7 +783,7 @@ func actualizar_mejoras_visual() -> void:
 
 	var exp1_on: bool = mundo != null and bool(mundo.corredor_1x3_desbloqueado)
 	var exp2_on: bool = mundo != null and bool(mundo.casillas_extra_desbloqueadas)
-	var exp3_on: bool = mundo != null and bool(mundo.mapa_3x3_desbloqueado)
+	var _exp3_on: bool = mundo != null and bool(mundo.mapa_3x3_desbloqueado)
 	var fase3_completada: bool = "senales_inciertas" in MissionService.get_completed_missions()
 	var calibracion_completada: bool = "ruta_calibracion" in MissionService.get_completed_missions()
 	var trabajo_continuo_completado: bool = "trabajo_continuo" in MissionService.get_completed_missions()
@@ -969,6 +994,405 @@ func actualizar_mejoras_visual() -> void:
 
 	if linea_hard_1 != null:
 		linea_hard_1.default_color = Color(1.0, 0.84, 0.0) if mineria_rapida_desbloqueada else Color(0.3, 0.33, 0.38)
+
+	_renderizar_centro_mejoras()
+
+
+const ARBOL_MEJORAS: Array[Dictionary] = [
+	# 1. TERRENO MODULAR
+	{
+		"id": "EXPANSION_1",
+		"fase": "CORREDOR 1X3",
+		"desc": "Desbloquea un corredor lineal de tres casillas para calibrar el Spid y aprender secuencias.",
+		"costo": 1,
+		"cat": "espacio"
+	},
+	{
+		"id": "EXPANSION_2",
+		"fase": "SECTOR 2X3 (+3 CASILLAS)",
+		"desc": "Agrega tres casillas y depósitos aleatorios. Instala automáticamente el condicional IF / ELSE.",
+		"costo": 10,
+		"cat": "espacio"
+	},
+	{
+		"id": "EXPANSION_3",
+		"fase": "SECTOR 3X3",
+		"desc": "Expande el terreno a un cuadrante completo de 3x3 casillas. Instala automáticamente el bucle FOR.",
+		"costo": 20,
+		"cat": "espacio"
+	},
+	{
+		"id": "SECTOR_4X3",
+		"fase": "SECTOR 4X3 Y LISTAS",
+		"desc": "Expande el terreno a 4x3 casillas y desbloquea en Python listas estructuradas [...] y spid.mover().",
+		"costo": 15,
+		"cat": "espacio"
+	},
+	{
+		"id": "SECTOR_4X4",
+		"fase": "SECTOR 4X4 Y FUNCIONES",
+		"desc": "Expande el terreno a 4x4 casillas y desbloquea la definición de funciones propias con 'def mi_rutina():'.",
+		"costo": 20,
+		"cat": "espacio"
+	},
+	{
+		"id": "SECTOR_5X4",
+		"fase": "SECTOR 5X4 Y PARÁMETROS",
+		"desc": "Expande el terreno a 5x4 casillas y desbloquea argumentos en funciones 'def rutina(pasos):'.",
+		"costo": 25,
+		"cat": "espacio"
+	},
+	{
+		"id": "SECTOR_5X5",
+		"fase": "SECTOR 5X5 CUADRANTE",
+		"desc": "Expande el asteroide a un cuadrante completo de 5x5 casillas para el barrido sistemático bidimensional.",
+		"costo": 30,
+		"cat": "espacio"
+	},
+
+	# 2. SINTAXIS PYTHON
+	{
+		"id": "BUCLE_WHILE",
+		"fase": "BUCLE WHILE",
+		"desc": "Estructura de repetición continua mientras una condición sea verdadera. Desbloqueo por misión de calibración.",
+		"costo": 0,
+		"cat": "bloque"
+	},
+	{
+		"id": "CONDICIONAL_IF",
+		"fase": "CONDICIONAL IF / ELSE",
+		"desc": "Toma de decisiones lógicas en base al estado de los sensores. Se instala automáticamente con el Sector 2x3.",
+		"costo": 0,
+		"cat": "bloque"
+	},
+	{
+		"id": "BUCLE_FOR",
+		"fase": "BUCLE FOR",
+		"desc": "Repetición exacta de instrucciones mediante range(N). Se instala automáticamente con el Sector 3x3.",
+		"costo": 0,
+		"cat": "bloque"
+	},
+	{
+		"id": "VARIABLES",
+		"fase": "VARIABLES DINÁMICAS",
+		"desc": "Almacena datos en memoria para reutilizarlos en métodos y bucles del Spid. Disponible tras patrulla.",
+		"costo": 10,
+		"cat": "bloque"
+	},
+
+	# 3. SISTEMAS DEL SPID
+	{
+		"id": "TELEMETRIA",
+		"fase": "TELEMETRÍA DINÁMICA",
+		"desc": "Sensor avanzado que permite al Spid consultar dimensiones del sector en tiempo real con spid.tamano_mundo().",
+		"costo": 10,
+		"cat": "sistema"
+	},
+	{
+		"id": "MINERIA_RAPIDA",
+		"fase": "MINERÍA RÁPIDA",
+		"desc": "Optimiza el taladro del Spid reduciendo el tiempo de extracción de mineral de 3 a 1 segundo.",
+		"costo": 15,
+		"cat": "sistema"
+	},
+	{
+		"id": "PROTOCOLO_MAESTRO",
+		"fase": "PROTOCOLO MAESTRO",
+		"desc": "Sensor de tolva 'spid.tiene_espacio()' y autonomía total para barrido y extracción masiva de cuadrante 5x5.",
+		"costo": 35,
+		"cat": "sistema"
+	}
+]
+
+
+func _renderizar_centro_mejoras() -> void:
+	if not is_instance_valid(grid_mejoras):
+		return
+
+	if is_instance_valid(label_saldo_tienda):
+		label_saldo_tienda.text = "Saldo en Nave: %d Minerales" % minerales_nave
+
+	for child in grid_mejoras.get_children():
+		child.queue_free()
+
+	var mundo := get_parent()
+	var while_on := GestorSintaxis.esta_desbloqueada("while")
+	var for_on := GestorSintaxis.esta_desbloqueada("for")
+	var if_on := GestorSintaxis.esta_desbloqueada("if")
+
+	var exp1_on: bool = mundo != null and bool(mundo.corredor_1x3_desbloqueado)
+	var exp2_on: bool = mundo != null and bool(mundo.casillas_extra_desbloqueadas)
+	var completed := MissionService.get_completed_missions()
+	var calibracion_completada: bool = "ruta_calibracion" in completed
+	var trabajo_continuo_completado: bool = "trabajo_continuo" in completed
+	var cuota_completada: bool = "cuota_suministro" in completed
+	var fase3_completada: bool = "senales_inciertas" in completed
+	var ciclo_for_comprado: bool = for_on or ("comprar_mapa_3x3" in completed)
+
+	var sector_3x3_on: bool = (
+		(mundo != null and mundo.mapa_3x3_desbloqueado)
+		or "comprar_sector_3x3" in completed
+		or "calibracion_variables" in completed
+		or MissionService.objective_id == "calibracion_variables"
+	)
+	var patrulla_on: bool = (
+		"patrulla_autonoma" in completed
+		or (MissionService.objective_id == "patrulla_autonoma" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_sector_3x3"
+		or sector_3x3_on
+	)
+	var telemetria_on: bool = (
+		GestorSintaxis.esta_desbloqueada("tamano_mundo")
+		or "comprar_telemetria" in completed
+		or "telemetria_dinamica" in completed
+		or MissionService.objective_id == "telemetria_dinamica"
+	)
+	var variables_completada: bool = (
+		"calibracion_variables" in completed
+		or (MissionService.objective_id == "calibracion_variables" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_telemetria"
+		or telemetria_on
+	)
+	var sector_4x3_on: bool = (
+		GestorSintaxis.esta_desbloqueada("listas")
+		or "comprar_sector_4x3" in completed
+		or "patrulla_lista" in completed
+		or MissionService.objective_id == "patrulla_lista"
+	)
+	var telemetria_completada: bool = (
+		"telemetria_dinamica" in completed
+		or (MissionService.objective_id == "telemetria_dinamica" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_sector_4x3"
+		or sector_4x3_on
+	)
+	var sector_4x4_on: bool = (
+		GestorSintaxis.esta_desbloqueada("def")
+		or "comprar_sector_4x4" in completed
+		or "rutina_funciones" in completed
+		or MissionService.objective_id == "rutina_funciones"
+	)
+	var listas_completadas: bool = (
+		"barrido_listas_autonomo" in completed
+		or (MissionService.objective_id == "barrido_listas_autonomo" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_sector_4x4"
+		or sector_4x4_on
+	)
+	var sector_5x4_on: bool = (
+		GestorSintaxis.esta_desbloqueada("parametros_def")
+		or "comprar_sector_5x4" in completed
+		or "funciones_parametrizadas" in completed
+		or MissionService.objective_id == "funciones_parametrizadas"
+	)
+	var funciones_completadas: bool = (
+		"rutina_funciones" in completed
+		or (MissionService.objective_id == "rutina_funciones" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_sector_5x4"
+		or sector_5x4_on
+	)
+	var sector_5x5_on: bool = (
+		"comprar_sector_5x5" in completed
+		or "barrido_columnas" in completed
+		or MissionService.objective_id == "barrido_columnas"
+	)
+	var parametros_completados: bool = (
+		"funciones_parametrizadas" in completed
+		or (MissionService.objective_id == "funciones_parametrizadas" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_sector_5x5"
+		or sector_5x5_on
+	)
+	var protocolo_on: bool = (
+		GestorSintaxis.esta_desbloqueada("tiene_espacio")
+		or "comprar_protocolo_maestro" in completed
+		or "protocolo_maestro" in completed
+		or MissionService.objective_id == "protocolo_maestro"
+	)
+	var barrido_completado: bool = (
+		"barrido_columnas" in completed
+		or (MissionService.objective_id == "barrido_columnas" and MissionService.objective_completed)
+		or MissionService.objective_id == "comprar_protocolo_maestro"
+		or protocolo_on
+	)
+
+	for item in ARBOL_MEJORAS:
+		var panel = PanelContainer.new()
+		var st = StyleBoxFlat.new()
+		st.bg_color = Color(0.34902, 0.388235, 0.447059, 0.96)
+		st.set_corner_radius_all(14)
+		st.set_content_margin_all(14)
+		st.border_width_left = 2
+		st.border_width_top = 2
+		st.border_width_right = 2
+		st.border_width_bottom = 2
+
+		var ya_desbloqueado: bool = false
+		var prerrequisito: bool = true
+		var motivo_bloqueo: String = "BLOQUEADO"
+		var fn_compra: Callable = Callable()
+
+		match item.id:
+			"EXPANSION_1":
+				ya_desbloqueado = exp1_on
+				prerrequisito = true
+				fn_compra = Callable(self, "_on_button_expansion_1_pressed")
+			"EXPANSION_2":
+				ya_desbloqueado = exp2_on
+				prerrequisito = exp1_on and calibracion_completada and trabajo_continuo_completado and cuota_completada
+				motivo_bloqueo = "COMPLETA CALIBRACIÓN"
+				fn_compra = Callable(self, "_on_button_expansion_2_pressed")
+			"EXPANSION_3":
+				ya_desbloqueado = ciclo_for_comprado
+				prerrequisito = exp2_on and fase3_completada
+				motivo_bloqueo = "TRAS MISIÓN IF/ELSE"
+				fn_compra = Callable(self, "_on_button_expansion_3_pressed")
+			"SECTOR_4X3":
+				ya_desbloqueado = sector_4x3_on
+				prerrequisito = telemetria_completada
+				motivo_bloqueo = "TRAS TELEMETRÍA"
+				fn_compra = Callable(self, "_on_button_sector_4x3_pressed")
+			"SECTOR_4X4":
+				ya_desbloqueado = sector_4x4_on
+				prerrequisito = listas_completadas
+				motivo_bloqueo = "TRAS LISTAS"
+				fn_compra = Callable(self, "_on_button_sector_4x4_pressed")
+			"SECTOR_5X4":
+				ya_desbloqueado = sector_5x4_on
+				prerrequisito = funciones_completadas
+				motivo_bloqueo = "TRAS FUNCIONES"
+				fn_compra = Callable(self, "_on_button_sector_5x4_pressed")
+			"SECTOR_5X5":
+				ya_desbloqueado = sector_5x5_on
+				prerrequisito = parametros_completados
+				motivo_bloqueo = "TRAS PARÁMETROS"
+				fn_compra = Callable(self, "_on_button_sector_5x5_pressed")
+			"BUCLE_WHILE":
+				ya_desbloqueado = while_on
+				prerrequisito = false
+				motivo_bloqueo = "POR MISIÓN"
+			"CONDICIONAL_IF":
+				ya_desbloqueado = if_on
+				prerrequisito = false
+				motivo_bloqueo = "EN SECTOR 2X3"
+			"BUCLE_FOR":
+				ya_desbloqueado = for_on
+				prerrequisito = false
+				motivo_bloqueo = "EN SECTOR 3X3"
+			"VARIABLES":
+				ya_desbloqueado = sector_3x3_on
+				prerrequisito = patrulla_on and not sector_3x3_on
+				motivo_bloqueo = "TRAS PATRULLA"
+				fn_compra = Callable(self, "_on_button_variables_pressed")
+			"TELEMETRIA":
+				ya_desbloqueado = telemetria_on
+				prerrequisito = variables_completada and not telemetria_on
+				motivo_bloqueo = "TRAS VARIABLES"
+				fn_compra = Callable(self, "_on_button_telemetria_pressed")
+			"MINERIA_RAPIDA":
+				ya_desbloqueado = mineria_rapida_desbloqueada
+				prerrequisito = true
+				fn_compra = Callable(self, "_on_button_mineria_pressed")
+			"PROTOCOLO_MAESTRO":
+				ya_desbloqueado = protocolo_on
+				prerrequisito = barrido_completado and not protocolo_on
+				motivo_bloqueo = "TRAS BARRIDO"
+				fn_compra = Callable(self, "_on_button_protocolo_maestro_pressed")
+
+		var color_cat := Color(0.48, 0.82, 0.96)
+		var texto_cat := "TERRENO MODULAR"
+		match item.cat:
+			"bloque":
+				color_cat = Color(1.0, 0.82, 0.32)
+				texto_cat = "SINTAXIS PYTHON"
+			"sistema":
+				color_cat = Color("8BCB91")
+				texto_cat = "SISTEMAS DEL SPID"
+
+		if ya_desbloqueado:
+			st.border_color = Color("6FAF78")
+		elif prerrequisito and minerales_nave >= item.costo:
+			st.border_color = Color(0.95, 0.82, 0.35, 1.0)
+		else:
+			st.border_color = Color(0.270588, 0.301961, 0.352941, 1.0)
+
+		panel.add_theme_stylebox_override("panel", st)
+		panel.custom_minimum_size = Vector2(290, 165)
+
+		var vbox = VBoxContainer.new()
+		vbox.add_theme_constant_override("separation", 6)
+
+		var lbl_cat = Label.new()
+		lbl_cat.text = texto_cat
+		lbl_cat.add_theme_color_override("font_color", color_cat)
+		lbl_cat.add_theme_color_override("font_outline_color", Color("111720"))
+		lbl_cat.add_theme_constant_override("outline_size", 2)
+		lbl_cat.add_theme_font_size_override("font_size", 10)
+		vbox.add_child(lbl_cat)
+
+		var lbl_tit = Label.new()
+		lbl_tit.text = item.fase
+		lbl_tit.add_theme_color_override("font_color", Color("F4F6F2"))
+		lbl_tit.add_theme_color_override("font_outline_color", Color("111720"))
+		lbl_tit.add_theme_constant_override("outline_size", 2)
+		lbl_tit.add_theme_font_size_override("font_size", 13)
+		vbox.add_child(lbl_tit)
+
+		var lbl_desc = Label.new()
+		lbl_desc.text = item.desc
+		lbl_desc.add_theme_color_override("font_color", Color(0.88, 0.91, 0.94, 1.0))
+		lbl_desc.add_theme_font_size_override("font_size", 11)
+		lbl_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		lbl_desc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		vbox.add_child(lbl_desc)
+
+		var btn_accion = Button.new()
+		btn_accion.custom_minimum_size = Vector2(0, 36)
+		btn_accion.add_theme_font_size_override("font_size", 12)
+		btn_accion.add_theme_color_override("font_outline_color", Color("111720"))
+		btn_accion.add_theme_constant_override("outline_size", 3)
+
+		if ya_desbloqueado:
+			btn_accion.text = "DESBLOQUEADO"
+			btn_accion.disabled = true
+			btn_accion.add_theme_color_override("font_color", Color("F4F6F2"))
+			btn_accion.add_theme_color_override("font_disabled_color", Color("F4F6F2"))
+			var estilo_desbloqueado = _estilo_boton_tienda_item(Color("8BCB91"), Color("6FAF78"), 5)
+			btn_accion.add_theme_stylebox_override("normal", estilo_desbloqueado)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_desbloqueado)
+		elif not prerrequisito or item.costo == 0:
+			btn_accion.text = motivo_bloqueo
+			btn_accion.disabled = true
+			btn_accion.add_theme_color_override("font_color", Color(0.72, 0.76, 0.82, 0.85))
+			btn_accion.add_theme_color_override("font_disabled_color", Color(0.72, 0.76, 0.82, 0.85))
+			var estilo_bloqueado = _estilo_boton_tienda_item(Color(0.270588, 0.301961, 0.352941, 0.9), Color(0.20, 0.24, 0.29, 1.0), 4)
+			btn_accion.add_theme_stylebox_override("normal", estilo_bloqueado)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_bloqueado)
+		elif minerales_nave >= item.costo:
+			btn_accion.text = "ADQUIRIR (%d Minerales)" % item.costo
+			btn_accion.add_theme_color_override("font_color", Color("F4F6F2"))
+			btn_accion.add_theme_color_override("font_hover_color", Color("FFFFFF"))
+			var estilo_adquirir = _estilo_boton_tienda_item(Color(0.32, 0.52, 0.68, 1.0), Color(0.48, 0.72, 0.90, 1.0), 5)
+			var estilo_adquirir_hover = _estilo_boton_tienda_item(Color(0.38, 0.60, 0.78, 1.0), Color(0.58, 0.82, 1.0, 1.0), 6)
+			var estilo_adquirir_press = _estilo_boton_tienda_item(Color(0.28, 0.46, 0.60, 1.0), Color(0.40, 0.62, 0.78, 1.0), 2)
+			btn_accion.add_theme_stylebox_override("normal", estilo_adquirir)
+			btn_accion.add_theme_stylebox_override("hover", estilo_adquirir_hover)
+			btn_accion.add_theme_stylebox_override("pressed", estilo_adquirir_press)
+			btn_accion.add_theme_stylebox_override("focus", estilo_adquirir)
+			if fn_compra.is_valid():
+				btn_accion.pressed.connect(func():
+					fn_compra.call()
+					_renderizar_centro_mejoras()
+				)
+		else:
+			btn_accion.text = "REQUIERE: %d Minerales" % item.costo
+			btn_accion.disabled = true
+			btn_accion.add_theme_color_override("font_color", Color(0.72, 0.76, 0.82, 0.85))
+			btn_accion.add_theme_color_override("font_disabled_color", Color(0.72, 0.76, 0.82, 0.85))
+			var estilo_sin_saldo = _estilo_boton_tienda_item(Color(0.270588, 0.301961, 0.352941, 0.9), Color(0.20, 0.24, 0.29, 1.0), 4)
+			btn_accion.add_theme_stylebox_override("normal", estilo_sin_saldo)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_sin_saldo)
+
+		vbox.add_child(btn_accion)
+		panel.add_child(vbox)
+		grid_mejoras.add_child(panel)
 
 func intentar_compra(item_id: String, boton: Button, linea_conectora: CanvasItem) -> void:
 	# 1. Verificar si ya se compró previamente
