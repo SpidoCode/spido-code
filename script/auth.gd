@@ -2,7 +2,7 @@ extends Control
 
 const ESCENA_MENU := "res://escenas/menu_inicio.tscn"
 # Preview de registro validado manualmente; no adjuntar credenciales ni tokens.
-const WEB_SIGNUP_URL := "https://educode-web-git-feat-spidocode-web-auth-educode3.vercel.app/registro"
+const WEB_SIGNUP_URL := "https://www.spidocode.com/registro"
 var _abrir_navegador: Callable = OS.shell_open
 @onready var email_input: LineEdit = $Panel/Contenedor/Email
 @onready var password_input: LineEdit = $Panel/Contenedor/Password
