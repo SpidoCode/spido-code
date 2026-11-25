@@ -168,9 +168,13 @@ func _ready() -> void:
 	actualizar_panel_mision()
 	var misiones_completas: Array = MissionService.get_completed_missions()
 	var mundo_node := get_parent()
-	if ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas) and mundo_node != null and mundo_node.has_method("get_map_tier"):
-		if mundo_node.get_map_tier() < 3:
-			mundo_node.aplicar_progreso_mapa(3)
+	if mundo_node != null and mundo_node.has_method("get_map_tier"):
+		if ("comprar_sector_4x3" in misiones_completas or "comprar_telemetria" in misiones_completas or "telemetria_dinamica" in misiones_completas or GestorSintaxis.esta_desbloqueada("tamano_mundo")):
+			if mundo_node.get_map_tier() < 4:
+				mundo_node.aplicar_progreso_mapa(4)
+		elif ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas):
+			if mundo_node.get_map_tier() < 3:
+				mundo_node.aplicar_progreso_mapa(3)
 	if "recolectar_primer_mineral" in misiones_completas and 0 not in fases_tutorial_mostradas:
 		fases_tutorial_mostradas.append(0)
 	if "ruta_calibracion" in misiones_completas and 1 not in fases_tutorial_mostradas:
@@ -732,9 +736,13 @@ func aplicar_progreso(progress: Dictionary) -> void:
 	actualizar_panel_mision()
 	var misiones_completas: Array = MissionService.get_completed_missions()
 	var mundo_node := get_parent()
-	if ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas) and mundo_node != null and mundo_node.has_method("get_map_tier"):
-		if mundo_node.get_map_tier() < 3:
-			mundo_node.aplicar_progreso_mapa(3)
+	if mundo_node != null and mundo_node.has_method("get_map_tier"):
+		if ("comprar_sector_4x3" in misiones_completas or "comprar_telemetria" in misiones_completas or "telemetria_dinamica" in misiones_completas or GestorSintaxis.esta_desbloqueada("tamano_mundo")):
+			if mundo_node.get_map_tier() < 4:
+				mundo_node.aplicar_progreso_mapa(4)
+		elif ("comprar_mapa_3x3" in misiones_completas or "comprar_sector_3x3" in misiones_completas):
+			if mundo_node.get_map_tier() < 3:
+				mundo_node.aplicar_progreso_mapa(3)
 	if "recolectar_primer_mineral" in misiones_completas and 0 not in fases_tutorial_mostradas:
 		fases_tutorial_mostradas.append(0)
 	if "ruta_calibracion" in misiones_completas and 1 not in fases_tutorial_mostradas:
@@ -1253,8 +1261,8 @@ func _renderizar_centro_mejoras() -> void:
 				motivo_bloqueo = "TRAS MISIÓN IF/ELSE"
 				fn_compra = Callable(self, "_on_button_expansion_3_pressed")
 			"SECTOR_4X3":
-				ya_desbloqueado = sector_4x3_on
-				prerrequisito = telemetria_completada
+				ya_desbloqueado = sector_4x3_on or (mundo != null and mundo.mapa_4x3_desbloqueado)
+				prerrequisito = telemetria_completada or telemetria_on
 				motivo_bloqueo = "TRAS TELEMETRÍA"
 				fn_compra = Callable(self, "_on_button_sector_4x3_pressed")
 			"SECTOR_4X4":
@@ -1710,10 +1718,13 @@ func _on_button_telemetria_pressed() -> void:
 	minerales_nave -= costo
 	actualizar_contadores()
 	MissionService.registrar_compra_telemetria()
+	var mundo := get_parent()
+	if mundo != null and mundo.has_method("expandir_mapa_4x3"):
+		mundo.expandir_mapa_4x3()
 	actualizar_mejoras_visual()
 	_solicitar_guardado_progreso()
 	transmision_ada.mostrar_mensaje(
-		"¡Sensor de Telemetría Dinámica instalado! Ahora puedes consultar 'spid.tamano_mundo()'.",
+		"¡Sensor de Telemetría Dinámica instalado y Sector 4x3 habilitado! Ahora puedes consultar 'spid.tamano_mundo()'.",
 		"completado",
 		8.0
 	)

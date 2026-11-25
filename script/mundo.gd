@@ -40,18 +40,26 @@ func _ready():
 			push_error("Sesión autenticada sin progreso cargado. Se inicia un mundo seguro sin restaurar datos.")
 
 	var ya_compro_3x3: bool = false
+	var ya_compro_4x3: bool = false
 	var compl_prog = progreso.get("completed_missions", [])
-	if typeof(compl_prog) == TYPE_ARRAY and ("comprar_mapa_3x3" in compl_prog or "comprar_sector_3x3" in compl_prog):
-		ya_compro_3x3 = true
-	elif MissionService != null:
+	if typeof(compl_prog) == TYPE_ARRAY:
+		if "comprar_mapa_3x3" in compl_prog or "comprar_sector_3x3" in compl_prog:
+			ya_compro_3x3 = true
+		if "comprar_sector_4x3" in compl_prog or "comprar_telemetria" in compl_prog or "telemetria_dinamica" in compl_prog:
+			ya_compro_4x3 = true
+	if MissionService != null:
 		var compl = MissionService.get_completed_missions()
 		if "comprar_mapa_3x3" in compl or "comprar_sector_3x3" in compl:
 			ya_compro_3x3 = true
+		if "comprar_sector_4x3" in compl or "comprar_telemetria" in compl or "telemetria_dinamica" in compl or GestorSintaxis.esta_desbloqueada("tamano_mundo"):
+			ya_compro_4x3 = true
 
-	if not ya_compro_3x3 and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas"]:
-		map_tier = mini(map_tier, 2)
+	if ya_compro_4x3:
+		map_tier = maxi(map_tier, 4)
 	elif ya_compro_3x3:
 		map_tier = maxi(map_tier, 3)
+	elif not ya_compro_3x3 and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas"]:
+		map_tier = mini(map_tier, 2)
 
 	aplicar_progreso_mapa(map_tier)
 	_posicionar_spid_en_casilla_inicial()
@@ -76,46 +84,35 @@ func _ready():
 		interfaz.aplicar_progreso(progreso)
 
 func _on_veta_lineal_solicitada(_indice: int) -> void:
-	if MissionService != null and MissionService.objective_id in ["calibracion_variables", "comprar_telemetria", "telemetria_dinamica", "comprar_sector_4x3"]:
-		generar_deposito_mision_8()
-	else:
-		generar_circuito_for_2x3()
+	asegurar_minerales_por_columnas()
 
 func _on_mineral_minado(celda: Vector3i) -> void:
 	ultima_celda_minada = celda
-	if MissionService != null and MissionService.objective_id in ["ciclo_recoleccion", "patrulla_autonoma"]:
-		call_deferred("_verificar_regeneracion_circuito_2x3")
-		return
-	if MissionService != null and MissionService.objective_id in ["calibracion_variables", "comprar_telemetria", "telemetria_dinamica", "comprar_sector_4x3"]:
-		call_deferred("_verificar_regeneracion_mision_8")
-		return
-	spawn_mineral_aleatorio()
+	asegurar_minerales_por_columnas.call_deferred()
 
 func _verificar_regeneracion_circuito_2x3() -> void:
-	var activos: int = 0
-	for mineral in get_tree().get_nodes_in_group("minerales"):
-		var obj := mineral.get_parent() as Node
-		if obj and not obj.is_queued_for_deletion():
-			activos += 1
-	if activos == 0:
-		for casilla in CIRCUITO_FOR_2X3:
-			instanciar_mineral_en_casilla(casilla)
+	asegurar_minerales_por_columnas()
 
 # Reconstruye el mapa desde el tier persistido. No valida costos ni emite
 # efectos de compra, por lo que también se puede usar al restaurar progreso.
 func aplicar_progreso_mapa(map_tier: int) -> void:
 	var tier_seguro := maxi(0, map_tier)
 	var ya_compro_3x3: bool = false
+	var ya_compro_4x3: bool = false
 	if MissionService != null:
 		var compl = MissionService.get_completed_missions()
 		if "comprar_mapa_3x3" in compl or "comprar_sector_3x3" in compl:
 			ya_compro_3x3 = true
+		if "comprar_sector_4x3" in compl or "comprar_telemetria" in compl or "telemetria_dinamica" in compl or GestorSintaxis.esta_desbloqueada("tamano_mundo"):
+			ya_compro_4x3 = true
 
 	# Durante la fase previa a comprar el sector 3x3, el mapa se mantiene en sector 2x3 (tier 2)
-	if not ya_compro_3x3 and not mapa_3x3_desbloqueado and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas", "comprar_casillas"]:
-		tier_seguro = mini(tier_seguro, 2)
+	if ya_compro_4x3:
+		tier_seguro = maxi(tier_seguro, 4)
 	elif ya_compro_3x3:
 		tier_seguro = maxi(tier_seguro, 3)
+	elif not ya_compro_3x3 and not mapa_3x3_desbloqueado and MissionService != null and MissionService.objective_id in ["comprar_mapa_3x3", "senales_inciertas", "comprar_casillas"]:
+		tier_seguro = mini(tier_seguro, 2)
 
 	radio_mapa_desbloqueado = tier_seguro
 
@@ -145,7 +142,9 @@ func aplicar_progreso_mapa(map_tier: int) -> void:
 		max_minerales = 5
 	elif mapa_4x4_desbloqueado:
 		max_minerales = 4
-	elif mapa_4x3_desbloqueado or mapa_3x3_desbloqueado:
+	elif mapa_4x3_desbloqueado:
+		max_minerales = 4
+	elif mapa_3x3_desbloqueado:
 		max_minerales = 3
 	elif casillas_extra_desbloqueadas:
 		max_minerales = 2
@@ -269,47 +268,88 @@ const CIRCUITO_FOR_2X3: Array[Vector3i] = [
 const DEPOSITO_MISION_8 := Vector3i(0, 0, -1) # 1 paso al norte de la base central
 
 func generar_deposito_mision_8() -> void:
-	if radio_mapa_desbloqueado < 3:
-		aplicar_progreso_mapa(3)
-	for mineral in get_tree().get_nodes_in_group("minerales"):
-		var objeto := mineral.get_parent() as Node
-		if objeto and not objeto.is_queued_for_deletion():
-			objeto.queue_free()
-	instanciar_mineral_en_casilla(DEPOSITO_MISION_8)
+	asegurar_minerales_por_columnas()
 
 func _verificar_regeneracion_mision_8() -> void:
-	var activos: int = 0
-	for mineral in get_tree().get_nodes_in_group("minerales"):
-		var obj := mineral.get_parent() as Node
-		if obj and not obj.is_queued_for_deletion():
-			activos += 1
-	if activos == 0:
-		instanciar_mineral_en_casilla(DEPOSITO_MISION_8)
+	asegurar_minerales_por_columnas()
 
 func generar_circuito_for_2x3() -> void:
-	for mineral in get_tree().get_nodes_in_group("minerales"):
-		var objeto := mineral.get_parent() as Node
-		if objeto and not objeto.is_queued_for_deletion():
-			objeto.queue_free()
+	asegurar_minerales_por_columnas()
 
-	for casilla in CIRCUITO_FOR_2X3:
-		instanciar_mineral_en_casilla(casilla)
+func asegurar_minerales_por_columnas() -> void:
+	if mineral_scene == null:
+		return
+
+	# Obtener celdas con minerales activos que no estén en proceso de eliminación
+	var ocupadas: Array[Vector3i] = []
+	var minerales_por_columna: Dictionary = {}
+
+	for mineral in get_tree().get_nodes_in_group("minerales"):
+		var objeto := mineral.get_parent() as Node3D
+		if objeto == null or objeto.get_parent() != self or objeto.is_queued_for_deletion():
+			continue
+		var celda := grid_map.local_to_map(grid_map.to_local(objeto.global_position))
+		celda.y = 0
+		ocupadas.append(celda)
+		if not minerales_por_columna.has(celda.x):
+			minerales_por_columna[celda.x] = []
+		minerales_por_columna[celda.x].append(celda)
+
+	# Identificar todas las columnas (X) disponibles en el grid_map
+	var columnas_existentes: Array[int] = []
+	var celdas_por_columna: Dictionary = {}
+
+	for celda in grid_map.get_used_cells():
+		var celda_2d := Vector3i(celda.x, 0, celda.z)
+		if not celdas_por_columna.has(celda_2d.x):
+			celdas_por_columna[celda_2d.x] = []
+			columnas_existentes.append(celda_2d.x)
+		celdas_por_columna[celda_2d.x].append(celda_2d)
+
+	columnas_existentes.sort()
+
+	if columnas_existentes.is_empty():
+		return
+
+	# Garantizar al menos un mineral por corrida / columna
+	for col_x in columnas_existentes:
+		var minerales_en_col: Array = minerales_por_columna.get(col_x, [])
+		if minerales_en_col.is_empty():
+			var celdas_col: Array = celdas_por_columna.get(col_x, [])
+			var candidatas: Array[Vector3i] = []
+			for c in celdas_col:
+				if c == CASILLA_TRANSFERENCIA:
+					continue
+				if c in ocupadas:
+					continue
+				candidatas.append(c)
+
+			if not candidatas.is_empty():
+				var candidatas_sin_repetir: Array[Vector3i] = []
+				for c in candidatas:
+					if c != ultima_celda_minada:
+						candidatas_sin_repetir.append(c)
+
+				var elegida: Vector3i
+				if not candidatas_sin_repetir.is_empty():
+					elegida = candidatas_sin_repetir.pick_random()
+				else:
+					elegida = candidatas.pick_random()
+
+				instanciar_mineral_en_casilla(elegida)
+				ocupadas.append(elegida)
+				if not minerales_por_columna.has(col_x):
+					minerales_por_columna[col_x] = []
+				minerales_por_columna[col_x].append(elegida)
 
 func generar_minerales_iniciales():
 	# Si el radio es 0 (solo 1 casilla), solo hacemos aparecer 1 mineral
 	if radio_mapa_desbloqueado == 0:
 		max_minerales = 1
-	
-	if MissionService != null and MissionService.objective_id in ["ciclo_recoleccion", "patrulla_autonoma"]:
-		generar_circuito_for_2x3()
-		return
-
-	if MissionService != null and MissionService.objective_id in ["calibracion_variables", "comprar_telemetria", "telemetria_dinamica", "comprar_sector_4x3"]:
-		generar_deposito_mision_8()
-		return
-
-	for i in range(max_minerales):
 		spawn_mineral_aleatorio()
+		return
+
+	asegurar_minerales_por_columnas()
 
 func instanciar_mineral_en_casilla(casilla: Vector3i) -> void:
 	if mineral_scene == null:
@@ -449,7 +489,7 @@ func expandir_mapa_3x3() -> bool:
 
 
 func expandir_mapa_4x3() -> bool:
-	if mapa_4x3_desbloqueado or not mapa_3x3_desbloqueado:
+	if mapa_4x3_desbloqueado:
 		return false
 
 	aplicar_progreso_mapa(4)
