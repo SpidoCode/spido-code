@@ -93,8 +93,9 @@ var minerales_spid : int = 0
 @onready var boton_archivo = $ContenedorTienda/BotonArchivo
 @onready var panel_tutorial = get_node_or_null("PanelTutorial")
 @onready var boton_tutorial = get_node_or_null("ContenedorTienda/BotonTutorial")
-@onready var panel_teclado = get_node_or_null("PanelTeclado")
-@onready var boton_teclado = get_node_or_null("ContenedorTienda/BotonTeclado")
+@onready var boton_fases: Button = get_node_or_null("ContenedorTienda/BotonFases")
+var panel_mision_visible: bool = true
+var tween_panel_mision: Tween
 @onready var modal_tienda: PanelContainer = get_node_or_null("PanelTienda/ModalTienda")
 @onready var label_saldo_tienda: Label = get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxSubHeader/LabelSaldoTienda")
 @onready var btn_cerrar_tienda: Button = get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxHeader/BtnCerrarTienda")
@@ -200,8 +201,8 @@ func _ready() -> void:
 		panel_tutorial.cerrado.connect(_on_tutorial_cerrado)
 	if boton_tutorial != null and not boton_tutorial.pressed.is_connected(_on_boton_tutorial_pressed):
 		boton_tutorial.pressed.connect(_on_boton_tutorial_pressed)
-	if boton_teclado != null and not boton_teclado.pressed.is_connected(_on_boton_teclado_pressed):
-		boton_teclado.pressed.connect(_on_boton_teclado_pressed)
+	if boton_fases != null and not boton_fases.pressed.is_connected(_on_boton_fases_pressed):
+		boton_fases.pressed.connect(_on_boton_fases_pressed)
 	if btn_cerrar_tienda != null and not btn_cerrar_tienda.pressed.is_connected(_on_boton_cerrar_pressed):
 		btn_cerrar_tienda.pressed.connect(_on_boton_cerrar_pressed)
 	if (
@@ -338,13 +339,33 @@ func _marcar_interfaz_inicializada() -> void:
 	_interfaz_inicializada = true
 
 
-func _on_boton_teclado_pressed() -> void:
-	if panel_teclado == null:
+func _on_boton_fases_pressed() -> void:
+	establecer_panel_mision_abierto(not panel_mision_visible)
+
+
+func establecer_panel_mision_abierto(abierto: bool) -> void:
+	panel_mision_visible = abierto
+	if boton_fases != null:
+		boton_fases.text = "FASES  ▲" if abierto else "FASES  ▼"
+	if panel_mision == null:
 		return
-	if panel_teclado.visible:
-		panel_teclado.hide()
+	if tween_panel_mision != null and tween_panel_mision.is_valid():
+		tween_panel_mision.kill()
+	tween_panel_mision = create_tween().set_parallel(true)
+	tween_panel_mision.set_trans(Tween.TRANS_QUAD)
+	if abierto:
+		panel_mision.show()
+		tween_panel_mision.set_ease(Tween.EASE_OUT)
+		tween_panel_mision.tween_property(panel_mision, "position", posicion_panel_mision, 0.28)
+		tween_panel_mision.tween_property(panel_mision, "modulate:a", 1.0, 0.22)
 	else:
-		panel_teclado.show()
+		tween_panel_mision.set_ease(Tween.EASE_IN)
+		tween_panel_mision.tween_property(panel_mision, "position", posicion_panel_mision + Vector2(-25.0, 0.0), 0.25)
+		tween_panel_mision.tween_property(panel_mision, "modulate:a", 0.0, 0.20)
+		tween_panel_mision.finished.connect(func():
+			if not panel_mision_visible and panel_mision != null:
+				panel_mision.hide()
+		)
 
 
 func _on_boton_tienda_pressed() -> void:
@@ -359,10 +380,8 @@ func _on_boton_tienda_pressed() -> void:
 		boton_archivo.hide()
 	if boton_tutorial != null:
 		boton_tutorial.hide()
-	if boton_teclado != null:
-		boton_teclado.hide()
-	if panel_teclado != null:
-		panel_teclado.hide()
+	if boton_fases != null:
+		boton_fases.hide()
 	if panel_codigo != null:
 		panel_codigo.hide()
 	if brujula != null:
@@ -381,10 +400,8 @@ func _on_boton_archivo_pressed() -> void:
 			boton_archivo.hide()
 		if boton_tutorial != null:
 			boton_tutorial.hide()
-		if boton_teclado != null:
-			boton_teclado.hide()
-		if panel_teclado != null:
-			panel_teclado.hide()
+		if boton_fases != null:
+			boton_fases.hide()
 		if panel_codigo != null:
 			panel_codigo.hide()
 		if brujula != null:
@@ -401,8 +418,8 @@ func _on_archivo_cerrado() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
-	if boton_teclado != null:
-		boton_teclado.show()
+	if boton_fases != null:
+		boton_fases.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:
@@ -702,8 +719,8 @@ func _on_boton_cerrar_pressed() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
-	if boton_teclado != null:
-		boton_teclado.show()
+	if boton_fases != null:
+		boton_fases.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:
@@ -2464,6 +2481,10 @@ func _actualizar_progreso_fase_ui() -> void:
 func _animar_nueva_mision() -> void:
 	if panel_mision == null:
 		return
+	panel_mision_visible = true
+	if boton_fases != null:
+		boton_fases.text = "FASES  ▲"
+	panel_mision.show()
 	var posicion_final := posicion_panel_mision
 	panel_mision.position = posicion_final + Vector2(-18.0, 0.0)
 	panel_mision.modulate.a = 0.0
@@ -2578,10 +2599,8 @@ func _mostrar_tutorial(fase: int) -> void:
 		boton_archivo.hide()
 	if boton_tutorial != null:
 		boton_tutorial.hide()
-	if boton_teclado != null:
-		boton_teclado.hide()
-	if panel_teclado != null:
-		panel_teclado.hide()
+	if boton_fases != null:
+		boton_fases.hide()
 	if panel_codigo != null:
 		panel_codigo.hide()
 	if brujula != null:
@@ -2616,8 +2635,8 @@ func _on_tutorial_cerrado() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
-	if boton_teclado != null:
-		boton_teclado.show()
+	if boton_fases != null:
+		boton_fases.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:

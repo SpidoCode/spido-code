@@ -15,26 +15,6 @@
 [ext_resource type="PackedScene" path="res://escenas/transmision_ada.tscn" id="13_ada"]
 [ext_resource type="PackedScene" path="res://escenas/archivo_ada.tscn" id="14_codice"]
 [ext_resource type="PackedScene" path="res://escenas/panel_tutorial.tscn" id="16_tutorial"]
-[ext_resource type="PackedScene" path="res://escenas/panel_teclado.tscn" id="17_teclado"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Modal"]
-content_margin_left = 24.0
-content_margin_top = 20.0
-content_margin_right = 24.0
-content_margin_bottom = 20.0
-bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.34902, 0.388235, 0.447059, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-shadow_color = Color(0.12549, 0.156863, 0.2, 0.95)
-shadow_size = 4
-shadow_offset = Vector2(8, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_codigo"]
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
@@ -244,89 +224,24 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0, 0, 0, 0.6784314)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tienda_panel"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Modal"]
+content_margin_left = 24.0
+content_margin_top = 20.0
+content_margin_right = 24.0
+content_margin_bottom = 20.0
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 border_color = Color(0.34902, 0.388235, 0.447059, 1)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 shadow_color = Color(0.12549, 0.156863, 0.2, 0.95)
 shadow_size = 4
-shadow_offset = Vector2(10, 10)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nucleo"]
-bg_color = Color(0.631373, 0.85098, 0.65098, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.435294, 0.686275, 0.470588, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-shadow_color = Color(0.12549, 0.156863, 0.2, 0.9)
-shadow_size = 2
-shadow_offset = Vector2(0, 6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tienda_code"]
-bg_color = Color(0.34902, 0.388235, 0.447059, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.545098, 0.796078, 0.568627, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color(0.12549, 0.156863, 0.2, 0.9)
-shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tienda_disabled"]
-bg_color = Color(0.34902, 0.388235, 0.447059, 0.78)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 5
-border_color = Color(0.270588, 0.301961, 0.352941, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tienda_map"]
-bg_color = Color(0.34902, 0.388235, 0.447059, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.545098, 0.796078, 0.568627, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color(0.12549, 0.156863, 0.2, 0.9)
-shadow_offset = Vector2(5, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tienda_hard"]
-bg_color = Color(0.34902, 0.388235, 0.447059, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.545098, 0.796078, 0.568627, 0.9)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color(0.12549, 0.156863, 0.2, 0.9)
-shadow_offset = Vector2(5, 5)
+shadow_offset = Vector2(8, 8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_contadores"]
 content_margin_left = 12.0
@@ -677,16 +592,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4vydk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "GUÍA"
 
-[node name="BotonTeclado" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627713]
+[node name="BotonFases" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627713]
 layout_mode = 2
-tooltip_text = "Mostrar/ocultar panel de símbolos y fragmentos de código copiables"
+tooltip_text = "Mostrar u ocultar el panel de fases y misiones"
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_4vydk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
-text = "TECLADO"
+text = "FASES  ▲"
 
 [node name="PanelTienda" type="Panel" parent="CanvasLayer" unique_id=922794825]
 anchors_preset = 15
@@ -843,14 +758,6 @@ visible = false
 [node name="PanelTutorial" parent="CanvasLayer" unique_id=1467148890 instance=ExtResource("16_tutorial")]
 visible = false
 
-[node name="PanelTeclado" parent="CanvasLayer" unique_id=1467148891 instance=ExtResource("17_teclado")]
-visible = false
-layout_mode = 3
-offset_left = 1540.0
-offset_top = 15.0
-offset_right = 1900.0
-offset_bottom = 700.0
-
 [node name="MenuPausa" type="Control" parent="CanvasLayer" unique_id=1223488192]
 process_mode = 3
 visible = false
@@ -929,7 +836,7 @@ text = "Presiona ESC para continuar"
 horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=173857337]
-transform = Transform3D(1, 0, 0, 0, 0.78639007, 0.61773026, 0, -0.61773026, 0.78639007, 3.2852306, 7.9739423, 8.400148)
+transform = Transform3D(1, 0, 0, 0, 0.78639007, 0.61773026, 0, -0.61773026, 0.78639007, 3.2852306, 9.561415, 8.905344)
 
 [node name="FondoEspacial" type="MeshInstance3D" parent="Camera3D" unique_id=1920698278]
 transform = Transform3D(0.9995616, -0.029166063, -0.005099421, 0.029163238, 0.9995746, -0.00062829256, 0.005115577, 0.00047934055, 0.99998695, -14.467957, 190.64882, -1010.8731)

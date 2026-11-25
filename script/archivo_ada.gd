@@ -112,8 +112,42 @@ spid.minerales_en_nave()",
 	}
 }
 
+const SIMBOLOS := [
+	{ "label": "=",    "valor": "=",    "tooltip": "Igual / Asignación" },
+	{ "label": "==",   "valor": "==",   "tooltip": "Igual a (comparación)" },
+	{ "label": "!=",   "valor": "!=",   "tooltip": "Diferente de" },
+	{ "label": "<",    "valor": "<",    "tooltip": "Menor que" },
+	{ "label": ">",    "valor": ">",    "tooltip": "Mayor que" },
+	{ "label": "<=",   "valor": "<=",   "tooltip": "Menor o igual que" },
+	{ "label": ">=",   "valor": ">=",   "tooltip": "Mayor o igual que" },
+	{ "label": ":",    "valor": ":",    "tooltip": "Dos puntos (bloque de código)" },
+	{ "label": "( )",  "valor": "()",   "tooltip": "Paréntesis" },
+	{ "label": "[ ]",  "valor": "[]",   "tooltip": "Corchetes (listas)" },
+	{ "label": "#",    "valor": "# ",   "tooltip": "Comentario" },
+	{ "label": "   ",  "valor": "    ", "tooltip": "4 espacios (sangría)" },
+	{ "label": "True", "valor": "True", "tooltip": "Verdadero (booleano)" },
+	{ "label": "False","valor": "False","tooltip": "Falso (booleano)" },
+]
+
+const FRAGMENTOS := [
+	{ "nombre": "Minar y transferir",            "codigo": "spid.minar()\nspid.transferir()" },
+	{ "nombre": "Bucle while infinito",          "codigo": "while True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()" },
+	{ "nombre": "While con spid.tiene_espacio()","codigo": "while spid.tiene_espacio():\n    spid.minar()" },
+	{ "nombre": "If hay mineral",                "codigo": "if spid.hay_mineral():\n    spid.minar()" },
+	{ "nombre": "Bucle for N repeticiones",      "codigo": "for ciclo in range(3):\n    spid.norte()\n    spid.minar()\n    spid.sur()\nspid.transferir()" },
+	{ "nombre": "minerales_en_nave() < 10",      "codigo": "spid.minerales_en_nave() < 10" },
+	{ "nombre": "minerales_en_spid() < 3",       "codigo": "spid.minerales_en_spid() < 3" },
+	{ "nombre": "minerales_en_nave() >= 20",     "codigo": "spid.minerales_en_nave() >= 20" },
+	{ "nombre": "While cuota de minerales",      "codigo": "while spid.minerales_en_nave() < 20:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()" },
+	{ "nombre": "Variable pasos = 1",            "codigo": "pasos = 1\nspid.norte(pasos)\nspid.minar()\nspid.sur(pasos)\nspid.transferir()" },
+	{ "nombre": "Usar tamano_mundo()",           "codigo": "limite = spid.tamano_mundo()\nfor ciclo in range(limite - 1):\n    spid.norte()\n    spid.minar()\nspid.transferir()" },
+]
+
 var categoria_actual: String = "Comandos"
 var concepto_actual_id: String = "movimiento"
+
+@onready var cuerpo_conceptos: HBoxContainer = $Centro/PanelPrincipal/VBox/Cuerpo
+@onready var cuerpo_teclado: HBoxContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado
 
 @onready var contenedor_lista: VBoxContainer = $Centro/PanelPrincipal/VBox/Cuerpo/ColumnaIzquierda/Scroll/ListaConceptos
 @onready var label_titulo: Label = $Centro/PanelPrincipal/VBox/Cuerpo/ColumnaDerecha/Scroll/Detalle/TituloConcepto
@@ -127,13 +161,18 @@ var concepto_actual_id: String = "movimiento"
 @onready var btn_control: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonControl
 @onready var btn_organizacion: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonOrganizacion
 @onready var btn_comandos: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonComandos
+@onready var btn_teclado: Button = $Centro/PanelPrincipal/VBox/Pestanas/BotonTeclado
 
+@onready var grid_simbolos: HFlowContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym/GridSimbolos
+@onready var label_feedback: Label = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaSimbolos/Scroll/VBoxSym/FeedbackSimbolos
+@onready var lista_fragmentos: VBoxContainer = $Centro/PanelPrincipal/VBox/CuerpoTeclado/ColumnaFragmentos/VBoxFrag/Scroll/ListaFragmentos
 
 var estilo_concepto_normal: StyleBoxFlat
 var estilo_concepto_hover: StyleBoxFlat
 var estilo_concepto_selected: StyleBoxFlat
 var estilo_concepto_cifrado: StyleBoxFlat
 var botones_por_id: Dictionary = {}
+var _tween_feedback: Tween
 
 
 func _ready() -> void:
@@ -144,7 +183,10 @@ func _ready() -> void:
 	btn_control.pressed.connect(_cambiar_categoria.bind("Control"))
 	btn_organizacion.pressed.connect(_cambiar_categoria.bind("Organización"))
 	btn_comandos.pressed.connect(_cambiar_categoria.bind("Comandos"))
+	if btn_teclado != null:
+		btn_teclado.pressed.connect(_cambiar_categoria.bind("Teclado"))
 	$Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar.pressed.connect(cerrar)
+	_construir_teclado()
 
 
 func _habilitar_seleccion_texto() -> void:
@@ -229,8 +271,20 @@ func _cambiar_categoria(categoria: String) -> void:
 	btn_control.modulate = Color(1.2, 1.2, 1.2) if categoria == "Control" else Color(0.7, 0.7, 0.7)
 	btn_organizacion.modulate = Color(1.2, 1.2, 1.2) if categoria == "Organización" else Color(0.7, 0.7, 0.7)
 	btn_comandos.modulate = Color(1.2, 1.2, 1.2) if categoria == "Comandos" else Color(0.7, 0.7, 0.7)
+	if btn_teclado != null:
+		btn_teclado.modulate = Color(1.2, 1.2, 1.2) if categoria == "Teclado" else Color(0.7, 0.7, 0.7)
 
-	_poblar_lista_conceptos()
+	if categoria == "Teclado":
+		if cuerpo_conceptos != null:
+			cuerpo_conceptos.hide()
+		if cuerpo_teclado != null:
+			cuerpo_teclado.show()
+	else:
+		if cuerpo_teclado != null:
+			cuerpo_teclado.hide()
+		if cuerpo_conceptos != null:
+			cuerpo_conceptos.show()
+		_poblar_lista_conceptos()
 
 
 func _poblar_lista_conceptos() -> void:
@@ -312,3 +366,99 @@ func _seleccionar_concepto(id_clave: String) -> void:
 		txt_sintaxis.text = "[code]??? [/code]"
 		txt_ejemplo.text = "[code]# ACCESO DENEGADO POR SEGURIDAD DE A.D.A.[/code]"
 		txt_errores.text = "Información clasificada hasta nueva asignación de misión."
+
+
+func _construir_teclado() -> void:
+	if grid_simbolos != null and grid_simbolos.get_child_count() == 0:
+		for sym in SIMBOLOS:
+			var btn := Button.new()
+			btn.text = sym["label"]
+			btn.tooltip_text = sym["tooltip"]
+			btn.custom_minimum_size = Vector2(72, 44)
+			btn.add_theme_font_size_override("font_size", 16)
+			btn.add_theme_color_override("font_color", Color("F4F6F2"))
+			var estilo := _crear_estilo_teclado(Color("3D4756"), Color("545F72"))
+			var estilo_hover := _crear_estilo_teclado(Color("6FAF78"), Color("4F8F5B"))
+			btn.add_theme_stylebox_override("normal", estilo)
+			btn.add_theme_stylebox_override("hover", estilo_hover)
+			btn.add_theme_stylebox_override("focus", estilo)
+			btn.pressed.connect(_copiar_al_portapapeles.bind(sym["valor"], sym["label"]))
+			grid_simbolos.add_child(btn)
+
+	if lista_fragmentos != null and lista_fragmentos.get_child_count() == 0:
+		for frag in FRAGMENTOS:
+			var panel_frag := PanelContainer.new()
+			var estilo_frag := _crear_estilo_teclado(Color(0.24, 0.28, 0.34, 0.6), Color(0.35, 0.40, 0.48, 0.8))
+			panel_frag.add_theme_stylebox_override("panel", estilo_frag)
+			panel_frag.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+			var vbox := VBoxContainer.new()
+			vbox.add_theme_constant_override("separation", 6)
+
+			var hbox_top := HBoxContainer.new()
+			hbox_top.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+			var lbl_nombre := Label.new()
+			lbl_nombre.text = frag["nombre"]
+			lbl_nombre.add_theme_font_size_override("font_size", 14)
+			lbl_nombre.add_theme_color_override("font_color", Color("F4F6F2"))
+			lbl_nombre.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+			var btn_copiar := Button.new()
+			btn_copiar.text = "COPIAR"
+			btn_copiar.custom_minimum_size = Vector2(85, 30)
+			btn_copiar.add_theme_font_size_override("font_size", 12)
+			btn_copiar.add_theme_color_override("font_color", Color("F4F6F2"))
+			var estilo_btn := _crear_estilo_teclado(Color("4F8F5B"), Color("3A6B44"))
+			var estilo_btn_hover := _crear_estilo_teclado(Color("6FAF78"), Color("4F8F5B"))
+			btn_copiar.add_theme_stylebox_override("normal", estilo_btn)
+			btn_copiar.add_theme_stylebox_override("hover", estilo_btn_hover)
+			btn_copiar.add_theme_stylebox_override("focus", estilo_btn)
+			btn_copiar.pressed.connect(_copiar_al_portapapeles.bind(frag["codigo"], frag["nombre"]))
+
+			hbox_top.add_child(lbl_nombre)
+			hbox_top.add_child(btn_copiar)
+			vbox.add_child(hbox_top)
+
+			var lbl_codigo := Label.new()
+			lbl_codigo.text = frag["codigo"]
+			lbl_codigo.add_theme_font_size_override("font_size", 12)
+			lbl_codigo.add_theme_color_override("font_color", Color(0.70, 0.78, 0.88, 1))
+			lbl_codigo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			vbox.add_child(lbl_codigo)
+
+			panel_frag.add_child(vbox)
+			lista_fragmentos.add_child(panel_frag)
+
+
+func _crear_estilo_teclado(fondo: Color, borde: Color) -> StyleBoxFlat:
+	var s := StyleBoxFlat.new()
+	s.bg_color = fondo
+	s.border_color = borde
+	s.set_border_width_all(2)
+	s.border_width_bottom = 3
+	s.set_corner_radius_all(8)
+	s.content_margin_left = 10
+	s.content_margin_right = 10
+	s.content_margin_top = 6
+	s.content_margin_bottom = 6
+	s.shadow_color = Color("111720")
+	s.shadow_offset = Vector2(0, 2)
+	return s
+
+
+func _copiar_al_portapapeles(valor: String, nombre: String) -> void:
+	DisplayServer.clipboard_set(valor)
+	_mostrar_feedback_teclado("¡Copiado al portapapeles: " + nombre + "!")
+
+
+func _mostrar_feedback_teclado(msg: String) -> void:
+	if label_feedback == null:
+		return
+	label_feedback.text = msg
+	label_feedback.modulate.a = 1.0
+	if _tween_feedback != null and _tween_feedback.is_valid():
+		_tween_feedback.kill()
+	_tween_feedback = create_tween()
+	_tween_feedback.tween_interval(1.8)
+	_tween_feedback.tween_property(label_feedback, "modulate:a", 0.0, 0.4)
