@@ -222,7 +222,9 @@ func _ready() -> void:
 
 func _estandarizar_botones_cerrar() -> void:
 	var botones: Array[Button] = []
-	var cerrar_tienda := get_node_or_null("PanelTienda/LienzoArbol/BotonCerrar") as Button
+	var cerrar_tienda: Button = btn_cerrar_tienda if btn_cerrar_tienda != null else (get_node_or_null("PanelTienda/ModalTienda/VBox/HBoxHeader/BtnCerrarTienda") as Button)
+	if cerrar_tienda == null:
+		cerrar_tienda = get_node_or_null("PanelTienda/LienzoArbol/BotonCerrar") as Button
 	var cerrar_archivo := get_node_or_null("ArchivoADA/Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar") as Button
 	var cerrar_guia := get_node_or_null("PanelTutorial/Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar") as Button
 	for boton in [cerrar_tienda, cerrar_archivo, cerrar_guia]:
@@ -253,8 +255,25 @@ func _estilo_boton_cerrar(fondo: Color, borde: Color, desplazamiento: int) -> St
 	estilo.shadow_offset = Vector2(0, desplazamiento)
 	estilo.content_margin_left = 14
 	estilo.content_margin_right = 14
-	estilo.content_margin_top = 8
-	estilo.content_margin_bottom = 8
+	return estilo
+
+
+func _estilo_boton_tienda_item(fondo: Color, borde: Color, relieve: int = 5) -> StyleBoxFlat:
+	var estilo := StyleBoxFlat.new()
+	estilo.bg_color = fondo
+	estilo.border_color = borde
+	estilo.border_width_left = 2
+	estilo.border_width_top = 2
+	estilo.border_width_right = 2
+	estilo.border_width_bottom = relieve
+	estilo.set_corner_radius_all(12)
+	estilo.shadow_color = Color("111720")
+	estilo.shadow_size = 3
+	estilo.shadow_offset = Vector2(0, relieve)
+	estilo.content_margin_left = 10
+	estilo.content_margin_right = 10
+	estilo.content_margin_top = 6
+	estilo.content_margin_bottom = 6
 	return estilo
 
 
@@ -1197,9 +1216,9 @@ func _renderizar_centro_mejoras() -> void:
 	for item in ARBOL_MEJORAS:
 		var panel = PanelContainer.new()
 		var st = StyleBoxFlat.new()
-		st.bg_color = Color(0.12, 0.15, 0.20, 0.95)
+		st.bg_color = Color(0.34902, 0.388235, 0.447059, 0.96)
 		st.set_corner_radius_all(14)
-		st.set_content_margin_all(12)
+		st.set_content_margin_all(14)
 		st.border_width_left = 2
 		st.border_width_top = 2
 		st.border_width_right = 2
@@ -1277,25 +1296,25 @@ func _renderizar_centro_mejoras() -> void:
 				motivo_bloqueo = "TRAS BARRIDO"
 				fn_compra = Callable(self, "_on_button_protocolo_maestro_pressed")
 
-		var color_cat := Color(0.25, 0.85, 0.95)
+		var color_cat := Color(0.48, 0.82, 0.96)
 		var texto_cat := "TERRENO MODULAR"
 		match item.cat:
 			"bloque":
-				color_cat = Color(0.95, 0.75, 0.20)
+				color_cat = Color(1.0, 0.82, 0.32)
 				texto_cat = "SINTAXIS PYTHON"
 			"sistema":
-				color_cat = Color(0.35, 0.95, 0.65)
+				color_cat = Color("8BCB91")
 				texto_cat = "SISTEMAS DEL SPID"
 
 		if ya_desbloqueado:
-			st.border_color = Color(0.35, 0.85, 0.55, 0.9)
+			st.border_color = Color("6FAF78")
 		elif prerrequisito and minerales_nave >= item.costo:
-			st.border_color = color_cat
+			st.border_color = Color(0.95, 0.82, 0.35, 1.0)
 		else:
-			st.border_color = Color(0.25, 0.32, 0.42, 0.8)
+			st.border_color = Color(0.270588, 0.301961, 0.352941, 1.0)
 
 		panel.add_theme_stylebox_override("panel", st)
-		panel.custom_minimum_size = Vector2(280, 160)
+		panel.custom_minimum_size = Vector2(290, 165)
 
 		var vbox = VBoxContainer.new()
 		vbox.add_theme_constant_override("separation", 6)
@@ -1303,41 +1322,60 @@ func _renderizar_centro_mejoras() -> void:
 		var lbl_cat = Label.new()
 		lbl_cat.text = texto_cat
 		lbl_cat.add_theme_color_override("font_color", color_cat)
+		lbl_cat.add_theme_color_override("font_outline_color", Color("111720"))
+		lbl_cat.add_theme_constant_override("outline_size", 2)
 		lbl_cat.add_theme_font_size_override("font_size", 10)
 		vbox.add_child(lbl_cat)
 
 		var lbl_tit = Label.new()
 		lbl_tit.text = item.fase
-		lbl_tit.add_theme_color_override("font_color", Color(0.55, 0.85, 0.6) if ya_desbloqueado else Color(0.95, 0.96, 0.98))
+		lbl_tit.add_theme_color_override("font_color", Color("F4F6F2"))
+		lbl_tit.add_theme_color_override("font_outline_color", Color("111720"))
+		lbl_tit.add_theme_constant_override("outline_size", 2)
 		lbl_tit.add_theme_font_size_override("font_size", 13)
 		vbox.add_child(lbl_tit)
 
 		var lbl_desc = Label.new()
 		lbl_desc.text = item.desc
-		lbl_desc.add_theme_color_override("font_color", Color(0.72, 0.78, 0.82))
+		lbl_desc.add_theme_color_override("font_color", Color(0.88, 0.91, 0.94, 1.0))
 		lbl_desc.add_theme_font_size_override("font_size", 11)
 		lbl_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl_desc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		vbox.add_child(lbl_desc)
 
 		var btn_accion = Button.new()
-		btn_accion.custom_minimum_size = Vector2(0, 34)
+		btn_accion.custom_minimum_size = Vector2(0, 36)
+		btn_accion.add_theme_font_size_override("font_size", 12)
+		btn_accion.add_theme_color_override("font_outline_color", Color("111720"))
+		btn_accion.add_theme_constant_override("outline_size", 3)
 
 		if ya_desbloqueado:
 			btn_accion.text = "DESBLOQUEADO"
 			btn_accion.disabled = true
-			btn_accion.modulate = Color(0.5, 0.85, 0.5)
-		elif not prerrequisito:
+			btn_accion.add_theme_color_override("font_color", Color("F4F6F2"))
+			btn_accion.add_theme_color_override("font_disabled_color", Color("F4F6F2"))
+			var estilo_desbloqueado = _estilo_boton_tienda_item(Color("8BCB91"), Color("6FAF78"), 5)
+			btn_accion.add_theme_stylebox_override("normal", estilo_desbloqueado)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_desbloqueado)
+		elif not prerrequisito or item.costo == 0:
 			btn_accion.text = motivo_bloqueo
 			btn_accion.disabled = true
-			btn_accion.modulate = Color(0.65, 0.7, 0.75)
-		elif item.costo == 0:
-			btn_accion.text = motivo_bloqueo
-			btn_accion.disabled = true
-			btn_accion.modulate = Color(0.65, 0.7, 0.75)
+			btn_accion.add_theme_color_override("font_color", Color(0.72, 0.76, 0.82, 0.85))
+			btn_accion.add_theme_color_override("font_disabled_color", Color(0.72, 0.76, 0.82, 0.85))
+			var estilo_bloqueado = _estilo_boton_tienda_item(Color(0.270588, 0.301961, 0.352941, 0.9), Color(0.20, 0.24, 0.29, 1.0), 4)
+			btn_accion.add_theme_stylebox_override("normal", estilo_bloqueado)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_bloqueado)
 		elif minerales_nave >= item.costo:
 			btn_accion.text = "ADQUIRIR (%d Minerales)" % item.costo
-			btn_accion.modulate = color_cat
+			btn_accion.add_theme_color_override("font_color", Color("F4F6F2"))
+			btn_accion.add_theme_color_override("font_hover_color", Color("FFFFFF"))
+			var estilo_adquirir = _estilo_boton_tienda_item(Color(0.32, 0.52, 0.68, 1.0), Color(0.48, 0.72, 0.90, 1.0), 5)
+			var estilo_adquirir_hover = _estilo_boton_tienda_item(Color(0.38, 0.60, 0.78, 1.0), Color(0.58, 0.82, 1.0, 1.0), 6)
+			var estilo_adquirir_press = _estilo_boton_tienda_item(Color(0.28, 0.46, 0.60, 1.0), Color(0.40, 0.62, 0.78, 1.0), 2)
+			btn_accion.add_theme_stylebox_override("normal", estilo_adquirir)
+			btn_accion.add_theme_stylebox_override("hover", estilo_adquirir_hover)
+			btn_accion.add_theme_stylebox_override("pressed", estilo_adquirir_press)
+			btn_accion.add_theme_stylebox_override("focus", estilo_adquirir)
 			if fn_compra.is_valid():
 				btn_accion.pressed.connect(func():
 					fn_compra.call()
@@ -1346,7 +1384,11 @@ func _renderizar_centro_mejoras() -> void:
 		else:
 			btn_accion.text = "REQUIERE: %d Minerales" % item.costo
 			btn_accion.disabled = true
-			btn_accion.modulate = Color(0.7, 0.75, 0.8)
+			btn_accion.add_theme_color_override("font_color", Color(0.72, 0.76, 0.82, 0.85))
+			btn_accion.add_theme_color_override("font_disabled_color", Color(0.72, 0.76, 0.82, 0.85))
+			var estilo_sin_saldo = _estilo_boton_tienda_item(Color(0.270588, 0.301961, 0.352941, 0.9), Color(0.20, 0.24, 0.29, 1.0), 4)
+			btn_accion.add_theme_stylebox_override("normal", estilo_sin_saldo)
+			btn_accion.add_theme_stylebox_override("disabled", estilo_sin_saldo)
 
 		vbox.add_child(btn_accion)
 		panel.add_child(vbox)
