@@ -1,7 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://c1a3lo366ud0r"]
 
-[ext_resource type="FontFile" uid="uid://b57mukfyvrtjb" path="res://assets/fonts/PixelifySans.ttf" id="1_pixelify"]
-[ext_resource type="FontFile" path="res://assets/fonts/Poppins-Medium.ttf" id="2_poppins"]
+[ext_resource type="FontFile" uid="uid://cy8h2v0fvepp7" path="res://assets/fonts/Poppins-Medium.ttf" id="2_poppins"]
 
 [sub_resource type="StyleBoxFlat" id="ButtonDisabled"]
 content_margin_left = 18.0

@@ -41,7 +41,7 @@ const CONOCIMIENTOS := {
 		"categoria": "Control",
 		"descripcion": "Estructura de control que repite un bloque de instrucciones continuamente mientras una condición sea verdadera. Permite automatizar rutinas continuas de suministro y patrullaje.",
 		"sintaxis": "while <condicion>:\n    <instrucciones_con_sangria>",
-		"ejemplo": "# Ciclo continuo de suministro:\nwhile True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()\n\n# O según el espacio en bodega:\nwhile spid.tiene_espacio():\n    spid.minar()",
+		"ejemplo": "# Ciclo continuo de suministro:\nwhile True:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()\n\n# O condición de minerales en nave:\nwhile spid.minerales_en_nave() < 20:\n    spid.norte()\n    spid.minar()\n    spid.sur()\n    spid.transferir()",
 		"errores": "Olvidar los dos puntos ':' al final, olvidar aplicar sangría a las acciones interiores, o no incluir una condición de parada o retorno a base."
 	},
 	"bucle_for": {
@@ -105,10 +105,9 @@ spid.transferir()",
 		"sintaxis": "spid.hay_mineral()
 spid.tiene_espacio()
 spid.en_base()
-spid.minerales_en_rover()
+spid.minerales_en_spid()
 spid.minerales_en_nave()",
-		"ejemplo": "if spid.hay_mineral():
-	spid.minar()",
+		"ejemplo": "# Sensor de presencia de mineral:\nif spid.hay_mineral():\n    spid.minar()\n\n# Comprobar minerales en la nave con operador menor que (<):\nif spid.minerales_en_nave() < 20:\n    spid.norte()",
 		"errores": "Olvidar los paréntesis al llamar al sensor, o usar un sensor fuera de una condición o evaluación."
 	}
 }
@@ -140,11 +139,21 @@ var botones_por_id: Dictionary = {}
 func _ready() -> void:
 	hide()
 	_inicializar_estilos_conceptos()
+	_habilitar_seleccion_texto()
 	btn_fundamentos.pressed.connect(_cambiar_categoria.bind("Fundamentos"))
 	btn_control.pressed.connect(_cambiar_categoria.bind("Control"))
 	btn_organizacion.pressed.connect(_cambiar_categoria.bind("Organización"))
 	btn_comandos.pressed.connect(_cambiar_categoria.bind("Comandos"))
 	$Centro/PanelPrincipal/VBox/Cabecera/BotonCerrar.pressed.connect(cerrar)
+
+
+func _habilitar_seleccion_texto() -> void:
+	for txt in [txt_ejemplo, txt_sintaxis, txt_descripcion, txt_errores]:
+		if txt != null:
+			txt.selection_enabled = true
+			txt.context_menu_enabled = true
+			txt.focus_mode = Control.FOCUS_CLICK
+
 
 
 func _inicializar_estilos_conceptos() -> void:

@@ -188,11 +188,14 @@ func minerales_en_nave() -> int:
 		return int(interfaz.minerales_nave)
 	return 0
 
-func minerales_en_rover() -> int:
+func minerales_en_spid() -> int:
 	var interfaz := get_tree().current_scene.get_node_or_null("CanvasLayer")
 	if interfaz != null:
 		return int(interfaz.minerales_spid)
 	return 0
+
+func minerales_en_rover() -> int:
+	return minerales_en_spid()
 
 func tamano_mundo() -> int:
 	var nodo = get_parent()

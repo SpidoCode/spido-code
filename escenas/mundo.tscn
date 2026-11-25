@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://escenas/transmision_ada.tscn" id="13_ada"]
 [ext_resource type="PackedScene" path="res://escenas/archivo_ada.tscn" id="14_codice"]
 [ext_resource type="PackedScene" path="res://escenas/panel_tutorial.tscn" id="16_tutorial"]
+[ext_resource type="PackedScene" path="res://escenas/panel_teclado.tscn" id="17_teclado"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_codigo"]
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
@@ -657,6 +658,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4vydk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "GUÍA"
 
+[node name="BotonTeclado" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627713]
+layout_mode = 2
+tooltip_text = "Mostrar/ocultar panel de símbolos y fragmentos de código copiables"
+theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
+theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_4vydk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
+text = "TECLADO"
+
 [node name="PanelTienda" type="Panel" parent="CanvasLayer" unique_id=922794825]
 anchors_preset = 15
 anchor_right = 1.0
@@ -1131,6 +1143,14 @@ visible = false
 [node name="PanelTutorial" parent="CanvasLayer" unique_id=1467148890 instance=ExtResource("16_tutorial")]
 visible = false
 
+[node name="PanelTeclado" parent="CanvasLayer" unique_id=1467148891 instance=ExtResource("17_teclado")]
+visible = false
+layout_mode = 3
+offset_left = 1540.0
+offset_top = 15.0
+offset_right = 1900.0
+offset_bottom = 700.0
+
 [node name="MenuPausa" type="Control" parent="CanvasLayer" unique_id=1223488192]
 process_mode = 3
 visible = false
@@ -1209,7 +1229,7 @@ text = "Presiona ESC para continuar"
 horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=173857337]
-transform = Transform3D(1, 0, 0, 0, 0.8405977, 0.54165995, 0, -0.54165995, 0.8405977, 3.0690966, 6.6252966, 7.722657)
+transform = Transform3D(1, 0, 0, 0, 0.78639007, 0.61773026, 0, -0.61773026, 0.78639007, 3.2852306, 7.9739423, 8.400148)
 
 [node name="FondoEspacial" type="MeshInstance3D" parent="Camera3D" unique_id=1920698278]
 transform = Transform3D(0.9995616, -0.029166063, -0.005099421, 0.029163238, 0.9995746, -0.00062829256, 0.005115577, 0.00047934055, 0.99998695, -14.467957, 190.64882, -1010.8731)

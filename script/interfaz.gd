@@ -93,6 +93,8 @@ var minerales_spid : int = 0
 @onready var boton_archivo = $ContenedorTienda/BotonArchivo
 @onready var panel_tutorial = get_node_or_null("PanelTutorial")
 @onready var boton_tutorial = get_node_or_null("ContenedorTienda/BotonTutorial")
+@onready var panel_teclado = get_node_or_null("PanelTeclado")
+@onready var boton_teclado = get_node_or_null("ContenedorTienda/BotonTeclado")
 @onready var boton_while: Button = $PanelTienda/LienzoArbol/ButtonWhile
 @onready var boton_for: Button = $PanelTienda/LienzoArbol/ButtonFor
 @onready var boton_if: Button = $PanelTienda/LienzoArbol/ButtonIf
@@ -186,6 +188,8 @@ func _ready() -> void:
 		panel_tutorial.cerrado.connect(_on_tutorial_cerrado)
 	if boton_tutorial != null and not boton_tutorial.pressed.is_connected(_on_boton_tutorial_pressed):
 		boton_tutorial.pressed.connect(_on_boton_tutorial_pressed)
+	if boton_teclado != null and not boton_teclado.pressed.is_connected(_on_boton_teclado_pressed):
+		boton_teclado.pressed.connect(_on_boton_teclado_pressed)
 	if (
 		transmision_ada != null
 		and MissionService.objective_id == "recolectar_primer_mineral"
@@ -278,7 +282,7 @@ func _on_code_completion_requested() -> void:
 		["\u200dspid.hay_mineral()", "hay_mineral()", "Consultar sensor de mineral", Color(1, 0.35, 0.85, 1)],
 		["\u200dspid.tiene_espacio()", "tiene_espacio()", "Consultar capacidad de Spid", Color(1, 0.35, 0.85, 1)],
 		["\u200dspid.minerales_en_nave()", "minerales_en_nave()", "Consultar minerales en la nave", Color(1, 0.35, 0.85, 1)],
-		["\u200dspid.minerales_en_rover()", "minerales_en_rover()", "Consultar minerales en Spid", Color(1, 0.35, 0.85, 1)],
+		["\u200dspid.minerales_en_spid()", "minerales_en_spid()", "Consultar minerales en Spid", Color(1, 0.35, 0.85, 1)],
 		["\u200dspid.tamano_mundo()", "tamano_mundo()", "Consultar dimensión del sector", Color(1, 0.35, 0.85, 1)]
 	]
 
@@ -301,6 +305,15 @@ func _marcar_interfaz_inicializada() -> void:
 	_interfaz_inicializada = true
 
 
+func _on_boton_teclado_pressed() -> void:
+	if panel_teclado == null:
+		return
+	if panel_teclado.visible:
+		panel_teclado.hide()
+	else:
+		panel_teclado.show()
+
+
 func _on_boton_tienda_pressed() -> void:
 	actualizar_mejoras_visual()
 	ada_visible_antes_tienda = transmision_ada != null and transmision_ada.panel.visible
@@ -313,6 +326,10 @@ func _on_boton_tienda_pressed() -> void:
 		boton_archivo.hide()
 	if boton_tutorial != null:
 		boton_tutorial.hide()
+	if boton_teclado != null:
+		boton_teclado.hide()
+	if panel_teclado != null:
+		panel_teclado.hide()
 	if panel_codigo != null:
 		panel_codigo.hide()
 	if brujula != null:
@@ -331,6 +348,10 @@ func _on_boton_archivo_pressed() -> void:
 			boton_archivo.hide()
 		if boton_tutorial != null:
 			boton_tutorial.hide()
+		if boton_teclado != null:
+			boton_teclado.hide()
+		if panel_teclado != null:
+			panel_teclado.hide()
 		if panel_codigo != null:
 			panel_codigo.hide()
 		if brujula != null:
@@ -347,6 +368,8 @@ func _on_archivo_cerrado() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
+	if boton_teclado != null:
+		boton_teclado.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:
@@ -605,14 +628,14 @@ func evaluar_condicion_spid(condicion: String) -> bool:
 		return false
 
 	var regex_comp := RegEx.new()
-	if regex_comp.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_rover|minerales)\\(\\)\\s*(<|<=|>|>=|==|!=)\\s*(\\d+)$") == OK:
+	if regex_comp.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_spid|minerales_en_rover|minerales)\\(\\)\\s*(<|<=|>|>=|==|!=)\\s*(\\d+)$") == OK:
 		var match := regex_comp.search(condicion)
 		if match != null:
 			var target_var := match.get_string(2).to_lower()
 			var operador := match.get_string(3)
 			var valor_meta := int(match.get_string(4))
 			var valor_actual: int = minerales_nave
-			if target_var == "minerales_en_rover":
+			if target_var in ["minerales_en_spid", "minerales_en_rover"]:
 				valor_actual = minerales_spid
 
 			match operador:
@@ -646,6 +669,8 @@ func _on_boton_cerrar_pressed() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
+	if boton_teclado != null:
+		boton_teclado.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:
@@ -654,6 +679,7 @@ func _on_boton_cerrar_pressed() -> void:
 		var f := fase_tutorial_pendiente
 		fase_tutorial_pendiente = -1
 		_verificar_y_mostrar_tutorial_fase(f)
+
 	
 func actualizar_contadores() -> void:
 	if label_nave != null:
@@ -2108,6 +2134,10 @@ func _mostrar_tutorial(fase: int) -> void:
 		boton_archivo.hide()
 	if boton_tutorial != null:
 		boton_tutorial.hide()
+	if boton_teclado != null:
+		boton_teclado.hide()
+	if panel_teclado != null:
+		panel_teclado.hide()
 	if panel_codigo != null:
 		panel_codigo.hide()
 	if brujula != null:
@@ -2142,6 +2172,8 @@ func _on_tutorial_cerrado() -> void:
 		boton_archivo.show()
 	if boton_tutorial != null:
 		boton_tutorial.show()
+	if boton_teclado != null:
+		boton_teclado.show()
 	if panel_codigo != null:
 		panel_codigo.show()
 	if brujula != null:

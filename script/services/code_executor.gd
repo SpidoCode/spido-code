@@ -67,6 +67,7 @@ func _es_expresion_valida(expr: String) -> bool:
 	if limpia_lower in [
 		"spid.tamano_mundo()", "tamano_mundo()",
 		"spid.minerales_en_nave()", "minerales_en_nave()",
+		"spid.minerales_en_spid()", "minerales_en_spid()",
 		"spid.minerales_en_rover()", "minerales_en_rover()"
 	]:
 		return true
@@ -168,13 +169,19 @@ func _evaluar_expresion(expr: String, variables_env: Dictionary, resultado: Dict
 				val = MissionService._obtener_minerales_nave()
 		return {"ok": true, "val": val}
 
-	if limpia_lower in ["spid.minerales_en_rover()", "minerales_en_rover()"]:
+	if limpia_lower in [
+		"spid.minerales_en_spid()", "minerales_en_spid()",
+		"spid.minerales_en_rover()", "minerales_en_rover()"
+	]:
 		var val := 0
 		var root := Engine.get_main_loop() as SceneTree
 		if root != null and root.current_scene != null:
 			var spid = root.current_scene.find_child("Spid", true, false)
-			if spid != null and spid.has_method("minerales_en_rover"):
-				val = spid.minerales_en_rover()
+			if spid != null:
+				if spid.has_method("minerales_en_spid"):
+					val = spid.minerales_en_spid()
+				elif spid.has_method("minerales_en_rover"):
+					val = spid.minerales_en_rover()
 		return {"ok": true, "val": val}
 
 	return {"ok": false, "message": "La variable o identificador '" + limpia + "' no ha sido definida."}
@@ -2363,7 +2370,7 @@ func _analizar_while(contenido: String, numero_linea: int) -> Dictionary:
 
 	# Validación de comparaciones de recursos (ej: spid.minerales_en_nave() < 10)
 	var regex_comp := RegEx.new()
-	if regex_comp.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_rover|minerales)\\(\\)\\s*(<|<=|>|>=|==|!=)\\s*(\\d+)$") == OK:
+	if regex_comp.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_spid|minerales_en_rover|minerales)\\(\\)\\s*(<|<=|>|>=|==|!=)\\s*(\\d+)$") == OK:
 		var match := regex_comp.search(condicion)
 		if match != null:
 			return {
@@ -2373,7 +2380,7 @@ func _analizar_while(contenido: String, numero_linea: int) -> Dictionary:
 			}
 
 	var regex_sin_parentesis := RegEx.new()
-	if regex_sin_parentesis.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_rover|minerales)\\s*(<|<=|>|>=|==|!=)") == OK:
+	if regex_sin_parentesis.compile("^(?i)(spid\\.)?(minerales_en_nave|minerales_en_spid|minerales_en_rover|minerales)\\s*(<|<=|>|>=|==|!=)") == OK:
 		if regex_sin_parentesis.search(condicion) != null:
 			return _error_de_linea(
 				numero_linea,
@@ -2381,7 +2388,7 @@ func _analizar_while(contenido: String, numero_linea: int) -> Dictionary:
 				"Te faltaron los paréntesis '()' en la función: usa 'spid.minerales_en_nave() < ...'"
 			)
 
-	if condicion in ["spid.hay_mineral", "hay_mineral", "spid.tiene_espacio", "tiene_espacio", "spid.en_base", "en_base", "spid.minerales_en_nave", "minerales_en_nave", "spid.minerales_en_rover", "minerales_en_rover"]:
+	if condicion in ["spid.hay_mineral", "hay_mineral", "spid.tiene_espacio", "tiene_espacio", "spid.en_base", "en_base", "spid.minerales_en_nave", "minerales_en_nave", "spid.minerales_en_spid", "minerales_en_spid", "spid.minerales_en_rover", "minerales_en_rover"]:
 		return _error_de_linea(
 			numero_linea,
 			contenido,

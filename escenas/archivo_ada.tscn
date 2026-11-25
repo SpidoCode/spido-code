@@ -255,6 +255,7 @@ text = "DESCRIPCIÓN TEÓRICA:"
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
+selection_enabled = true
 
 [node name="Lbl2" type="Label" parent="Centro/PanelPrincipal/VBox/Cuerpo/ColumnaDerecha/Scroll/Detalle"]
 layout_mode = 2
@@ -266,6 +267,7 @@ text = "SINTAXIS FORMAL:"
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
+selection_enabled = true
 
 [node name="Lbl3" type="Label" parent="Centro/PanelPrincipal/VBox/Cuerpo/ColumnaDerecha/Scroll/Detalle"]
 layout_mode = 2
@@ -277,6 +279,7 @@ text = "EJEMPLO PRÁCTICO CON SPID:"
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
+selection_enabled = true
 
 [node name="Lbl4" type="Label" parent="Centro/PanelPrincipal/VBox/Cuerpo/ColumnaDerecha/Scroll/Detalle"]
 layout_mode = 2
@@ -288,3 +291,4 @@ text = "PISTAS Y ERRORES COMUNES:"
 layout_mode = 2
 bbcode_enabled = true
 fit_content = true
+selection_enabled = true
