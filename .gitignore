@@ -3,3 +3,8 @@
 /android/
 Documentos Metodologia/4 Mapa de Actores SpidoCode.png.import
 tests/test_restauracion_campana.gd.uid
+
+# Exportaciones locales de Windows
+/SpidoCode.exe
+/SpidoCode.pck
+/builds/
