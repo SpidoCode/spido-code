@@ -146,7 +146,6 @@ const PRECIOS = {
 }
 
 func _ready() -> void:
-	preload("res://script/tienda_layout.gd").construir(panel_tienda)
 	_estandarizar_botones_cerrar()
 	barra_codigo.gui_input.connect(_on_barra_codigo_gui_input)
 	caja_codigo.code_completion_enabled = true
@@ -765,7 +764,7 @@ func actualizar_mejoras_visual() -> void:
 
 	var exp1_on: bool = mundo != null and bool(mundo.corredor_1x3_desbloqueado)
 	var exp2_on: bool = mundo != null and bool(mundo.casillas_extra_desbloqueadas)
-	var exp3_on: bool = mundo != null and bool(mundo.mapa_3x3_desbloqueado)
+	var _exp3_on: bool = mundo != null and bool(mundo.mapa_3x3_desbloqueado)
 	var fase3_completada: bool = "senales_inciertas" in MissionService.get_completed_missions()
 	var calibracion_completada: bool = "ruta_calibracion" in MissionService.get_completed_missions()
 	var trabajo_continuo_completado: bool = "trabajo_continuo" in MissionService.get_completed_missions()
