@@ -21,7 +21,7 @@ func comprobar() -> void:
 	auth.status_label = status
 	# Sin inputs: registrarse no debe exigir ni leer credenciales del juego.
 	auth._on_registrarse_pressed()
-	var passed: bool = auth.WEB_SIGNUP_URL == "https://educode-web-git-feat-spidocode-web-auth-educode3.vercel.app/registro"
+	var passed: bool = auth.WEB_SIGNUP_URL == "https://www.spidocode.com/registro"
 	passed = passed and navegador.urls == [auth.WEB_SIGNUP_URL]
 	passed = passed and status.text.contains("Completa el registro en el navegador")
 	passed = passed and root.get_node("Supabase").pending_operation.is_empty()
@@ -35,7 +35,7 @@ func comprobar() -> void:
 	auth.free()
 	status.free()
 	if passed:
-		print("PASS: URL Preview, éxito y error del botón, sin navegador, credenciales ni petición Supabase.")
+		print("PASS: URL oficial, éxito y error del botón, sin navegador, credenciales ni petición Supabase.")
 	else:
 		push_error("FAIL: URL, resultado del botón o aislamiento del registro web incorrectos.")
 	quit(0 if passed else 1)

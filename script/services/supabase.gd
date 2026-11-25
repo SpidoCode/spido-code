@@ -27,6 +27,10 @@ func sign_up(email: String, password: String) -> bool:
 func sign_in(email: String, password: String) -> bool:
 	return _start_auth_request("login", SUPABASE_URL + "/auth/v1/token?grant_type=password", email, password)
 
+func _password_recovery_url() -> String:
+	var redirect_to := "https://www.spidocode.com/reset-password".uri_encode()
+	return SUPABASE_URL + "/auth/v1/recover?redirect_to=" + redirect_to
+
 func send_password_recovery(email: String) -> bool:
 	if pending_operation != "":
 		return false
@@ -36,10 +40,8 @@ func send_password_recovery(email: String) -> bool:
 		"Content-Type: application/json",
 		"Accept: application/json"
 	])
-	var redirect_to := "https://spidocode-web-amber.vercel.app/reset-password".uri_encode()
-	var recover_url := SUPABASE_URL + "/auth/v1/recover?redirect_to=" + redirect_to
 	var error := http_request.request(
-		recover_url,
+		_password_recovery_url(),
 		headers,
 		HTTPClient.METHOD_POST,
 		JSON.stringify({"email": email})
