@@ -1348,6 +1348,7 @@ func _renderizar_centro_mejoras() -> void:
 
 		panel.add_theme_stylebox_override("panel", st)
 		panel.custom_minimum_size = Vector2(290, 165)
+		panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		var vbox = VBoxContainer.new()
 		vbox.add_theme_constant_override("separation", 6)
