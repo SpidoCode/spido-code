@@ -32,10 +32,24 @@ func comprobar() -> void:
 	passed = passed and navegador.urls[1] == auth.WEB_SIGNUP_URL
 	passed = passed and status.text == "No se pudo abrir el navegador. Inténtalo nuevamente."
 	passed = passed and root.get_node("Supabase").pending_operation.is_empty()
+	var recovery_url := "https://www.spidocode.com/recuperar-contrasena"
+	var empty_email := LineEdit.new()
+	auth.email_input = empty_email
+	navegador.resultado = OK
+	auth._on_recuperar_password_pressed()
+	passed = passed and navegador.urls.size() == 3 and navegador.urls[2] == recovery_url
+	passed = passed and status.text.contains("Completa la recuperación en el navegador")
+	passed = passed and root.get_node("Supabase").pending_operation.is_empty()
+	navegador.resultado = ERR_CANT_OPEN
+	auth._on_recuperar_password_pressed()
+	passed = passed and navegador.urls.size() == 4 and navegador.urls[3] == recovery_url
+	passed = passed and status.text == "No se pudo abrir el navegador. Inténtalo nuevamente."
+	passed = passed and root.get_node("Supabase").pending_operation.is_empty()
+	empty_email.free()
 	auth.free()
 	status.free()
 	if passed:
-		print("PASS: URL oficial, éxito y error del botón, sin navegador, credenciales ni petición Supabase.")
+		print("PASS: URLs oficiales, éxito y error de registro y recuperación, sin navegador, credenciales ni petición Supabase.")
 	else:
-		push_error("FAIL: URL, resultado del botón o aislamiento del registro web incorrectos.")
+		push_error("FAIL: URL, resultado del botón o aislamiento del registro o la recuperación web incorrectos.")
 	quit(0 if passed else 1)

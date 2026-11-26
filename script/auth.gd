@@ -3,6 +3,7 @@ extends Control
 const ESCENA_MENU := "res://escenas/menu_inicio.tscn"
 # Preview de registro validado manualmente; no adjuntar credenciales ni tokens.
 const WEB_SIGNUP_URL := "https://www.spidocode.com/registro"
+const WEB_RECOVERY_URL := "https://www.spidocode.com/recuperar-contrasena"
 var _abrir_navegador: Callable = OS.shell_open
 @onready var email_input: LineEdit = $Panel/Contenedor/Email
 @onready var password_input: LineEdit = $Panel/Contenedor/Password
@@ -18,8 +19,6 @@ func _ready() -> void:
 	Supabase.login_failed.connect(_on_login_failed)
 	Supabase.signup_succeeded.connect(_on_signup_succeeded)
 	Supabase.signup_failed.connect(_on_signup_failed)
-	Supabase.password_recovery_sent.connect(_on_password_recovery_sent)
-	Supabase.password_recovery_failed.connect(_on_password_recovery_failed)
 	var panel := $Panel
 	panel.modulate.a = 0.0
 	panel.position.y += 12.0
@@ -59,13 +58,11 @@ func _on_registrarse_pressed() -> void:
 	status_label.text = "Completa el registro en el navegador y confirma tu correo si se solicita. Después vuelve al juego e inicia sesión."
 
 func _on_recuperar_password_pressed() -> void:
-	var email := email_input.text.strip_edges()
-	if email.is_empty():
-		status_label.text = "Escribe tu correo electrónico."
+	var error: Error = _abrir_navegador.call(WEB_RECOVERY_URL)
+	if error != OK:
+		status_label.text = "No se pudo abrir el navegador. Inténtalo nuevamente."
 		return
-	_set_request_state(true, "Enviando correo de recuperación...")
-	if not Supabase.send_password_recovery(email):
-		_set_request_state(false, "Ya hay una operación en curso.")
+	status_label.text = "Completa la recuperación en el navegador. Después vuelve al juego e inicia sesión."
 
 func _on_volver_pressed() -> void:
 	get_tree().change_scene_to_file(ESCENA_MENU)
@@ -99,9 +96,3 @@ func _on_signup_succeeded(_user: Dictionary, has_session: bool) -> void:
 
 func _on_signup_failed(message: String) -> void:
 	_set_request_state(false, "No se pudo registrar la cuenta: " + message)
-
-func _on_password_recovery_sent() -> void:
-	_set_request_state(false, "Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.")
-
-func _on_password_recovery_failed(message: String) -> void:
-	_set_request_state(false, "No se pudo enviar el correo de recuperación: " + message)
