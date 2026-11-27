@@ -5,9 +5,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StylePanelADA"]
 content_margin_left = 16.0
-content_margin_top = 14.0
+content_margin_top = 10.0
 content_margin_right = 16.0
-content_margin_bottom = 14.0
+content_margin_bottom = 10.0
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
 border_width_left = 4
 border_width_top = 4
@@ -37,7 +37,7 @@ mouse_filter = 2
 script = ExtResource("1_transmision")
 
 [node name="PanelTransmision" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(0, 310)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -45,7 +45,7 @@ anchor_right = 1.0
 offset_left = -340.0
 offset_top = 161.0
 offset_right = -20.0
-offset_bottom = 471.0
+offset_bottom = 161.0
 grow_horizontal = 0
 grow_vertical = 1
 mouse_filter = 2
@@ -62,7 +62,7 @@ theme_override_constants/margin_bottom = 0
 [node name="Contenido" type="VBoxContainer" parent="PanelTransmision/Margen"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 6
 
 [node name="Cabecera" type="HBoxContainer" parent="PanelTransmision/Margen/Contenido"]
 layout_mode = 2
@@ -96,21 +96,21 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleSeparadorADA")
 
 [node name="Mensaje" type="Label" parent="PanelTransmision/Margen/Contenido"]
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.05, 0.07, 0.1, 0.9)
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/line_separation = 4
+theme_override_constants/line_separation = 3
 theme_override_font_sizes/font_size = 13
 text = "Unidad Spid, conexión establecida."
 autowrap_mode = 3
 
 [node name="VisualizadorADA" type="Control" parent="PanelTransmision/Margen/Contenido"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_visualizador")

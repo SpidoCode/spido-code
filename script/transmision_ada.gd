@@ -50,6 +50,7 @@ func mostrar_mensaje(texto: String, tipo: String = "objetivo", duracion: float =
 
 	mensaje.text = texto
 	mensaje.visible_characters = 0
+	panel.reset_size()
 	if cerrado_por_jugador:
 		mensaje.visible_characters = -1
 		return
@@ -108,6 +109,7 @@ func establecer_panel_abierto(abierto: bool) -> void:
 	if abierto:
 		panel.show()
 		mensaje.visible_characters = -1
+		panel.reset_size()
 		tween_actual = create_tween()
 		tween_actual.set_parallel(true)
 		tween_actual.tween_property(panel, "position", posicion_visible, 0.28).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
