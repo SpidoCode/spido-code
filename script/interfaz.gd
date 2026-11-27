@@ -202,7 +202,7 @@ func _ready() -> void:
 	if boton_tutorial != null and not boton_tutorial.pressed.is_connected(_on_boton_tutorial_pressed):
 		boton_tutorial.pressed.connect(_on_boton_tutorial_pressed)
 	if boton_fases != null:
-		boton_fases.text = "FASES  ▼" if panel_mision_visible else "FASES  ▲"
+		boton_fases.text = "FASES  ▲"
 		if not boton_fases.pressed.is_connected(_on_boton_fases_pressed):
 			boton_fases.pressed.connect(_on_boton_fases_pressed)
 	if btn_cerrar_tienda != null and not btn_cerrar_tienda.pressed.is_connected(_on_boton_cerrar_pressed):
@@ -348,7 +348,7 @@ func _on_boton_fases_pressed() -> void:
 func establecer_panel_mision_abierto(abierto: bool) -> void:
 	panel_mision_visible = abierto
 	if boton_fases != null:
-		boton_fases.text = "FASES  ▲" if not abierto else "FASES  ▼"
+		boton_fases.text = "FASES  ▲"
 	if panel_mision == null:
 		return
 	if tween_panel_mision != null and tween_panel_mision.is_valid():
@@ -2486,7 +2486,7 @@ func _animar_nueva_mision() -> void:
 		return
 	panel_mision_visible = true
 	if boton_fases != null:
-		boton_fases.text = "FASES  ▼"
+		boton_fases.text = "FASES  ▲"
 	panel_mision.show()
 	var posicion_final := posicion_panel_mision
 	panel_mision.position = posicion_final + Vector2(-18.0, 0.0)
