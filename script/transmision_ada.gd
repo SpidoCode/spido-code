@@ -1,7 +1,7 @@
 extends Control
 
 @onready var panel: PanelContainer = $PanelTransmision
-@onready var mensaje: RichTextLabel = $PanelTransmision/Margen/Contenido/Cuerpo/Mensaje
+@onready var mensaje: Label = $PanelTransmision/Margen/Contenido/Mensaje
 @onready var estado: Label = $PanelTransmision/Margen/Contenido/Cabecera/Estado
 @onready var boton_sistema: Button = get_node_or_null("../BotonSistemaADA")
 

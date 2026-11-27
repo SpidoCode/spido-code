@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://script/transmision_ada.gd" id="1_transmision"]
-[ext_resource type="Script" path="res://script/ada_avatar.gd" id="2_avatar"]
+[ext_resource type="Script" path="res://script/ada_visualizador.gd" id="2_visualizador"]
 
 [sub_resource type="StyleBoxFlat" id="StylePanelADA"]
-content_margin_left = 18.0
+content_margin_left = 16.0
 content_margin_top = 14.0
-content_margin_right = 18.0
+content_margin_right = 16.0
 content_margin_bottom = 14.0
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
 border_width_left = 4
@@ -37,6 +37,7 @@ mouse_filter = 2
 script = ExtResource("1_transmision")
 
 [node name="PanelTransmision" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 310)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -53,10 +54,10 @@ theme_override_styles/panel = SubResource("StylePanelADA")
 [node name="Margen" type="MarginContainer" parent="PanelTransmision"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="Contenido" type="VBoxContainer" parent="PanelTransmision/Margen"]
 layout_mode = 2
@@ -69,64 +70,54 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="Indicador" type="ColorRect" parent="PanelTransmision/Margen/Contenido/Cabecera"]
-custom_minimum_size = Vector2(9, 9)
+custom_minimum_size = Vector2(6, 18)
 layout_mode = 2
 mouse_filter = 2
-color = Color(0.7608024, 0.9369633, 0.7753063, 1)
+color = Color(0.7608, 0.937, 0.775, 1)
 
 [node name="Nombre" type="Label" parent="PanelTransmision/Margen/Contenido/Cabecera"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 23
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
 text = "A.D.A."
 
 [node name="Estado" type="Label" parent="PanelTransmision/Margen/Contenido/Cabecera"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.7608, 0.937, 0.775, 1)
+theme_override_font_sizes/font_size = 13
 text = "● TRANSMISION"
 horizontal_alignment = 2
 
-[node name="Separador" type="HSeparator" parent="PanelTransmision/Margen/Contenido"]
+[node name="Separador" type="HSeparador" parent="PanelTransmision/Margen/Contenido"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleSeparadorADA")
 
-[node name="Cuerpo" type="HBoxContainer" parent="PanelTransmision/Margen/Contenido"]
+[node name="Mensaje" type="Label" parent="PanelTransmision/Margen/Contenido"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/separation = 14
-
-[node name="AvatarADA" type="Control" parent="PanelTransmision/Margen/Contenido/Cuerpo"]
-custom_minimum_size = Vector2(90, 175)
-layout_mode = 2
-mouse_filter = 2
-script = ExtResource("2_avatar")
-
-[node name="Mensaje" type="RichTextLabel" parent="PanelTransmision/Margen/Contenido/Cuerpo"]
-custom_minimum_size = Vector2(160, 175)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.956863, 0.964706, 0.94902, 1)
+theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
 theme_override_colors/font_shadow_color = Color(0.05, 0.07, 0.1, 0.9)
 theme_override_constants/outline_size = 1
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/line_separation = 3
-theme_override_font_sizes/normal_font_size = 17
-text = "Unidad Spid, conexion establecida."
-fit_content = true
-scroll_active = false
+theme_override_constants/line_separation = 4
+theme_override_font_sizes/font_size = 13
+text = "Unidad Spid, conexión establecida."
+autowrap_mode = 3
+
+[node name="VisualizadorADA" type="Control" parent="PanelTransmision/Margen/Contenido"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_visualizador")
 
 [node name="Canal" type="Label" parent="PanelTransmision/Margen/Contenido"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 12
 text = "CANAL NAVE 01  //  SEÑAL ESTABLE"
 horizontal_alignment = 2
