@@ -1241,10 +1241,10 @@ func _evaluar_trabajo_continuo(resultado: Dictionary) -> void:
 
 func _evaluar_ciclo_recoleccion(resultado: Dictionary) -> void:
 	var codigo: String = str(resultado.get("code", "")).to_lower().replace(" ", "")
-	var comandos: Array = resultado.get("commands_used", [])
+	var _comandos: Array = resultado.get("commands_used", [])
 	var recolectados: int = int(resultado.get("minerals_collected", 0))
 	var transferidos: int = int(resultado.get("minerals_transferred", 0))
-	var iteraciones: int = int(resultado.get("loop_iterations", 0))
+	var _iteraciones: int = int(resultado.get("loop_iterations", 0))
 
 	# 1. Exigir for e in range
 	if not (codigo.contains("for") and (codigo.contains("inrange") or codigo.contains("range("))):

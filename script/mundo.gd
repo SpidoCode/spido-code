@@ -372,8 +372,8 @@ func instanciar_mineral_en_casilla(casilla: Vector3i) -> void:
 	var centro_local := grid_map.map_to_local(casilla)
 	var centro_global := grid_map.to_global(centro_local)
 	var nuevo_mineral = mineral_scene.instantiate()
+	nuevo_mineral.position = to_local(centro_global + Vector3(0, -0.4, 0.3))
 	add_child(nuevo_mineral)
-	nuevo_mineral.global_position = centro_global + Vector3(0, -0.4, 0.3)
 
 func spawn_mineral_aleatorio() -> void:
 	var ocupadas: Array[Vector3i] = []
@@ -431,8 +431,8 @@ func spawn_mineral_aleatorio() -> void:
 	var centro_global := grid_map.to_global(centro_local)
 
 	var nuevo_mineral = mineral_scene.instantiate()
+	nuevo_mineral.position = to_local(centro_global + Vector3(0, -0.4, 0.3))
 	add_child(nuevo_mineral)
-	nuevo_mineral.global_position = centro_global + Vector3(0, -0.4, 0.3)
 
 func reubicar_mineral_para_corredor() -> void:
 	var minerales := get_tree().get_nodes_in_group("minerales")

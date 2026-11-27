@@ -133,7 +133,7 @@ func _evaluar_expresion(expr: String, variables_env: Dictionary, resultado: Dict
 		var divisor: int = int(der["val"])
 		if divisor == 0:
 			return {"ok": false, "message": "División por cero no permitida."}
-		return {"ok": true, "val": int(izq["val"]) / divisor}
+		return {"ok": true, "val": floori(float(izq["val"]) / float(divisor))}
 
 	# 5. Literal entero
 	if limpia.is_valid_int():
@@ -554,13 +554,13 @@ func ejecutar_codigo(
 										return resultado
 								else:
 									cmd_for["loop_iteration"] = iteracion
-									var res_cmd := await _ejecutar_instruccion_simple(
+									var res_for_cmd := await _ejecutar_instruccion_simple(
 										cmd_for,
 										ejecutar_comando,
 										resultado,
 										variables_env
 									)
-									if not res_cmd.get("ok", false):
+									if not res_for_cmd.get("ok", false):
 										_finalizar(resultado)
 										return resultado
 						continue

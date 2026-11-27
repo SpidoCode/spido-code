@@ -91,7 +91,7 @@ theme_override_font_sizes/font_size = 13
 text = "● TRANSMISION"
 horizontal_alignment = 2
 
-[node name="Separador" type="HSeparador" parent="PanelTransmision/Margen/Contenido"]
+[node name="Separador" type="HSeparator" parent="PanelTransmision/Margen/Contenido"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleSeparadorADA")
 
