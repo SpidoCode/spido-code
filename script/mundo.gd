@@ -295,6 +295,21 @@ func asegurar_minerales_por_columnas() -> void:
 			minerales_por_columna[celda.x] = []
 		minerales_por_columna[celda.x].append(celda)
 
+	# En las 3 primeras misiones del corredor (hasta completar bucle while / cuota_suministro),
+	# el mineral debe generarse siempre en el norte.
+	var forzar_norte: bool = (
+		radio_mapa_desbloqueado > 0
+		and (
+			not casillas_extra_desbloqueadas
+			or (MissionService != null and MissionService.objective_id in ["ruta_calibracion", "trabajo_continuo", "cuota_suministro"])
+		)
+	)
+	if forzar_norte:
+		var casilla_norte := CASILLA_INICIAL + Vector3i(0, 0, -1)
+		if not (casilla_norte in ocupadas) and grid_map.get_cell_item(casilla_norte) != GridMap.INVALID_CELL_ITEM:
+			instanciar_mineral_en_casilla(casilla_norte)
+		return
+
 	# Identificar todas las columnas (X) disponibles en el grid_map
 	var columnas_existentes: Array[int] = []
 	var celdas_por_columna: Dictionary = {}
