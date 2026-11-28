@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" path="res://escenas/archivo_ada.tscn" id="14_codice"]
 [ext_resource type="PackedScene" path="res://escenas/panel_tutorial.tscn" id="16_tutorial"]
 
+[ext_resource type="Script" path="res://script/primary_button.gd" id="90_primary"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_codigo"]
 bg_color = Color(0.270588, 0.301961, 0.352941, 0.98)
 border_width_left = 2
@@ -500,6 +502,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="BotonPaso" type="Button" parent="CanvasLayer/PanelCodigo/Contenido/BarraControles" unique_id=1695318453]
+script = ExtResource("90_primary")
 custom_minimum_size = Vector2(120, 36)
 layout_mode = 2
 tooltip_text = "Ejecutar paso a paso (F10 / Ctrl+Espacio)"
@@ -510,6 +513,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "PASO A PASO"
 
 [node name="Button" type="Button" parent="CanvasLayer/PanelCodigo/Contenido/BarraControles" unique_id=1661741592]
+script = ExtResource("90_primary")
 custom_minimum_size = Vector2(130, 36)
 layout_mode = 2
 tooltip_text = "Ejecutar código completo (Ctrl+Enter)"
@@ -563,6 +567,7 @@ offset_bottom = 55.0
 theme_override_constants/separation = 12
 
 [node name="BotonFases" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627713]
+script = ExtResource("90_primary")
 layout_mode = 2
 tooltip_text = "Mostrar u ocultar el panel de fases y misiones"
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
@@ -574,6 +579,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "FASES  ▲"
 
 [node name="BotonTienda" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627710]
+script = ExtResource("90_primary")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
@@ -584,6 +590,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "MEJORAS"
 
 [node name="BotonArchivo" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627711]
+script = ExtResource("90_primary")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
@@ -594,6 +601,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_tienda_hover")
 text = "CÓDICE"
 
 [node name="BotonTutorial" type="Button" parent="CanvasLayer/ContenedorTienda" unique_id=1830627712]
+script = ExtResource("90_primary")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
@@ -734,6 +742,7 @@ text = "0/100"
 vertical_alignment = 1
 
 [node name="BotonSistemaADA" type="Button" parent="CanvasLayer" unique_id=652521952]
+script = ExtResource("90_primary")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

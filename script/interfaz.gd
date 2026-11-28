@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const PrimaryButton = preload("res://script/primary_button.gd")
+
 @onready var panel_codigo: Panel = $PanelCodigo
 @onready var barra_codigo: Panel = $PanelCodigo/BarraTitulo
 @onready var contenido_codigo: Control = $PanelCodigo/Contenido
@@ -250,9 +252,7 @@ func _estandarizar_botones_cerrar() -> void:
 		boton.add_theme_color_override("font_outline_color", Color("111720"))
 		boton.add_theme_constant_override("outline_size", 3)
 		boton.add_theme_stylebox_override("normal", _estilo_boton_cerrar(Color("8BCB91"), Color("6FAF78"), 6))
-		boton.add_theme_stylebox_override("hover", _estilo_boton_cerrar(Color("A1D6A6"), Color("6FAF78"), 6))
-		boton.add_theme_stylebox_override("pressed", _estilo_boton_cerrar(Color("6FAF78"), Color("6FAF78"), 2))
-		boton.add_theme_stylebox_override("focus", _estilo_boton_cerrar(Color("8BCB91"), Color("6FAF78"), 6))
+		PrimaryButton.apply(boton)
 
 
 func _estilo_boton_cerrar(fondo: Color, borde: Color, desplazamiento: int) -> StyleBoxFlat:
@@ -1406,12 +1406,8 @@ func _renderizar_centro_mejoras() -> void:
 			btn_accion.add_theme_color_override("font_color", Color("F4F6F2"))
 			btn_accion.add_theme_color_override("font_hover_color", Color("FFFFFF"))
 			var estilo_adquirir = _estilo_boton_tienda_item(Color(0.32, 0.52, 0.68, 1.0), Color(0.48, 0.72, 0.90, 1.0), 5)
-			var estilo_adquirir_hover = _estilo_boton_tienda_item(Color(0.38, 0.60, 0.78, 1.0), Color(0.58, 0.82, 1.0, 1.0), 6)
-			var estilo_adquirir_press = _estilo_boton_tienda_item(Color(0.28, 0.46, 0.60, 1.0), Color(0.40, 0.62, 0.78, 1.0), 2)
 			btn_accion.add_theme_stylebox_override("normal", estilo_adquirir)
-			btn_accion.add_theme_stylebox_override("hover", estilo_adquirir_hover)
-			btn_accion.add_theme_stylebox_override("pressed", estilo_adquirir_press)
-			btn_accion.add_theme_stylebox_override("focus", estilo_adquirir)
+			PrimaryButton.apply(btn_accion)
 			if fn_compra.is_valid():
 				btn_accion.pressed.connect(func():
 					fn_compra.call()

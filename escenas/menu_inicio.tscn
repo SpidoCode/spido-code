@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b2xmqppbtemv8" path="res://Fondos/estrellas_frames/frame_00.png" id="2_lkhye"]
 [ext_resource type="FontFile" uid="uid://b57mukfyvrtjb" path="res://assets/fonts/PixelifySans.ttf" id="3_pixelify"]
 
+[ext_resource type="Script" path="res://script/primary_button.gd" id="90_primary"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppgcv"]
 content_margin_left = 16.0
 content_margin_top = 16.0
@@ -154,6 +156,7 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="BotonJugar" type="Button" parent="PanelMenu/ContenedorPrincipal" unique_id=2141127539]
+script = ExtResource("90_primary")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
@@ -199,6 +202,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="ButtonLogin" type="Button" parent="PanelPerfil/HBoxContainer" unique_id=2118172983]
+script = ExtResource("90_primary")
 layout_mode = 2
 theme_override_colors/font_color = Color(0.956863, 0.964706, 0.94902, 1)
 theme_override_colors/font_outline_color = Color(0.12549, 0.156863, 0.2, 1)
