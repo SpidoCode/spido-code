@@ -21,7 +21,7 @@ func _ready() -> void:
 	add_child(center_container)
 	
 	panel = PanelContainer.new()
-	panel.custom_minimum_size = Vector2(500, 260)
+	panel.custom_minimum_size = Vector2(520, 0)
 	center_container.add_child(panel)
 	
 	var style_panel = StyleBoxFlat.new()
@@ -47,7 +47,7 @@ func _ready() -> void:
 	
 	var vbox = VBoxContainer.new()
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	vbox.add_theme_constant_override("separation", 35)
+	vbox.add_theme_constant_override("separation", 16)
 	margin.add_child(vbox)
 	
 	var title = Label.new()
@@ -80,32 +80,20 @@ func _ready() -> void:
 	check_mute.toggled.connect(_on_mute_toggled)
 	hbox_mute.add_child(check_mute)
 	
-	var btn_container = CenterContainer.new()
+	vbox.add_child(HSeparator.new())
+	var pantalla := preload("res://script/display_mode_picker.gd").new()
+	vbox.add_child(pantalla)
+
+	var btn_container := CenterContainer.new()
 	vbox.add_child(btn_container)
-	
-	boton_cerrar = Button.new()
+
+	boton_cerrar = preload("res://script/primary_button.gd").new()
 	boton_cerrar.text = "CERRAR"
 	boton_cerrar.custom_minimum_size = Vector2(150, 45)
-	boton_cerrar.add_theme_color_override("font_color", Color("F4F6F2"))
-	
-	var style_btn = StyleBoxFlat.new()
-	style_btn.bg_color = Color("8BCB91")
-	style_btn.set_border_width_all(3)
-	style_btn.border_width_bottom = 6
-	style_btn.border_color = Color("6FAF78")
-	style_btn.set_corner_radius_all(14)
-	style_btn.shadow_color = Color("202833")
-	style_btn.shadow_offset = Vector2(0, 6)
-	boton_cerrar.add_theme_stylebox_override("normal", style_btn)
-	
-	var style_btn_hover = style_btn.duplicate()
-	style_btn_hover.bg_color = Color("9ED9A3")
-	style_btn_hover.border_color = Color("6FAF78")
-	boton_cerrar.add_theme_stylebox_override("hover", style_btn_hover)
-	boton_cerrar.add_theme_stylebox_override("pressed", style_btn_hover)
-	
 	boton_cerrar.pressed.connect(_on_cerrar_pressed)
 	btn_container.add_child(boton_cerrar)
+	pantalla.selector.grab_focus()
+
 
 func _crear_slider(texto: String, bus_name: String, parent: Control) -> HSlider:
 	var hbox = HBoxContainer.new()
@@ -155,7 +143,7 @@ func _on_mute_toggled(button_pressed: bool) -> void:
 func _on_cerrar_pressed() -> void:
 	queue_free()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_on_cerrar_pressed()
 		get_viewport().set_input_as_handled()
