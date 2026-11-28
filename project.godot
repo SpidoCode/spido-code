@@ -18,6 +18,7 @@ config/icon="res://assets/branding/spidocode_icon.png"
 
 [autoload]
 
+DisplaySettings="*res://script/display_settings.gd"
 Supabase="*uid://8fusfri8k4ft"
 GestorSintaxis="*res://script/services/gestor_sintaxis.gd"
 ProgressService="*res://script/services/progress_service.gd"

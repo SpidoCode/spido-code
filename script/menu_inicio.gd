@@ -141,4 +141,9 @@ func _on_boton_configuracion_pressed() -> void:
 	add_child(config_menu)
 	var contenedor = $PanelMenu/ContenedorPrincipal
 	contenedor.hide()
-	config_menu.tree_exited.connect(func(): contenedor.show())
+	config_menu.tree_exited.connect(func():
+		if not is_inside_tree():
+			return
+		contenedor.show()
+		boton_configuracion.grab_focus()
+	)
