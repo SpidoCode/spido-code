@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://script/panel_tutorial.gd" id="1_script"]
+
+[ext_resource type="Script" path="res://script/primary_button.gd" id="90_primary"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_tutorial"]
 content_margin_left = 24.0
@@ -172,6 +174,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_boton_nav")
 text = "SIGUIENTE"
 
 [node name="BotonEntendido" type="Button" parent="Centro/PanelPrincipal/VBox/Navegacion"]
+script = ExtResource("90_primary")
 visible = false
 custom_minimum_size = Vector2(210, 40)
 layout_mode = 2
